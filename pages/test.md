@@ -1,6 +1,6 @@
 ---
 title: "Notation in Statistics"
-layout: post
+layout: page
 ---
 Notation is powerful.
 
