@@ -4,9 +4,11 @@
 
 <div class="row-fluid post-full">
   <div class="span12">
+    {% unless page.date == empty %}
     <div class="date">
       <span>{{ page.date | date_to_long_string }}</span>
     </div>
+    {% endunless %}
     <div class="content">
       {{ content }}
     </div>
