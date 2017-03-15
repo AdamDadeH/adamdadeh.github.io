@@ -2,25 +2,30 @@
 title: "Notation in Statistics"
 layout: page
 ---
-Notation is powerful.
+*Notation is powerful*
 
-By relieving the brain of all unnecessary work, a good notation sets it free to concentrate on more advanced problems, and, in effect, increases the mental power of the race. (Alfred North Whitehead, “An Introduction to Mathematics”)
+"By relieving the brain of all unnecessary work, a good notation sets it free to concentrate on more advanced problems, and, in effect, increases the mental power of the race." (Alfred North Whitehead, “An Introduction to Mathematics”)
 
-"Good notation can make the difference between a readable paper and an unreadable one." Terence Tao [https://terrytao.wordpress.com/advice-on-writing-papers/use-good-notation/]
+"Good notation can make the difference between a readable paper and an unreadable one." Terence Tao [Use Good Notation|https://terrytao.wordpress.com/advice-on-writing-papers/use-good-notation/]
 
-A good notation will allow one to work more efficiently, convey ideas more concisely, and even lead to new developments. A poor notation acts as a 
+A good notation will allow one to work more efficiently, convey ideas more concisely, and lead to new developments. A poor notation acts as a 
 friction to development and confines our thoughts to old ways of thinking.
+I argue that statistics is held back with such poor notation.
 
 Probability & Measure Theory
-============================
+----------------------------
 
-Modern probability theory is commonly said to derive from the work of
-Kolmogorov [https://en.wikipedia.org/wiki/Andrey_Kolmogorov] who laid a
-foundation using the language of measure theory.
+Modern probability theory is commonly said to derive from the 
+work of [Kolmogorov|https://en.wikipedia.org/wiki/Andrey_Kolmogorov] 
+who laid a foundation using measure theory. From my experience probability 
+*is* most naturally expressed in the language of measure theory.
 
-Probability *is* most naturally expressed in the language of measure theory. 
-The only qualm I have with the standard formulation is the importance we place 
-on the theory of integration and expectation values.
+I have qualms though with the reliance of probability theory
+on integration and expectation values. It is natural to bundle together 
+measure theory with integration. They are tightly coupled in how they are 
+taught and how they are used. Measure theory is most commonly introduced
+as a means to define integration, but in the case of Probability theory
+the star of the show is measure theory.
 
 Sample Spaces
 -----------------------------------
@@ -28,74 +33,52 @@ Sample Spaces
 In the language of measure theory a sample space is a *measurable space*
 being a set $$X$$ equipped with a sigma algebra $$\mathcal{A}$$.
 
-A sigma algebra is a set of subsets of $$X$$ ($$\mathcal{A} \sub \mathcal{P}X$$) such that
+A sigma algebra is a set of subsets of $$X$$ ($$\mathcal{A} \subset \mathcal{P}X$$) such that :
 
-0. Contains the empty set.
-1. $$\mathcal{A}$$ is closed under complements. So $$A \in \mathcal{A}$$ then $$X - A \in \mathcal{A}$$
+0. $$\mathcal{A}$$ contains the empty set $$\emptyset$$
+1. $$\mathcal{A}$$ is closed under complements. If $$A \in \mathcal{A}$$ then $$X - A \in \mathcal{A}$$
+}.
+2. $$\mathcal{A}$$ is closed under countable unions. So given $$A_n \in \mathcal{A}$$ for n indexed by the natural numbers - then $$\cup_n A_n \in \mathcal{A}$$.
 }
-2. $$\mathcal{A}$$ is closed un
-der countable unions. So if $$A_n \in \mathcal{A}$$ for n indexed by the natural numbers - then $$\cup_n A_n \in \mathcal{A}$$.
-}
+
+From these we have other derived properties. $$X \in \mathcal{A}$$. $$\mathcal{A}$$ is closed under countable unions.
 
 Probability Space
 ----------------------------------
 
-A probability space is simple a measurable space equiped with a normalized measure. Ok nothing new here.
-
-Given our sample space $$X$$ and our sigma algebra $$\sigma$$ we can look at 
-$$\mc{M}(X, \sigma)$$the space of possible measures that can be defined on it or
-$$\mc{P}(X, \sigma)$$ the space of normalized measures.
+A probability space is simply measurable space equiped with 
+a normalized countably additive measure $$\rho$$.
 
 Where a measure satisfies
-\begin{itemize}
-\item $$p : \sigma \rightarrow \RR^+ $$
-\item $$p(X) = 1$$
-\item $$p(\empty) = 0$$
-\item Countable additivity.
-\end{itemize}
+1. $$\rho : \sigma \rightarrow \RR^+ $$
+2. $$\rho(X) = 1$$
+3. $$\rho(\emptyset) = 0$$
+4. Countable additivity. Given a countable number of disjoint $$A_n \in \mathcal{A}$$ $$\rho(\cup_n A_n) = \sum_n \rho(A_n)$$
 
-Ingredients:
-1) A set $$X$$ which will denote the range of values our variable can take.
-2) A sigma algebra (define) on $$X$$ which defines the events/outcomes/circumstances/properties we 
-can measurethe probability of.
-3) A normalized (to 1) measure on this measurable space $$(X,\Sigma)$$.
+Given our sample space $$X$$ and our sigma algebra $$\Sigma$$ we can look at 
+$$\mathcal{M}(X, \Sigma)$$the space of possible measures that can be defined on it or
+$$\mc{P}(X, \sigma)$$ the space of normalized measures.
 
-At this stage I am complete agreement with the standard views.
+At this stage we have not deviated from the norm.
 
 Random Variables
 ----------------------------------
 
 The standard definition of a Random Variable is a measurable function from
-a probability space to the reals. Measurable functions are the natural
-thing to write down given our measurable spaces - being the morphisms of
-measurable spaces.
+a probability space to the reals (with the Lebesgue measure). This is where integration typically  creeps in - as such a measurable function can be integrated. The integral of our random variable is the standard expectation
+value and integrals of simple functions of our random variable lead to the
+various moments.
 
-This definition enables us to : 
+On their own measurable functions are natural to define given our 
+measurable spaces - they play the role of measurable space morphisms.
 
-1. Compose $$f: X \rightarrow Y$$ and $$g: Y \rightarrow R$$ leading to an *integrable* function.
-2. 
+For meaurable spaces $$X$$,$$Y$$ a measurable function $$f: X \rightarrow Y$$ satisfies.
 
-A measurable function $$f: X \rightarrow Y$$ satisfies
-
-1. $$f^{-1}(B)$$ is measurable for all B measurable in Y.
+1. $$f^{-1}(B)$$ is measurable for all measureable sets B in Y.
 
 What's with the inverse? You may be familiar with the identities
 $$f^{-1}(\cup_a U_a) = \cup_a f^{-1} (U_a)$$ and similarly for intersection
-and for complementation. These do not necessarily hold for the other
-direction.
-
-Initial and Final Sigma Algebras
--------------------------------------
-
-Given a function $$f: X \rightarrow Y$$ and a sigma algebra on $$X$$ we can generate a sigma algebra on $$Y$$ that makes $$f$$ a measurable function. There are many such $$\sigma_Y$$ ranging
-from $$\{\emptyset, Y\}$$ (the coarsest measure) to $$\{A | f^{-1}(A) \in \sigma_X \}$$ (the finest measure such that $$f$$ is measurable. The coarsest makes all functions measurable and the finest is more restrictive - while the coarsest allows us to measure the smallest number of sets and the finest the most. In our case we are far more interested in being able to
-measure the maximum number of measurable sets (and thus measurable maps from $$Y$$ to other spaces).
-
-From here on let us denote this as $$f^{*}(\sigma_X)$$ the push forward of $$\sigma_X$$.
-
-Similarly we can pull back a sigma algebra from $$Y$$ to $$X$$ given a map $$f:X \rightarrow Y$$. Again we have a range of options - from the minimal to the most discrete sigma algebra on $$X$$.
-
-Best way to think about both of these.
+and for complementation. There are not corresponding identities for $f$.
 
 Given a map $$f: X \rightarrow Y$$. If we restrict to the image of $$X$$, $$f(X) = Y'$$ (or
 equivalently assume that f is an onto map). Then the pre-image mapping $$f^{-1}: PY \rightarrow PX$$ is a one-to-one function of $$PY$$ into $$PX$$. Since if $$V_1$$ and $$V_2$$ are such that
@@ -114,15 +97,31 @@ operations of a sigma algebra.
 So this an isomorphism of $$\sigma$$ algebras. We have then that the mapping $$f:X \rightarrow Y$$ induces a natural isomorphism of sigma algebras - allowing us to either map a sigma algebra
 on $$X$$ to one on $$Y$$ or vice-versa.
 
-This also gives up the ability to push forward and pull back topologies (?) The push forward topology is the quotient topology construction - also called the final topology. The opposite is referred as the initial/weak topology (and the resulting sets are cylinder sets)
+With these identities + the condition for measurability of $$f$$ we find that
+$$f^{-1}$$ acts as a morphism of sigma algebras
 
-Construction of new random variables by mapping a given random variable with an arbitrary map.
+$$f^{-1} : \mathcal{B} -> \mathcal{A}$$
 
-Factorization of a random variable. We have a sub-algebra of $$\sigma_X$$ induced by $$f$$ and $$Y
-$$. When does this enable us to factor the space in two independent components?
+Random Variable == Measure on R
+-------------------------------------
 
-What? What happened to random variable being a measurable function from
-our probability space to the reals?
+Given a measurable function $$f : X \rightarrow R$$ we and a probability
+measure $$p$$ on $$X$$ we can construct a probability measure on $$R$$.
+We will refer to this a push-forward of the measure.
+
+$$f^*(p)(V) = p(f^{-1}(V))$$
+
+Does $$f^*(p)$$ satisfy the conditions of a probability measure?
+
+1. $$f^*(p)(\emptyset)$$ = p(\emptyset) = 0$$
+2. $$f^*(p)(Y)$$ = p(X) = 1$$
+3. Can also verify countable additivity.
+
+Further this definition is consistent with how we think about probability.
+
+Thus our random variables are really defining a probability distribution
+on $$R$$. The random variable produces an image of our probability
+distribution in $$R$$. 
 
 This triple defines $$(X,\Sigma,\rho)$$ our Random Variable. Why do we eschew to
 standard name of Probability Space - we don't necessarily need to - we could just
@@ -162,20 +161,6 @@ Random coordinates being measurable real valued functions (which naturally thems
 are 'random variables' - but in the same way that the real line is a manifold, but it
 is the prototypical manifold.
 
-\section{Push Forward Measure}
-
-So - prior we had that $$f:X \rightarrow Y$$ gives us a sigma algebra on $$Y$$ : $$f^{*}(\sigma)$$.
-Given this we can push forward any measure on $$(X,\sigma)$$.
-
-$$f^*(\mu)(V) = \mu(f^{-1}(V))$$
-
-\section{Pull Back Measure}
-
-Given a measure on $$Y$$ we can pull it back to a measure on $$X$$.
-
-We can consider the push-forward of the measure - followed by pull-back - then ask if
-we can factor our original measure in terms of this.
-
 A Dependence on Expectation Values
 ===================================
 
@@ -198,15 +183,3 @@ to shy away from the classic methods of computing expectation values and
 moments. To be clear - expectation values and moments of distributions are
 extremely useful for standard/nice distributions, but it is valuable to step
 outside this paradigm.
-
-There are multiple things to consider - first the precise formulation of the problem
-we wish to tackle and then efficient methods to compute.
-
-Consider - first that the primary goal of such computations is the estimation
-of properties of the probability measure on the space to enable more efficient
-computation of probabilities and second to obtain values that summarize the
-distribution enabling us to have an easier grasp on the content of this mathematical
-object.
-
-So in order to tackle a more general family of random variables - or to tackle them
-without resort a particular set of coordinates.
