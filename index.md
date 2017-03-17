@@ -10,5 +10,5 @@ description: Math, Stats, and Grumbling
 
 
 - [Overview](pages/overview.html)
-- [Notation in Probability](pages/test.html)
+- [Notation in Probability](pages/probability_notation.html)
 
