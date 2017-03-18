@@ -58,8 +58,8 @@ of your D6,D20,etc die, the states of a deck of cards.
 Probability Space
 ----------------------------------
 
-A probability space is a measurable space equiped with 
-a measure $$P$$ that satisfying
+A [Probability Space](https://en.wikipedia.org/wiki/Probability_space) is a measurablespace 
+equiped with a measure $$P$$ satisfying
 
 1. *Positivity* $$P : \sigma \rightarrow \mathbb{R}^+ $$
 2. *Normalized* $$P(X) = 1$$
