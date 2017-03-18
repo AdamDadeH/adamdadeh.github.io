@@ -2,11 +2,14 @@
 title: "Notation in Statistics"
 layout: page
 ---
+
 *Notation is powerful*
 
 "By relieving the brain of all unnecessary work, a good notation sets it free to concentrate on more advanced problems, and, in effect, increases the mental power of the race." (Alfred North Whitehead, “An Introduction to Mathematics”)
 
-"Good notation can make the difference between a readable paper and an unreadable one." Terence Tao [Use Good Notation|https://terrytao.wordpress.com/advice-on-writing-papers/use-good-notation/]
+"Good notation can make the difference between a readable paper and an unreadable one." Terence Tao [Use Good Notation](https://terrytao.wordpress.com/advice-on-writing-papers/use-good-notation/)
+
+See also [hypotext - notation](https://github.com/hypotext/notation)
 
 A good notation will allow one to work more efficiently, convey ideas more concisely, and lead to new developments. A poor notation acts as a 
 friction to development and confines our thoughts to old ways of thinking.
@@ -16,7 +19,7 @@ Probability & Measure Theory
 ----------------------------
 
 Modern probability theory is commonly said to derive from the 
-work of [Kolmogorov|https://en.wikipedia.org/wiki/Andrey_Kolmogorov] 
+work of [Kolmogorov](https://en.wikipedia.org/wiki/Andrey_Kolmogorov)
 who laid a foundation using measure theory. From my experience probability 
 *is* most naturally expressed in the language of measure theory.
 Quite often though measure theory & the theory of integration are
@@ -69,7 +72,7 @@ $$\mc{P}(X, \sigma)$$ the space of normalized measures.
 
 At this stage we have not deviated from the norm.
 
-Random Variables
+Random Variables 1
 ----------------------------------
 
 The standard definition of a Random Variable is a measurable function from
@@ -84,38 +87,26 @@ For meaurable spaces $$X$$,$$Y$$ a measurable function $$f: X \rightarrow Y$$ sa
 
 1. $$f^{-1}(B)$$ is measurable for all measureable sets B in Y.
 
-What's with the inverse? You may be familiar with the identities
-$$f^{-1}(\cup_a U_a) = \cup_a f^{-1} (U_a)$$ and similarly for intersection
-and for complementation. There are not corresponding identities for $f$.
+What's with the inverse? 
 
-Given a map $$f: X \rightarrow Y$$. If we restrict to the image of $$X$$, $$f(X) = Y'$$ (or
-equivalently assume that f is an onto map). Then the pre-image mapping $$f^{-1}: PY \rightarrow PX$$ is a one-to-one function of $$PY$$ into $$PX$$. Since if $$V_1$$ and $$V_2$$ are such that
-$$f^{-1}(V_1) = f^{-1}(V_2)$$ we have that for any $$y \in V_1$$ there is a set of values in $$X$$ that are in it's pre-image - these values must be in the pre-image of $$V_2$$ - so $$y$$ must be
-in $$V_2$$. Further this one-to-one mapping preserves a (an even larger set than) the natural
-operations of a sigma algebra.
+You may be familiar with the identities for any map $$f: X \rightarrow Y$$.
 
-\bnum
-\item $$f^{-1}(Y)=X$$
-\item $$f^{-1}(\emptyset) = \emptyset$$
-\item $$f^{-1}(\cap_\alpha V_\alpha) = \cap_\alpha f^{-1} V_alpha$$
-\item $$f^{-1}(\cup_\alpha V_\alpha) = \cup_\alpha f^{-1} V_alpha$$
-\item $$f^{-1}(Y - V) = X - f^{-1}(V)$$
-\enum
+1. $$f^{-1}(Y)=X$$
+2. $$f^{-1}(\emptyset) = \emptyset$$
+3. $$f^{-1}(\cap_\alpha V_\alpha) = \cap_\alpha f^{-1} V_alpha$$
+4. $$f^{-1}(\cup_\alpha V_\alpha) = \cup_\alpha f^{-1} V_alpha$$
+5. $$f^{-1}(Y - V) = X - f^{-1}(V)$$
 
-So this an isomorphism of $$\sigma$$ algebras. We have then that the mapping $$f:X \rightarrow Y$$ induces a natural isomorphism of sigma algebras - allowing us to either map a sigma algebra
-on $$X$$ to one on $$Y$$ or vice-versa.
+All together we have a morphism of the $$\sigma$$ algebras if f is measurable. $$f^{-1} : \Sigma_Y \righatrrow \Sigma_X$$. Additionally if we restrict to the image of $$X$$, $$f^{-1}: P(Y) \rightarrow P(X)$$ is one-to-one. So we have
+an isomorphism of $$\Sigma_Y$$ with a subset of $$\Sigma_X$$.
 
-With these identities + the condition for measurability of $$f$$ we find that
-$$f^{-1}$$ acts as a morphism of sigma algebras
-
-$$f^{-1} : \mathcal{B} -> \Sigma$$
-
-Random Variable == Measure on R
+Random Variable <-> Measures on $$\mathbb{R}$$
 -------------------------------------
 
 Given a measurable function $$f : X \rightarrow R$$ we and a probability
-measure $$p$$ on $$X$$ we can construct a probability measure on $$R$$.
-We will refer to this a push-forward of the measure.
+measure $$P$$ on $$X$$ we can construct a probability measure on $$R$$.
+We will refer to this a push-forward of the measure. (Strictly this extends
+to any measurable function $$f: X \rightarrow Y$$.
 
 $$f^*(p)(V) = p(f^{-1}(V))$$
 
@@ -127,38 +118,15 @@ Does $$f^*(p)$$ satisfy the conditions of a probability measure?
 
 Further this definition is consistent with how we think about probability.
 
-Thus our random variables are really defining a probability distribution
-on $$R$$. The random variable produces an image of our probability
-distribution in $$R$$. 
+Thus our random variables are defining a probability distribution
+on $$\mathbb{R}$$ and it is this push forward distribution that 
+we are often looking to estimate the properties of.
 
-This triple defines $$(X,\Sigma,\rho)$$ our Random Variable. Why do we eschew to
-standard name of Probability Space - we don't necessarily need to - we could just
-entirely remove the term.
+From my perspective it seems more natural to focus on the triple $$(X,\Sigma,P)$$
+as the important objects - as opposed to Random Variables. 
 
-One of the elementary operations we consider in probability is the mapping of our
-probability space by functions. Pushforward. This enables us to push forward a measure
-to the new space - thus defining a new random variable. 
-
-Random Variables
-=====================
-
-A random variable is the full triple : $$(X,\sigma, \rho)$$
-
-Most often in literature we refer to a Borel measurable functions $$f: X \rightarrow \RR$$
-as a random variable. . In what sense is
-this a random (scalar) variable? More generally we can talk about $$Y$$ valued random
-variables being measurable functions from $$f: X \rightarrow Y$$.
-
-
-* Given this function we can push forward the measure on $$X$$ to obtain a measure on $$\RR$$. We then have a real valued probability space.
-* Perhaps variable hearks back to thoughts of solving algebraic equations for unknown 
-variables in which case we desire a variable to take values in a space that admits algebraic
-operations.
-* Especially in the more general case we find that the core componenet is the IMAGE of
-the function as opposed to the function itself. In that sense we should consider the target
-$$(Y,\sigma_Y,f^*\rho)$$ to be the random variable and $$f$$ then simply being a morphism
-between these two probability spaces. In that sense any triple then
-corresponds to a random variable - so what is the point!
+Real Random Variables as Coordinates
+____________________________________
 
 Point 2 reveals the primary use of random variables - as random 'Coordinates' the ability
 to map from a more abstract system to real or complex valued coordinates that we can compute
@@ -169,22 +137,31 @@ Random coordinates being measurable real valued functions (which naturally thems
 are 'random variables' - but in the same way that the real line is a manifold, but it
 is the prototypical manifold.
 
+Digging through the notation of other fields for a close analog we
+come across - the use of coordinates & coordinate charts in the
+discussion of manifolds.
+
+$$f : U \rightarrow \mathbb{R}$$
+
+for $$U \subset M$$.
+
 A Dependence on Expectation Values
-===================================
+____________________________________
 
-Nearly everything we do in probability involves expectation values. From the discussion
-above we've noted that these are not natural within probability, but are a convenience
-given the formulation in terms of measure theory.
+Much of probability theory, statistics, & data science involves expectation values or
+other structures we inherit from working with 'random coordinates'. Some of these are
+natural and some can get us in trouble ..
 
-Where do we use them without thinking?
-
+* Central Limit Theorem
 *  Mean error for model performance. We are always computing the mean over training data
 and over test data - without considering the more general properties of the distribution. Does mean
 describe it well?
 
+They but are certainly a convenience but much like geometry - not something we want
+to rely on as a foundational element of the theory.
 
 Coordinate Independence
-===========================
+________________________
 
 If we are thinking about random variables in a broader sense it is natural 
 to shy away from the classic methods of computing expectation values and 
