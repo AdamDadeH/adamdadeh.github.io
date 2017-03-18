@@ -37,7 +37,7 @@ Sample Spaces
 In the language of measure theory a sample space is a *measurable space*
 being a set $$X$$ equipped with a sigma algebra $$\Sigma$$.
 
-A sigma algebra is a set of subsets of $$X$$ ($$\Sigma is a subset of \mathcal{P}X$$, the Power set of $$X$$) such that :
+A sigma algebra is a set of subsets of $$X$$ ($$\Sigma$$ is a subset of $$\mathcal{P}X$$, the Power set of $$X$$) such that :
 
 0. $$\Sigma$$ contains the empty set $$\emptyset$$
 1. $$\Sigma$$ is closed under complements. If $$A \in \Sigma$$ then $$X - A \in \Sigma$$
@@ -61,7 +61,7 @@ Probability Space
 A probability space is a measurable space equiped with 
 a measure $$P$$ that satisfying
 
-1. *Positivity* $$P : \sigma \rightarrow \RR^+ $$
+1. *Positivity* $$P : \sigma \rightarrow \mathbb{R}^+ $$
 2. *Normalized* $$P(X) = 1$$
 3. $$P(\emptyset) = 0$$
 4. *Countable additivity* : Given a countable number of disjoint $$A_n \in \Sigma$$ $$P(\cup_n A_n) = \sum_n P(A_n)$$
@@ -93,18 +93,18 @@ You may be familiar with the identities for any map $$f: X \rightarrow Y$$.
 
 1. $$f^{-1}(Y)=X$$
 2. $$f^{-1}(\emptyset) = \emptyset$$
-3. $$f^{-1}(\cap_\alpha V_\alpha) = \cap_\alpha f^{-1} V_alpha$$
-4. $$f^{-1}(\cup_\alpha V_\alpha) = \cup_\alpha f^{-1} V_alpha$$
+3. $$f^{-1}(\cap_\alpha V_\alpha) = \cap_\alpha f^{-1} (V_\alpha)$$
+4. $$f^{-1}(\cup_\alpha V_\alpha) = \cup_\alpha f^{-1} (V_\alpha)$$
 5. $$f^{-1}(Y - V) = X - f^{-1}(V)$$
 
-All together we have a morphism of the $$\sigma$$ algebras if f is measurable. $$f^{-1} : \Sigma_Y \righatrrow \Sigma_X$$. Additionally if we restrict to the image of $$X$$, $$f^{-1}: P(Y) \rightarrow P(X)$$ is one-to-one. So we have
+All together we have a morphism of the $$\sigma$$ algebras if f is measurable. $$f^{-1} : \Sigma_Y \rightarrow \Sigma_X$$. Additionally if we restrict to the image of $$X$$, $$f^{-1}: P(Y) \rightarrow P(X)$$ is one-to-one. So we have
 an isomorphism of $$\Sigma_Y$$ with a subset of $$\Sigma_X$$.
 
 Random Variable <-> Measures on $$\mathbb{R}$$
 -------------------------------------
 
-Given a measurable function $$f : X \rightarrow R$$ we and a probability
-measure $$P$$ on $$X$$ we can construct a probability measure on $$R$$.
+Given a measurable function $$f : X \rightarrow \mathbb{R}$$ we and a probability
+measure $$P$$ on $$X$$ we can construct a probability measure on $$\mathbb{R}$$.
 We will refer to this a push-forward of the measure. (Strictly this extends
 to any measurable function $$f: X \rightarrow Y$$.
 
@@ -112,8 +112,8 @@ $$f^*(p)(V) = p(f^{-1}(V))$$
 
 Does $$f^*(p)$$ satisfy the conditions of a probability measure?
 
-1. $$f^*(p)(\emptyset)$$ = p(\emptyset) = 0$$
-2. $$f^*(p)(Y)$$ = p(X) = 1$$
+1. $$f^*(p)(\emptyset) = p(\emptyset) = 0$$
+2. $$f^*(p)(Y) = p(X) = 1$$
 3. Can also verify countable additivity.
 
 Further this definition is consistent with how we think about probability.
@@ -126,7 +126,7 @@ From my perspective it seems more natural to focus on the triple $$(X,\Sigma,P)$
 as the important objects - as opposed to Random Variables. 
 
 Real Random Variables as Coordinates
-____________________________________
+---------------------------
 
 Point 2 reveals the primary use of random variables - as random 'Coordinates' the ability
 to map from a more abstract system to real or complex valued coordinates that we can compute
@@ -146,7 +146,7 @@ $$f : U \rightarrow \mathbb{R}$$
 for $$U \subset M$$.
 
 A Dependence on Expectation Values
-____________________________________
+-------------------------
 
 Much of probability theory, statistics, & data science involves expectation values or
 other structures we inherit from working with 'random coordinates'. Some of these are
@@ -161,7 +161,7 @@ They but are certainly a convenience but much like geometry - not something we w
 to rely on as a foundational element of the theory.
 
 Coordinate Independence
-________________________
+------------------------
 
 If we are thinking about random variables in a broader sense it is natural 
 to shy away from the classic methods of computing expectation values and 
