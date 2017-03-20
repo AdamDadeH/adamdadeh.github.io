@@ -116,7 +116,7 @@ universal) is overly limiting.
 * Categorically we would look at all measurable spaces and all measurable functions 
 between these spaces.
 
-Conflicting Confusion
+Conflicting Notation
 --------------------------
 
 While working with a single sample space we have a notion of arithmetic on
