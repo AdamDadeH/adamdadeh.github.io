@@ -1,11 +1,17 @@
 ---
 layout: page
 title: Adam Henderson
-tagline: Math, Stats, and Grumbling
-description: Math, Stats, and Grumbling
+tagline: Math, Stats, and Coffee
+description: Math, Stats, and Coffee
 ---
 
-- [Overview](pages/overview.html)
+Background : PhD in theoretical physics - focusing on quantum and classical gravity. Since PhD, I have gravitated
+more towards research in applied mathematics with a focus on statistics and data science as it is a fertile area
+for new advancements. 
+
+[List of Publications](http://inspirehep.net/author/profile/A.Henderson.1)
+
+
 
 Now Reading : 
 -------------
