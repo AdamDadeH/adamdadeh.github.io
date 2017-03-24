@@ -9,7 +9,8 @@ Background : PhD in theoretical physics - focusing on quantum and classical grav
 more towards research in applied mathematics with a focus on statistics and data science as it is a fertile area
 for new advancements. 
 
-[List of Publications](http://inspirehep.net/author/profile/A.Henderson.1)
+[List of Publications](http://inspirehep.net/author/profile/A.Henderson.1) from my quantum gravity era. Without academic
+pressue I have lacked the impetus to write. Although - this page will exist as an outlet for random ideas.
 
 
 
