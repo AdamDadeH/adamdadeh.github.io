@@ -130,8 +130,9 @@ particular as the category over $$\mathbb{R}$$ with the Borel Algebra.)
 * While the category point seems aesthetic - it does commonly occur that we are interested
 in compositions of random variables.
 
-Conflicting Syntax
---------------------------------------------------------------------
+
+Conflicting Notation
+--------------------------
 
 While working with a single sample space we have a notion of arithmetic on
 real random variables which derives from arithmetic on the reals.
