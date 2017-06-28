@@ -29,5 +29,11 @@ Now Reading :
 Posts : 
 --------------
 
+<ul>
+  {% for post in site.posts %}
+  <li class="post-title"><a href="{{ post.url }}">{{ post.title }}</a></li>
+  {% endfor %}
+</ul>
+
 - [Notation in Probability](pages/probability_notation.html)
 
