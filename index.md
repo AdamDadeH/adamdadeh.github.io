@@ -12,10 +12,10 @@ for new advancements.
 [List of Publications](http://inspirehep.net/author/profile/A.Henderson.1) from my quantum gravity era. Without academic
 pressue I have lacked the impetus to write. Although - this page will exist as an outlet for random ideas.
 
-
-
 Now Reading : 
 -------------
+
+[Algebra](https://www.amazon.com/Algebra-Graduate-Texts-Mathematics-v/dp/0387905189)
 
 [Categories for the Working Mathematician](https://en.wikipedia.org/wiki/Categories_for_the_Working_Mathematician)
   * A hole in my mathematical background that needed filling.
