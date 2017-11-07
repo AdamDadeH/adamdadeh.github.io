@@ -80,9 +80,9 @@ Experiment 0 : Actual Dates
 
 The data is a hand generated list of various date formats I have observed in the wild, some formats and garblings that plausibly occur, and for each the associated standard ISO-8601 formatting.
 
-* [Data](data/dates.csv)
+* [Data](/data/dates.csv)
 
-![Actual Dates : Precision](images/actual_prec.png)
+![Actual Dates : Precision](/images/actual_prec.png)
 
 Dateparser has the highest recall of the bunch. The gap between dateparser and the others would be even larger if the evaluation covered more languages or other specialties of dateparser. The only 3 dates that dateparser struggled with were
 
@@ -107,12 +107,12 @@ maya and pendulum though give a surprising result
 While it is not apparent that Arrow is designed for high recall - it performs similar
 to multiple passes of datetime.strptime with different patterns. 
 
-![Actual Dates : Run-Time](images/actual_time_full.png)
+![Actual Dates : Run-Time](/images/actual_time_full.png)
 
 There is definitely a cost for dateparser's performance - requiring roughly 100 times
 the time per input string.
 
-![Actual Dates : Run-Time (Minus Outlier)](images/actual_time.png)
+![Actual Dates : Run-Time (Minus Outlier)](/images/actual_time.png)
 
 Filtering out that outlier to zoom in - we find that amongst medium recall dateutil has
 the best performance.
@@ -129,7 +129,7 @@ def generate_test_short_data(sample_size = 100):
     return [(str(random.randint(-32767, 32768)), None, "Random Short") for i in range(sample_size)]
 ```
 
-![Random Shorts : Precision](images/short_prec.png)
+![Random Shorts : Precision](/images/short_prec.png)
 
 Perhaps unsurprisingly the parsers that are more flexible and have higher recall
 have a higher tendency of parsing random input data as a date. This leads to a 
@@ -164,7 +164,7 @@ Example False Positives for arrow
  * ```-20830 -> 1969-12-31 18:12:50```
  * ```20641 -> 1970-01-01 05:44:01```
 
-![Random Shorts : Run-Time 2](images/short_time.png)
+![Random Shorts : Run-Time 2](/images/short_time.png)
 
 Dataparser clocked in at 0.16 microseconds per string - which is roughly 5x the run-time as the date strings above and up to 1000 times larger than the other packages.
 
@@ -182,7 +182,7 @@ Experiment 2 : Single Characters
 
 The second trivial experiment 
 
-![Single Characters [A-Z][a-z] : Precision](images/char_prec.png)
+![Single Characters [A-Z][a-z] : Precision](/images/char_prec.png)
 
 Most packages nail random strings. There are many single characters though that dateparser maps to a datetime. I expect these derive from shorthand for days of the week (English : M,T,W,..) in other langauges.
 
@@ -199,7 +199,7 @@ Example False Positives for dateparser
  * ```v -> 2017-10-06 00:00:00```
  * ```A -> 2017-01-09 00:00:00```
 
-![Single Characters [A-Z][a-z] : Run-Time 2](images/char_time.png)
+![Single Characters [A-Z][a-z] : Run-Time 2](/images/char_time.png)
 
 Experiment 3 : Random Doubles
 ==============================
@@ -209,7 +209,7 @@ def generate_test_double_data(sample_size = 100):
     return [(str(100.0 * np.random.rand()), None, "Random Double") for i in range(sample_size)]
 ```
 
-![Random Doubles : Precision](images/doubles_prec.png)
+![Random Doubles : Precision](/images/doubles_prec.png)
 
 Example False Positives for dateutil / maya / pendulum
 --------------------------------------
@@ -228,7 +228,7 @@ Example False Positives for dateutil / maya / pendulum
  * ```78.72487521117215 -> 1970-01-01 00:01:18.724875```
  * ```84.81257902971872 -> 1970-01-01 00:01:24.812579```
 
-![Random Doubles : Run-Time](images/doubles_time.png)
+![Random Doubles : Run-Time](/images/doubles_time.png)
 
 Summary
 ================
