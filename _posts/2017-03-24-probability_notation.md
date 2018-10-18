@@ -16,23 +16,22 @@ See also this collection of references and thoughts on notation [hypotext - nota
 
 A good notation will allow one to work more efficiently, convey ideas more concisely, and 
 lead to new developments. A poor notation acts as a friction to development and confines 
-our thoughts to old ways of thinking. I argue that statistics is held back with such poor 
-notation.
+our thoughts to old ways of thinking. At least for my personal use statistics notation has room for improvement - in particular the language of 'Random Variables' and 'Expectation Values'. A focus on random variables and expectation values : 
 
-Probability & Measure Theory
-----------------------------
+* Can mask that probability measures are the critical component of the probability.
+* Artificially restrict analysis to distributions on $$\mathbb{R}^n$$.
+
+Probability is about Measures
+===============================
 
 Modern probability theory is commonly said to derive from the work of 
-[Kolmogorov](https://en.wikipedia.org/wiki/Andrey_Kolmogorov) who laid a foundation using measure 
-theory. From my experience probability *is* most naturally expressed in the language of measure theory.
-Quite often though measure theory & the theory of integration are
-introduced in probability with the same emphasis as Probability Spaces &
-Random Variables are given equal weight or Random Variables are given
-priority. While it is natural to bundle the two together since measure
-theory is primarily a pre-requisite to integration - In probability
-measure theory is by far the star of the show.
-
-Lets start by going through the regular song and dance.
+[Kolmogorov](https://en.wikipedia.org/wiki/Andrey_Kolmogorov) who laid a foundation using measure theory. Probability theory requires an efficient languages for discussing the measurement of probabilities of subsets of a space of possibilities, which converges
+with the aims of measure theory. Measure theory is commonly introduced as a pre-requisite
+to integration - a theory where we similarly require an means to measure the area / volume
+of subsets of a space. Despite being entangled in how they are taught, measure theory
+is a subject with life of it's own beyond the theory of integration. In particular in
+probability theory - measure theory is the star of the show and integration is at best a
+useful tool.
 
 Sample Spaces
 -----------------------------------
@@ -60,7 +59,7 @@ measurable.
 * [Borel Algebra](https://en.wikipedia.org/wiki/Borel_set) : The smallest sigma
 algebra containing all open sets in a given topology. The Borel algebra for the
 the standard topology on $$\mathbb{R}^n$$ (or really the set of *Lebesgue* measurable
-sets) is the class continuous sample space.k
+sets) is the classic continuous sample space.k
 
 Probability Space
 ----------------------------------
@@ -79,23 +78,21 @@ definitions of probability given our sample space. For the finite discrete measu
 this space of measures is quite simple - just the space of non-negative functions
 $$f : X \rightarrow \mathbb{R}$$ such that $$\sum_i f(i) = 1$$
 
-At this stage we have not deviated from the norm.
+At this stage we have a complete langauge for discussing probabilities - and this
+is where integration typically creeps in.
 
-Random Variables 1
+Random Variables
 --------------------------------------------------------------------
 
 The standard definition of a [Random Variable](https://en.wikipedia.org/wiki/Random_variable#Standard_case) is a measurable function from a probability space 
-to the reals (with the Lebesgue measure). This is where integration typically 
-creeps in - as such a measurable function can be integrated. The integral of our random variable 
-is the standard expectation value and integrals of simple functions of our random variable 
-lead to the various moments.
+to the reals (with the Lebesgue measure). Such a measurable function can be integrated. The integral of our random variable is the standard expectation value and integrals of simple functions of our random variable lead to the various moments.
 
 On their own measurable functions are natural to define given our 
 measurable spaces - they play the role of measurable space morphisms.
 
 For meaurable spaces $$X$$,$$Y$$ a measurable function $$f: X \rightarrow Y$$ satisfies.
 
-1. $$f^{-1}(B)$$ is measurable for all measureable sets B in Y.
+$$f^{-1}(B)$$ is measurable for all measureable sets B in Y.
 
 What's with the inverse? 
 
@@ -112,11 +109,46 @@ $$f^{-1} : \Sigma_Y \rightarrow \Sigma_X$$. Additionally if we restrict to the i
 $$f^{-1}: P(Y) \rightarrow P(X)$$ is one-to-one. So we have an isomorphism of $$\Sigma_Y$$ with 
 a subset of $$\Sigma_X$$.
 
+We Really Care about Measures
+-----------------------------------------------------------------------
+
+Random Variables are really a means to define probability measures - and
+probability measures are our primarily object of interest.
+
+Given a measurable function $$f : X \rightarrow Y$$ and a probability
+measure $$P$$ on $$X$$ we can construct a probability measure on $$Y$$.
+This is called a push-forward of the measure.
+
+$$f^*(p)(V) = p(f^{-1}(V))$$
+
+Does $$f^*(p)$$ satisfy the conditions of a probability measure?
+
+1. Empty set has 0 measure : $$f^*(p)(\emptyset) = p(\emptyset) = 0$$
+2. Normalized : $$f^*(p)(Y) = p(X) = 1$$
+3. Can also verify countable additivity.
+
+Further this definition is consistent with how we think about probability.
+The probablity measure we get from this is equivalent to drawing samples
+from the original probability distribution and evaluating the function
+on each sample.
+
+So a real random variable is defining a probability distribution
+on $$\mathbb{R}$$ and it is this push forward distribution that 
+we care about. Much of the machinery of expectation values and moments
+is used to estimate properties of this push-forward distribution. 
+In my experience it is simpler to always think in terms of probability
+measures - viewing Random Variables as simply one means to generate a
+measure given an existing probability space.
+
 Artifically Restricted Scope
 --------------------------------------------------------------------
 
-A restriction though to only real valued measurable functions - (which is common but 
-[NOT universal](https://en.wikipedia.org/wiki/Random_variable#Extensions)) - is overly limiting. 
+While measurable functions are meaningful for any measurable space as the range $$Y$$ -
+the definition of a random variable typically restrict to real valued measurable functions.
+(A restriction though to only real valued measurable functions - (which is common but 
+[NOT universal](https://en.wikipedia.org/wiki/Random_variable#Extensions)). Given the
+emphasis on integration this restriction is reasonable - or strictly a restriction to
+$$Y$$ where an integral is defined (Complex vector spaces, Banach spaces, ..).
 
 * Quite often we are interested in functions of our domain probability space that are
 not real valued. [Simple examples](https://en.wikipedia.org/wiki/Random_variable#Extensions)
@@ -128,7 +160,12 @@ random variables as a [Comma Category](https://en.wikipedia.org/wiki/Comma_categ
 particular as the category over $$\mathbb{R}$$ with the Borel Algebra.)
 
 * While the category point seems aesthetic - it does commonly occur that we are interested
-in compositions of random variables.
+in compositions of random variables, and Category theory is designed to make it easy to talk
+about function composition.
+
+At the very least a 'Random Variable' should be (and occasionally is) any measurable map
+between a Probability space $$(X, P)$$ and a measurable space $$Y$$
+
 
 
 Conflicting Notation
@@ -157,46 +194,11 @@ together operations on the sample space with operations on the random variables.
 This is not quite a problem with Random Variables themselves - but a problem of 
 working without reference to the underlying sample spaces. 
 
-We Really Care about Measures
------------------------------------------------------------------------
-
-Random Variables are really a means to define probability measures - and
-probability measures are our primarily object of interest.
-
-Given a measurable function $$f : X \rightarrow Y$$ and a probability
-measure $$P$$ on $$X$$ we can construct a probability measure on $$Y$$.
-This is called a push-forward of the measure.
-
-$$f^*(p)(V) = p(f^{-1}(V))$$
-
-Does $$f^*(p)$$ satisfy the conditions of a probability measure?
-
-1. Empty set has 0 measure : $$f^*(p)(\emptyset) = p(\emptyset) = 0$$
-2. Normalized : $$f^*(p)(Y) = p(X) = 1$$
-3. Can also verify countable additivity.
-
-Further this definition is consistent with how we think about probability.
-The probablity measure we get from this is equivalent to drawing samples
-from the original probability distribution and evaluating the function
-on each sample.
-
-So a real random variable are defining a probability distribution
-on $$\mathbb{R}$$ and it is this push forward distribution that 
-we care about. Much of the machinery of expectation values and moments
-is used to estimate properties of this push-forward distribution.
-
 Real Random Variables are Coordinates
 -----------------------------------------------------------------------
 
-Point 2 reveals the primary use of random variables - as random 'Coordinates' the ability
-to map from a more abstract system to real or complex valued coordinates that we can compute
-with - make approximations, etc, etc.
-
-Then we have random variables being any element of a category of probability spaces.
-Random coordinates being measurable real valued functions (which naturally themselves
-are 'random variables' - but in the same way that the real line is a manifold, but it
-is the prototypical manifold.
-
+Random variables primarily act as 'Coordinates' - allowing us to map from our sample space to real valued coordinates that we can compute with - make approximations, etc, etc.
+Why dont we just call them coordinate functions then? 
 Digging through the notation of other fields for a close analog we
 come across - the use of coordinates & coordinate charts in the
 discussion of manifolds.
@@ -205,27 +207,11 @@ $$f : U \rightarrow \mathbb{R}$$
 
 for $$U \subset M$$.
 
-If we are thinking about random variables in a broader sense it is natural 
-to shy away from the classic methods of computing expectation values and 
-moments. To be clear - expectation values and moments of distributions are
-extremely useful for standard/nice distributions, but it is valuable to step
-outside this paradigm.
+Much like the study of manifolds - Even though we have real valued coordinate functions
+it does not necessarily make sense to start integrating those coordinate values. It is 
+tempting to automatically start integrating these measurable real valued functions - but even though it is an allowed operation, is it meaningful? In simple cases -  
 
 
-A Dependence on Expectation Values
------------------------------------
-
-Much of probability theory, statistics, & data science involves expectation values or
-other structures we inherit from working with 'random coordinates'. Some of these are
-natural and some can get us in trouble ..
-
-* Central Limit Theorem
-*  Mean error for model performance. We are always computing the mean over training data
-and over test data - without considering the more general properties of the distribution. Does mean
-describe it well?
-
-They but are certainly a convenience but much like geometry - not something we want
-to rely on as a foundational element of the theory.
 
 
 

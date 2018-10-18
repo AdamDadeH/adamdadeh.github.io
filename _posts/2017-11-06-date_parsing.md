@@ -129,7 +129,7 @@ def generate_test_short_data(sample_size = 100):
     return [(str(random.randint(-32767, 32768)), None, "Random Short") for i in range(sample_size)]
 ```
 
-![Random Shorts : Precision](/images/short_prec.png)
+![Random Shorts : Precision](/images/short_prec.png = 250x)
 
 Perhaps unsurprisingly the parsers that are more flexible and have higher recall
 have a higher tendency of parsing random input data as a date. This leads to a 
