@@ -1,7 +1,7 @@
 ---
-name : 10 PRINT CHR$(205.5+RND(1)); : GOTO 10
+name : "10 PRINT CHR$(205.5+RND(1)); : GOTO 10"
 subject : Software Studies
-link : (http://10print.org)
+link : "http://10print.org"
 ----
 
 * A quick read that inspects an old Commodore 64 BASIC one-liner from various perspectives.

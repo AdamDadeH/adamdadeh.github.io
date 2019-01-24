@@ -1,7 +1,7 @@
 ---
-name : Cartographies of Time - A History of the Timeline
+name : "Cartographies of Time : A History of the Timeline"
 subject : Data Visualization / History
-link : (https://www.amazon.com/Cartographies-Time-Timeline-Daniel-Rosenberg/dp/1616890584)
+link : "https://www.amazon.com/Cartographies-Time-Timeline-Daniel-Rosenberg/dp/1616890584"
 ---
 
 * Why : Have been working heavily with time series data, so this piqued my interest.

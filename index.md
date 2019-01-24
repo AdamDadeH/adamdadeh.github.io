@@ -28,7 +28,7 @@ Past Reading :
 ---------------
 
 {% for book in site.books %}
-  <h2>{{ book.name }} - {{ book.subject }}</h2>
+  <h3>{{ book.name }} - {{ book.subject }}</h3>
   <p>{{ book.content | markdownify }}</p>
 {% endfor %}
 
