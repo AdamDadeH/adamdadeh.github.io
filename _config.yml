@@ -21,6 +21,9 @@ production_url : https://adamdadeh.github.io/
 markdown: kramdown
 remote_theme: vinitkumar/white-paper
 
+collections:
+    - books
+
 # All Jekyll-Bootstrap specific configurations are namespaced into this hash
 #
 JB :
