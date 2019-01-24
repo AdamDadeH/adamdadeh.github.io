@@ -27,10 +27,8 @@ Now Reading :
 Past Reading :
 ---------------
 
-[Cartographies of Time : A History of the Timeline](https://www.amazon.com/Cartographies-Time-Timeline-Daniel-Rosenberg/dp/1616890584)
-  * Why : Have been working heavily with time series data, so this piqued my interest.
-  * Review : Little focus on the display of time dependent data other than listing discrete events in time, but has some great examples of presenting events in time (and space).
+{% for book in site.books %}
+  <h2>{{ book.name }} - {{ book.subject }}</h2>
+  <p>{{ book.content | markdownify }}</p>
+{% endfor %}
 
-[10 PRINT CHR$(205.5+RND(1)); : GOTO 10](http://10print.org)
-  * A quick read that inspects an old Commodore 64 BASIC one-liner from various perspectives.
-  * Review : An amusing read that displays how code is informed by the era / environment in which is developed. Opens the door to exploring the history and cultural signficance of other pieces of code.
