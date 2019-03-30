@@ -8,7 +8,7 @@ use_math : true
 
 Topics:
 ----- 
-* Tools for analyzing and modifying binary files. (`cmp`, `dd`, `xdd`)
+* Tools for analyzing and modifying binary files. (`cmp`, `dd`, `xxd`)
 * Inferring the format of binary files.
 
 When sitting down to play through Gran Turismo 2 with a young child I faced with a conflict. I wanted to field frequent requests to purchase and race new cars while not dedicating play time to grind for credits (together or on my own). Despite owning the physical game and console(s) capable of playing it - I find it pleasant to play in an emulator to make heavy use of the ability to save anywhere and fast forward. Playing on a emulator also raised the possibility of accessing and modifying save states. Thus began a detour into the feasibility of editing the GT2 save files.
