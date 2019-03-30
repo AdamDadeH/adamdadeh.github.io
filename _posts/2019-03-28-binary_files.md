@@ -6,16 +6,19 @@ category : Software
 use_math : true
 ---
 
-Topics : 
+Topics:
+----- 
 * Tools for analyzing and modifying binary files. (`cmp`, `dd`, `xdd`)
 * Inferring the format of binary files.
 
 When sitting down to play through Gran Turismo 2 with a young child I faced with a conflict. I wanted to field frequent requests to purchase and race new cars while not dedicating play time to grind for credits (together or on my own). Despite owning the physical game and console(s) capable of playing it - I find it pleasant to play in an emulator to make heavy use of the ability to save anywhere and fast forward. Playing on a emulator also raised the possibility of accessing and modifying save states. Thus began a detour into the feasibility of editing the GT2 save files.
 
 Challenge 1 : Where are save files? 
+-----
 In my case I am running on Mac OS X using OpenEmu, which under the hood is running Playstation via Mednafen. Checking “Library/Application Support/OpenEmu/Mednafen/Battery Saves” we can find save states for this particular back-end.
 
 Challenge 2 : Where is the number of credits encoded in the files?
+-----
 Plan of attack - generate 3 different safe states
 * base save : `gt2_base.mcr`
 * base save after buying hubcap : `gt2_less_1.mcr`
@@ -66,6 +69,7 @@ Some or all of these bytes must be the `credits` . This is an awful lot of bytes
 With hindsight `cmp` is 1 indexed, so 0 indexed the relevant bytes are (40584, 40585, 40586, 40604, 40605, 40606, 40607) 
 
 Challenge 3 :  Changing the bytes
+-----
 
 A quick python utility for changing byte in a file.
 ```
@@ -95,6 +99,7 @@ Error
 ```
 
 Challenge 4 : Invalid Save State
+-----
 
 A few possibilities come to mind
 * The resulting `credit` amount was invalid : Possible - worth checking, but even smaller changes to these bytes results in `error`.
