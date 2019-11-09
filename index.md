@@ -9,6 +9,9 @@ Background : PhD in theoretical physics - focusing on quantum and classical grav
 
 [List of Publications](http://inspirehep.net/author/profile/A.Henderson.1) from my quantum gravity era. Without academic pressure I have lacked the impetus to write. Although - this page will exist as an outlet for random ideas.
 
+* [Research Gate](https://www.researchgate.net/profile/Adam_Henderson12)
+* [Linkedin](https://www.linkedin.com/in/adam-henderson-b4887b29)
+
 Posts : 
 --------------
 
@@ -18,7 +21,7 @@ Posts :
   {% endfor %}
 </ul>
 
-Now Reading : 
+Reading : 
 -------------
 
 [Categories for the Working Mathematician](https://en.wikipedia.org/wiki/Categories_for_the_Working_Mathematician)
