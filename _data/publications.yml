@@ -1,0 +1,190 @@
+- authors : 
+   - Hao Jiang
+   - Aakash Sabharwal
+   - Adam Henderson
+   - Diane Hu 
+   - Liangjie Hong 
+  date : 2019-07
+  doi: 10.1145/3292500.3330760
+  type: conference
+  conference: The 25th ACM SIGKDD International Conference (KDD 2019)
+  year: 2019
+  location: "Anchorage, Alaska"
+  title: Understanding the Role of Style in E-commerce Shopping
+  links: 
+    - name: ACM
+      link: "https://dl.acm.org/citation.cfm?doid=3292500.3330760"
+    - name: full-text
+      link: "https://www.hongliangjie.com/publications/kdd2019_1.pdf"
+
+- authors : 
+    - Adam Henderson
+    - Liangjie Hong
+    - Diane Hu
+    - Nianqiao Ju
+  date: 2019-02
+  title:  "A Sequential Test for Selecting the Better Variant Online A/B testing, Adaptive Allocation, and Continuous Monitoring" 
+  type: conference
+  conference: WSDM
+  year: 2019
+  location: "Melbourne Australia"
+  uid: 10.1145/3289600.3291025
+  links:
+    - name: ACM
+      link: "https://dl.acm.org/citation.cfm?id=3291025"
+    - name: full-text
+      link: "https://www.hongliangjie.com/publications/wsdm2019_preprint.pdf"
+
+- authors : 
+    - Adam Henderson
+    - Alok Laddha
+    - Casey Tomlin
+  title: "Constraint algebra in loop quantum gravity reloaded. II. Toy model of an Abelian gauge theory: Spatial diffeomorphisms"
+  type: paper
+  journal : "Physical review D: Particles and fields"
+  issue: 08/2013; 88(4)
+  date: 2013-08
+  doi : 10.1103/PhysRevD.88.044029
+  links:
+    - name: arXiv
+      link: https://arxiv.org/abs/1210.3960
+    - name: APS
+      link: "https://journals.aps.org/prd/abstract/10.1103/PhysRevD.88.044029"
+
+- authors : 
+    - Adam Henderson
+    - Alok Laddha
+    - Casey Tomlin
+  title: Constraint algebra in loop quantum gravity reloaded. I. Toy model of a U(1)3 gauge theory
+  type: paper
+  journal: "Physical review D: Particles and fields"
+  issue: 08/2013; 88(4)
+  date: 2013-08
+  doi: 10.1103/PhysRevD.88.044028
+  links:
+    - name: arXiv
+      link: "https://arxiv.org/abs/1204.0211"
+    - name: APS
+      link: "https://journals.aps.org/prd/abstract/10.1103/PhysRevD.88.044028"
+
+- authors: 
+    - Abhay Ashtekar
+    - Adam Henderson
+    - David Sloan
+  title: Hamiltonian formulation of the Belinskii-Khalatnikov-Lifshitz conjecture
+  type: paper
+  journal: "Physical review D: Particles and fields"
+  issue: 04/2011; 83(8)
+  date: 2011-04
+  doi: 10.1103/PhysRevD.83.084024
+  links:
+    - name: arXiv
+      link: "http://arxiv.org/abs/arXiv:1102.3474"
+    - name: APS
+      link: "https://journals.aps.org/prd/abstract/10.1103/PhysRevD.83.084024"
+
+- authors: 
+    - Adam Henderson
+  title: "Loop quantum cosmology: A window into the path integral representation of quantum gravity"
+  type: thesis 
+
+- authors: 
+    - Abhay Ashtekar
+    - Miguel Campiglia
+    - Adam Henderson
+  title: Path Integrals and the WKB approximation in Loop Quantum Cosmology
+  type: paper
+  journal: "Physical review D: Particles and fields"
+  issue: 11/2010; 82(12)
+  date: 2010-11
+  doi: 10.1103/PhysRevD.82.124043
+  links:
+    - name: APS
+      link: "https://journals.aps.org/prd/abstract/10.1103/PhysRevD.82.124043"
+    - name: arXiv
+      link: "https://arxiv.org/abs/1011.1024"
+
+- authors:
+    - Adam Henderson
+    - Carlo Rovelli
+    - Francesca Vidotto
+    - Edward Wilson-Ewing
+  title: Local spinfoam expansion in loop quantum cosmology
+  type: paper
+  journal: Classical and Quantum Gravity
+  issue: 10/2010; 28(2)
+  date: 2010-10
+  doi: 10.1088/0264-9381/28/2/025003
+  links:
+    - name: arxiv
+      link: "https://arxiv.org/abs/1010.0502"
+    - name: IOP
+      link: "https://iopscience.iop.org/article/10.1088/0264-9381/28/2/025003/pdf"
+
+- authors: 
+    - Miguel Campiglia
+    - Adam Henderson
+    - William Nelson
+  title: "Vertex Expansion for the Bianchi I model"
+  type: paper
+  journal: "Physical review D: Particles and fields"
+  issue: 07/2010; 82(6)
+  date: 2010-07
+  doi: DOI:10.1103/PHYSREVD.82.064036
+  links:
+    - name: arxiv
+      link: "https://arxiv.org/abs/1007.3723"
+    - name : APS
+      link: "https://journals.aps.org/prd/abstract/10.1103/PhysRevD.82.064036"
+
+- authors: 
+    - Abhay Ashtekar
+    - Miguel Campiglia
+    - Adam Henderson
+  title: Casting Loop Quantum Cosmology in the Spin Foam Paradigm
+  type: paper
+  journal: Classical and Quantum Gravity 
+  issue: 01/2010; 27(13)
+  date: 2010-01
+  doi: DOI:10.1088/0264-9381/27/13/135020
+  links:
+    - name: arXiv
+      link: "https://arxiv.org/abs/1001.5147"
+    - name: IOP
+      link: "https://iopscience.iop.org/article/10.1088/0264-9381/27/13/135020/pdf"
+    - name: As journal highlight
+      link: "http://ej.iop.org/pdf/cqg/highlights/CQG_Highlights_2009-2010_BROCHURE.pdf"
+
+- authors: 
+    - Abhay Ashtekar
+    - Miguel Campiglia
+    - Adam Henderson
+  title: Loop Quantum Cosmology and Spin Foams
+  type: paper
+  journal: Physics Letters B 
+  issue: 11/2009; 681(4-681):347-352
+  date: 2009-11
+  doi: DOI:10.1016/j.physletb.2009.10.042
+  links:
+    - name: arXiv
+      link: "https://arxiv.org/abs/0909.4221"
+    - name: elsevier
+      link: "https://arxiv.org/abs/0909.4221"
+
+- authors: 
+    - Abhay Ashtekar
+    - Adam Henderson
+    - David Sloan
+  title: "FAST TRACK COMMUNICATION: Hamiltonian general relativity and the Belinskii Khalatnikov Lifshitz conjecture" 
+  type: paper
+  journal: Classical and Quantum Gravity 
+  issue: 03/2009; 26(5)
+  date: 2009-03
+  doi: 10.1088/0264-9381/26/5/052001
+  links:
+    - name: As journal highlight
+      link: "https://cms.iopscience.org/738b0d20-03db-11e2-8540-4d5160a0f0b4/CQG_Highlights_2008-2009_BROCHURE.pdf"
+    - name: IOP
+      link: "https://iopscience.iop.org/article/10.1088/0264-9381/26/5/052001/pdf"
+    - name: arxiv
+      link: "https://arxiv.org/abs/0811.4160"
