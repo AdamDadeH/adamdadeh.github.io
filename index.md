@@ -12,6 +12,19 @@ Background : PhD in theoretical physics - focusing on quantum and classical grav
 * [Research Gate](https://www.researchgate.net/profile/Adam_Henderson12)
 * [Linkedin](https://www.linkedin.com/in/adam-henderson-b4887b29)
 
+Publications :
+-------------
+
+{% for pub in site.data.publications %}
+  {% if pub.type == "conference" %}
+<li class="publication"><b>{{pub.date}}</b> - {{pub.authors | array_to_sentence_string: ''}}: <b>{{ pub.title }}</b>. In the proceedings of {{ pub.conference }}, {{ pub.location }} : {% for link in pub.links%}<a href="{{ link.link }}">[{{link.name}}]</a> {%endfor%}</li>
+  {% endif %}
+
+  {% if pub.type == "paper" %}
+<li class="publication"><b>{{pub.date}}</b> - {{pub.authors | array_to_sentence_string: ''}}: <b>{{ pub.title }}</b>. {{pub.journal}} {{pub.issue}}. {% for link in pub.links%}<a href="{{ link.link }}">[{{link.name}}]</a> {%endfor%}</li>
+  {% endif %}
+{% endfor %}
+
 Posts : 
 --------------
 
@@ -29,11 +42,11 @@ Reading :
 
 Past Reading :
 ---------------
-
 {% for book in site.books %}
-  <h5>{{ book.name }}</h5>
+  {% if book.review > 3 %}
+  <h5>{{ book.title }} : <a href="{{ book.url }}">Notes</a></h5>
   <p>Subject : {{ book.subject }}<br>
   Author : {{ book.author }}<br>
-  {{ book.content | markdownify }}</p>
+  {% endif %}
 {% endfor %}
 

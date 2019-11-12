@@ -1,5 +1,5 @@
 ---
-name : "Cartographies of Time : A History of the Timeline"
+title : "Cartographies of Time : A History of the Timeline"
 subject : Data Visualization / History
 link : "https://www.amazon.com/Cartographies-Time-Timeline-Daniel-Rosenberg/dp/1616890584"
 ---
