@@ -1,0 +1,123 @@
+#with this k,v store pattern we can access these by name
+
+bernoulli:
+  name: Bernoulli
+  parameters:
+    - name: p
+      range: $$[0,1] \subset \mathbb{R}$$
+  sample_space: $$\{0, 1\}$$
+  sigma_algebra: Discrete
+  measure: $$P(1) = p$$ and $$P(0) = 1-p$$
+  operations:
+    - name: XOR
+      formula: $$B(p) \wedge B(q) = B(p (1 - q) + q (1 - p)) = B(q + p - 2qp)$$
+    - name: OR
+      formula: $$B(p) \vert B(q) = B(p + q - pq)$$
+    - name: AND
+      formula: $$B(p) \& B(q) = B(pq)$$
+    - name: NOT
+      formula: $$!B(p) = B(1-p)$$
+    - name: Addition
+      formula: $$\sum_{i=1}^N B(p) = B(N, p)$$
+  links:
+    - name: Wikipedia
+      link: https://en.wikipedia.org/wiki/Bernoulli_distribution
+
+beta:
+  name: Beta
+
+binomial:
+  name: Binomial
+  notation: $$B(N, p)$$
+  parameters:
+    - name: N
+      range: $$\mathbb{N}$$
+    - name: p
+      range: $$[0,1] \subset \mathbb{R}$$
+  sample_space: $$[0,N] \subset \mathbb{Z}$$
+  sigma_algebra: Discrete
+  density: $$\rho(n) = {N\choose n}  p^n (1-p)^{N-n}$$
+  limits: 
+    - Limit $$N\rightarrow \infty$ such that $np = \lambda$$ is fixed.
+    - $$\rho(n) \rightarrow \frac{1}{k!} \lambda^k e^{-\lambda}$$
+  operations:
+    - name: Addition (same p)
+      formula: $$B(N, p) + B(M, p) = B(N+M, p)$$
+
+cauchy:
+  name: Cauchy
+
+gamma:
+  name: Gamma
+  parameters:
+  sample_space: $$\mathbb{R}^+$$
+  parameters:
+    - name: $$\alpha$$
+      range: $$\mathbb{R}^+$$
+    - name: $$\beta$$
+      range: $$\mathbb{R}^+$$
+  sigma_algebra: Lebesgue
+  density: $$\frac{\beta^\alpha}{\Gamma(\alpha)} x^{\alpha - 1} e^{-\beta x}$$
+  links:
+    - name: Wikipedia
+      link: https://en.wikipedia.org/wiki/Gamma_distribution
+
+multinomial:
+  name: Multinomial
+  notation: $$Multi(N, p)$$
+  parameters:
+    - name: $$N$$
+      range: $$\mathbb{N}$$
+    - name: $$p$$
+      range: $$[0,1]^d \subset \mathbb{R}^d $$ with $$\sum_i p_i = 1$$
+  density: $$\rho(n_1,n_2,n_3,..,n_m) = choose(N,n_1,n_2,..,n_m) p_1^{n_1} p_2^{n_2} .. p_m^{n_m}$$
+  limits:
+    - Limit $N\rightarrow \infty$ such that every $np_i = \lambda_i$ is fixed.
+    - $\rho \rightarrow \frac{1}{k_1!} \frac{1}{k_2!} \lambda_1^{k_1} .. \lambda_{m-1}^{k_{m-1}} e^{-lambda_1 .. - \lambda_{m-1}}$
+    - This reduces to $m-1$ independent Poisson distributions.
+  links:
+    - name: Wikipedia
+      link: https://en.wikipedia.org/wiki/Multinomial_distribution
+
+multinormal:
+  name: Multi-Normal
+  notation: $$N(\mu, \Sigma)$$
+  sample_space: $$\mathbb{R}^d$$
+  sigma_algebra: Legesgue
+  operations:
+    - name: Addition
+      formula: $$N(\mu, \Sigma) + N(\mu', \Sigma') = N(\mu+\mu', \Sigma+\Sigma')$$
+    - name: Linear Map, with $A$ invertible
+      formula: $$A \cdot N(\mu, \Sigma) = N(A \mu, A \Sigma A^T)$$
+  density: $$N(\mu, \Sigma) = \frac{1}\{(2\pi)^{d/2} \sqrt{\Sigma} \} \exp[-1/2 (x-\mu)^T\Sigma^{-1}(x-\mu)]$$
+
+normal:
+  name: Normal
+  parameters:
+    - name: $$\mu$$
+      range: $$\mathbb{R}$$
+    - name: $$\sigma$$
+      range: $$\mathbb{R}^+$$
+  sample_space: $$\mathbb{R}$$
+  sigma_algebra: Lebesgue
+  operations:
+    - name: Addition
+      formula: $$N(\mu, \sigma) +  N(\mu', \sigma') = N(\mu+\mu', \sqrt{\sigma^2 + \sigma'^2})$$
+    - name: Scalar Multiplication
+      formula: $$\lambda N(\mu, \sigma) = N(\lambda \mu, \lambda \sigma)$$
+
+poisson:
+  name: Poisson
+  notation: $$\rm{Pois}(\lambda)$$
+  links:
+    - name: Wikipedia
+      link: https://en.wikipedia.org/wiki/Poisson_distribution
+  parameters:
+    - name : $$\lambda$$
+      range: $$\mathbb{R}^+$$
+  sample_space: $$\mathbb{N}$$
+  sigma_algebra: Discrete
+  density: $$\rho(n) = \frac{\lambda^n e^{-n}}{n!}$$
+  operations:
+    - name: Sum
+      formula : $$Pois(\lambda_1)+Pois(\lambda_2) = Pois(\lambda_1 + \lambda_2)$$

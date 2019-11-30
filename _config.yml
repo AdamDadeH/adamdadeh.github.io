@@ -22,7 +22,8 @@ markdown: kramdown
 remote_theme: vinitkumar/white-paper
 
 collections:
-    - books
+  books:
+    output: True
 
 # All Jekyll-Bootstrap specific configurations are namespaced into this hash
 #

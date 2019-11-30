@@ -34,13 +34,7 @@ Posts :
   {% endfor %}
 </ul>
 
-Reading : 
--------------
-
-[Categories for the Working Mathematician](https://en.wikipedia.org/wiki/Categories_for_the_Working_Mathematician)
-  * A hole in my mathematical background that needed filling.
-
-Past Reading :
+Recent Reading :
 ---------------
 {% for book in site.books %}
   {% if book.review > 3 %}

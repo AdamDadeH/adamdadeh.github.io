@@ -2,3 +2,7 @@ _site
 Gemfile.lock
 node_modules/*
 .idea/
+.DS_Store
+__pycache__
+.sass-cache
+.ipynb_checkpoints
