@@ -25,7 +25,18 @@ bernoulli:
 
 beta:
   name: Beta
-
+  links:
+    - name: Wikipedia
+      link: https://en.wikipedia.org/wiki/Beta_distribution
+  sample_space: $$[0,1] \subset \mathbb{R}$$
+  sigma_algebra: Lebesgue
+  parameters:
+    - name: $$\alpha$$
+      range: $$\mathbb{R^+}$$
+    - name: $$\beta$$
+      range: $$\mathbb{R^+}$$  
+  density: $$\frac{\Gamma(\alpha + \beta)}{\Gamma(\alpha)\Gamma(\beta)}x^{\alpha-1} (1-x)^{\beta -1}$$
+  
 binomial:
   name: Binomial
   notation: $$B(N, p)$$
