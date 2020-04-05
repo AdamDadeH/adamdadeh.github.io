@@ -1,6 +1,7 @@
 ---
 title: "Notation in Statistics"
 layout: post
+category: Statistics
 ---
 
 *Notation is powerful*

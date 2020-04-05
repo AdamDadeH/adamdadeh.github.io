@@ -19,7 +19,11 @@ production_url : https://adamdadeh.github.io/
 # Tell Github to use the kramdown markdown interpreter
 # (see https://help.github.com/articles/migrating-your-pages-site-from-maruku)
 markdown: kramdown
-remote_theme: vinitkumar/white-paper
+#remote_theme: poole/poole
+#remote_theme: daattali/beautiful-jekyll
+#remote_theme: vinitkumar/white-paper
+#theme: minima
+
 
 collections:
   books:
@@ -83,4 +87,3 @@ JB :
   #   ./_includes/custom/[HELPER]
   # where [HELPER] is the name of the helper you are overriding.
 
-theme: jekyll-theme-minimal

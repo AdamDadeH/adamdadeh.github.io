@@ -1,5 +1,7 @@
 ---
 layout: default
 ---
-{% include JB/setup %}
+{% if page.use_math %}
+    {% include mathjax_support.html %}
+{% endif %}
 {% include themes/twitter/page.html %}

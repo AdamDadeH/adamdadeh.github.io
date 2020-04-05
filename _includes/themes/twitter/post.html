@@ -1,5 +1,3 @@
-<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-
 <div class="page-header">
   <h1>{{ page.title }} {% if page.tagline %}<small>{{page.tagline}}</small>{% endif %}</h1>
 </div>
@@ -19,7 +17,7 @@
     <ul class="tag_box inline">
       <li><i class="icon-folder-open"></i></li>
       {% assign categories_list = page.categories %}
-      {% include JB/categories_list %}
+      {% include elements/categories_list %}
     </ul>
   {% endunless %}  
 
@@ -27,7 +25,7 @@
     <ul class="tag_box inline">
       <li><i class="icon-tags"></i></li>
       {% assign tags_list = page.tags %}
-      {% include JB/tags_list %}
+      {% include elements/tags_list %}
     </ul>
   {% endunless %}  
 
