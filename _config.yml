@@ -22,7 +22,9 @@ markdown: kramdown
 #remote_theme: poole/poole
 #remote_theme: daattali/beautiful-jekyll
 #remote_theme: vinitkumar/white-paper
-remote-theme: minimal-mistakes-jekyll
+#remote-theme: minimal-mistakes-jekyll
+
+remote-theme: mmistakes/minimal-mistakes
 
 
 collections:
