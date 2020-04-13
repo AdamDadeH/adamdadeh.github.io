@@ -24,7 +24,7 @@ markdown: kramdown
 #remote_theme: vinitkumar/white-paper
 #remote-theme: minimal-mistakes-jekyll
 
-remote-theme: mmistakes/minimal-mistakes
+remote_theme: mmistakes/minimal-mistakes
 
 
 collections:
