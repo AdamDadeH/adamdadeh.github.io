@@ -1,3 +1,8 @@
+---
+title: Date Parsing
+layout: posts
+---
+
 Long story short - I needed to do some parsing of dates encoded as strings in various formats.
 
 * "08/30/1993"

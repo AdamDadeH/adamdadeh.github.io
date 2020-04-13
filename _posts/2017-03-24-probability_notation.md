@@ -2,6 +2,7 @@
 title: "Notation in Statistics"
 layout: post
 category: Statistics
+use_math: True
 ---
 
 *Notation is powerful*

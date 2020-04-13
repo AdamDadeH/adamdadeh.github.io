@@ -2,6 +2,7 @@
 title: "Asymptotic Notation as Equivalence Relation"
 layout: post
 started: 2016-07-28
+use_math: True
 ---
 
 In lazily paging through [Cormen et al](https://mitpress.mit.edu/books/introduction-algorithms) 

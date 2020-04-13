@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: home
 title: Adam Henderson
 tagline: Math, Stats, and Coffee
 description: Math, Stats, and Coffee
@@ -30,7 +30,7 @@ Posts :
 
 <ul>
   {% for post in site.posts %}
-  <li class="post-title"> <b>{{ post.date | date: '%Y-%m-%d' }}</b> : <a href="{{ post.url }}">{{ post.title }}</a></li>
+  <li class="post"> <b>{{ post.date | date: '%Y-%m-%d' }}</b> : <a href="{{ post.url }}">{{ post.title }}</a></li>
   {% endfor %}
 </ul>
 

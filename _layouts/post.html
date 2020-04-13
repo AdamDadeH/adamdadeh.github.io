@@ -1,7 +1,9 @@
 ---
-layout: default
+layout: posts
 ---
+
 {% if page.use_math %}
     {% include mathjax_support.html %}
 {% endif %}
-{% include themes/twitter/post.html %}
+
+{{ content }}

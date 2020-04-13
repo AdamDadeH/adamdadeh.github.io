@@ -22,7 +22,7 @@ markdown: kramdown
 #remote_theme: poole/poole
 #remote_theme: daattali/beautiful-jekyll
 #remote_theme: vinitkumar/white-paper
-#theme: minima
+theme: minimal-mistakes-jekyll
 
 
 collections:
@@ -76,7 +76,7 @@ JB :
   tags_path : nil
   atom_path : nil
   rss_path : nil
-  
+
   # a hash with key named for the given helper. ex:
   #
   #   pages_list :

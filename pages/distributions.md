@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: single
 ---
 
 Families of Parametrized Distributions
