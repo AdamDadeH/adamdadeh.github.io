@@ -25,15 +25,6 @@ Publications :
   {% endif %}
 {% endfor %}
 
-Posts : 
---------------
-
-<ul>
-  {% for post in site.posts %}
-  <li class="post"> <b>{{ post.date | date: '%Y-%m-%d' }}</b> : <a href="{{ post.url }}">{{ post.title }}</a></li>
-  {% endfor %}
-</ul>
-
 Recent Reading :
 ---------------
 {% for book in site.books %}
