@@ -69,6 +69,11 @@ gamma:
       range: $$\mathbb{R}^+$$
   sigma_algebra: Lebesgue
   density: $$\frac{\beta^\alpha}{\Gamma(\alpha)} x^{\alpha - 1} e^{-\beta x}$$
+  operations:
+   - name: Addition
+     formula: $$Gamma(\alpha, \beta) + Gamma(\alpha', \beta) = Gamma(\alpha + \alpha', \beta)$$
+   - name: Scaling
+     formula: $$\eta \times Gamma(\alpha, \beta) = G(\alpha, \beta / \eta)$$
   links:
     - name: Wikipedia
       link: https://en.wikipedia.org/wiki/Gamma_distribution

@@ -1,9 +1,9 @@
 ---
-layout: single
+title: Families of Parametrized Distributions
+ 
+layout: post
+use_math: true
 ---
-
-Families of Parametrized Distributions
-=======================================
 
 Each of the following defines a 
 
