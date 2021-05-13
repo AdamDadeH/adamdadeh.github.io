@@ -34,9 +34,9 @@ beta:
     - name: $$\alpha$$
       range: $$\mathbb{R^+}$$
     - name: $$\beta$$
-      range: $$\mathbb{R^+}$$  
+      range: $$\mathbb{R^+}$$
   density: $$\frac{\Gamma(\alpha + \beta)}{\Gamma(\alpha)\Gamma(\beta)}x^{\alpha-1} (1-x)^{\beta -1}$$
-  
+
 binomial:
   name: Binomial
   notation: $$B(N, p)$$
@@ -48,7 +48,7 @@ binomial:
   sample_space: $$[0,N] \subset \mathbb{Z}$$
   sigma_algebra: Discrete
   density: $$\rho(n) = {N\choose n}  p^n (1-p)^{N-n}$$
-  limits: 
+  limits:
     - Limit $$N\rightarrow \infty$ such that $np = \lambda$$ is fixed.
     - $$\rho(n) \rightarrow \frac{1}{k!} \lambda^k e^{-\lambda}$$
   operations:

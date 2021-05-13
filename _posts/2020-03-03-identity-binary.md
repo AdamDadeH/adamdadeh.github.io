@@ -5,19 +5,19 @@ use_math: True
 subject: Math
 ---
 
-One of my first exposures to the art of proof was 
-proving the uniqueness of the additive identity element. 
+One of my first exposures to the art of proof was
+proving the uniqueness of the additive identity element.
 At the convergence of thoughts about algebraic structures
 in the context of category theory and exposure to curious
-binary operations from digging through legacy code - 
-I found myself brought full circle recently with a 
+binary operations from digging through legacy code -
+I found myself brought full circle recently with a
 re-investigation of the nature identity elements.
 
 Definitions
 -----------
 
-For a binary operation $$b : X \times X \rightarrow X$$ defined on 
-a set $$X$$ we define : 
+For a binary operation $$b : X \times X \rightarrow X$$ defined on
+a set $$X$$ we define :
 
 * **left identity element** : $$e_L \in X$$ such that $$b(e_L, x) = x$$ for all $$x \in X$$
 * **right identity element** : $$e_R \in X$$ such that $$b(x, e_R) = x$$ for all $$x \in X$$
@@ -29,10 +29,10 @@ Two-sided identity elements - which we will mostly refer to as simply identity e
 | ------ | ------ |
 | Addition | $$0$$ |
 | Multiplication | $$1$$ |
-| Matrix mult. | Identity matrix | 
+| Matrix mult. | Identity matrix |
 | String Concatenation | "" (Empty string) |
 
-An example of a binary operation with only right identity is 
+An example of a binary operation with only right identity is
 exponentiation defined on positive integers (amongst other domains).
 
 $$b(x, y) = x^y$$
@@ -50,14 +50,14 @@ there is at most one identity element.
 Proof : Suppose that for a binary operation $$b$$ there are two identity elements $$e$$ and $$f$$. Then, $$b(e, f) = f$$ as $$e$$ is
 an identity and $$b(e, f) = e$$ as $$f$$ is an identity. Thus $$e=f$$.
 
-**Exclusivity** : For a binary operation $$b: X \times X \rightarrow X$$ it has one of 
+**Exclusivity** : For a binary operation $$b: X \times X \rightarrow X$$ it has one of
   1. One or more left identities
   2. One or more right identities
   3. One unique identity
   4. No left/right/two-sided identities.
 
-Proof : 
-* Given a left identity $$e$$ and right identity $$f$$ we 
+Proof :
+* Given a left identity $$e$$ and right identity $$f$$ we
 find $$b(e, f) = f = e$$, so $$e$$ is also a right identity, so is an identity.
 * Similarly given a pair of left (right) identity $$e$$ and identity $$f$$ - the identity is also a right (left) identity, so $$e = f$$.
 Together these restrict us to one of the 4 cases.
@@ -65,18 +65,18 @@ Together these restrict us to one of the 4 cases.
 Non-Uniqueness of Left/Right Identity
 ---------------------------
 
-Suppose we have a set $$X = \{e, f\}$$, binary operation $$b$$ on $$X$$, and two 
+Suppose we have a set $$X = \{e, f\}$$, binary operation $$b$$ on $$X$$, and two
 left identities $$e$$ and $$f$$.
 
-* $$b(e, e) = e$$  and $$b(e, f) = f$$ 
-* $$b(f, f) = f$$  and $$b(f, e) = e$$ 
+* $$b(e, e) = e$$  and $$b(e, f) = f$$
+* $$b(f, f) = f$$  and $$b(f, e) = e$$
 
 This is a well defined binary operation with two left identities.
 
 Multiple (Almost) Identity Elements
 -----------------------
 
-In the wilds of software development strange things abound... 
+In the wilds of software development strange things abound...
 that nearly break the pattern above.
 
 One such example was observed when mixing ```Lists``` together with ```Options``` in Scala. Consider the set ```List[Int]``` whose elements are finite sequences of integers. A simple operation on
@@ -124,7 +124,7 @@ Near Identities
 What we see in the example above is that we have elements that
 act as identity for **most** of the set.
 
-We can call $$e$$ a $$Y$$ near left/right/two-sided identity for 
+We can call $$e$$ a $$Y$$ near left/right/two-sided identity for
 $$b : X \times X \rightarrow X$$ if the appropriate identity
 conditions hold for all $$y \in Y$$.
 
@@ -144,7 +144,7 @@ by an equivalence relation equating all elements in $$I$$.
 
 $$Y = X/\tilde{} = X-I \cup \{I\}$$
 
-$$b' : Y \times Y \rightarrow Y$$ : 
+$$b' : Y \times Y \rightarrow Y$$ :
 
 * $$b'(x, y) = b(x, y)$$ for $$x,y \in X-I$$
 * $$b'(I, y) = b'(y, I ) = y$$ for $$y \in Y$$
