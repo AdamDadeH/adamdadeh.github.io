@@ -54,14 +54,14 @@ Pre-Order relations hold for either $O$ or $\Omega$ so we restrict to $O$.
 ### Pre-Order
 
 Why only a pre-order or partial order? We can easily construct functions for
-which neither $$f\;O\;g$$ or $$g\;O\;f$$. Let $$f(n)=n$$ for all positive integers.
-Let $$g(n) = log(n)$$ for all odd positive integers and $$g(n)=n^2$$ for all even 
-positive integers. Then for any choice of constant $$k$$ and for any $$N_o$$ there
-exists $$n,m > N_o$$ such that $$f(n) > k g(n)$$ and $$g(m) > k f(m)$$, so neither
+which neither $f\;O\;g$ or $g\;O\;f$. Let $f(n)=n$ for all positive integers.
+Let $g(n) = log(n)$ for all odd positive integers and $g(n)=n^2$ for all even 
+positive integers. Then for any choice of constant $$k$$ and for any $N_o$$ there
+exists $n,m > N_o$ such that $f(n) > k g(n)$ and $g(m) > k f(m)$, so neither
 $f \; O \; g$ nor $g \; O \; f$. These two functions are incomparable. 
 
 This pre-order is not totally wild - it is a directed pre-order. Given functions
-$$f,g$$ we can define $$h(n) = \max(f(n),g(n))$$. Then $$f \; O \; h$$ and $$g \; O \; h$$ making $$O$$
+$$f,g$$ we can define $h(n) = \max(f(n),g(n))$. Then $f \; O \; h$ and $g \; O \; h$ making $O$
 a [directed pre-order](https://en.wikipedia.org/wiki/Directed_set).
 
 ### Equivalence Classes of $$\Theta$$
