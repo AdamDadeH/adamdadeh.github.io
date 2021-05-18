@@ -12,8 +12,7 @@ In particular I was curious about their properties as [binary relations](https:/
 
 ### As Binary Relations
 
-Big-$O$ notations defines relationships between functions - in particular focusing on the
-comparing the asymptotic behavior. The definitions are as follows.
+Big-$O$ notations defines relationships between functions - in particular focusing on comparing the asymptotic behavior. The definitions are as follows:
 
 $$
 \begin{equation}
@@ -68,34 +67,31 @@ a [directed pre-order](https://en.wikipedia.org/wiki/Directed_set).
 
 Given that $\Theta$ is an equivalence relation what does the quotient look like?
 The quotient $\mathbb{R}_{\ge 0}^\mathbb{N} / \Theta$ has some very familiar elements.
-There are elements of the quotient that are very familiar
 
 0. $\Theta(1)$ - which includes all bounded functions.
-1. $\Theta(n^a)$ for $a > 0$
+1. Polynomial: $\Theta(n^a)$ for $a > 0$
 2. $\Theta(\log(n)^a)$ for $a > 0$
-3. $\Theta(e^{a\cdot n})$ for $a > 0$
+3. Exponential : $\Theta(e^{a\cdot n})$ for $a > 0$
 
-For 1, 2, and 3 there is an independent element of the quotient for each $a > 0$.
+For 1-3 there is an independent element of the quotient for each $a > 0$.
 With just these elements and their products we already have fairly large quotient space.
 
-How do the operations of the original function space descend to the quotient? For addition
-there are 2 cases, $f\;O\;g$, $f\;Theta\;g$ that we can handle easily.
+How do the operations of the original function space descend to the quotient?
+
+For addition there are 2 cases, $f\;O\;g$, $f\;Theta\;g$ that we can handle easily.
 
 1. For $f\;O\;g$, $\Theta(f) + \Theta(g) = \Theta(g)$
 2. For $f\;\Theta\;g$, $\Theta(f) + \Theta(g) = \Theta(f)$ (or g).
 
 This is the operation Max with respect to the ordering $O$. If the two elements are not
-comparable there is nothing I can easily infer about $\Theta(f) + \Theta(g)$.
+comparable there is nothing to infer about $\Theta(f) + \Theta(g)$.
 
-For multiplication we remain close to original spirit of the operation with $\Theta(f)\cdot\Theta(g) = \Theta(f\cdot g)$
+For multiplication we remain close to the original spirit of the operation with $\Theta(f)\Theta(g) = \Theta(f g)$
 being a well defined product on the equivalence classes. This product has an identity $\Theta(1)$.
-Together we have a Max-Times algebra with respect to the partial-ordering $O$.
+Together this gives a Max-Times algebra with respect to the partial-ordering $O$.
 
-If we restrict to looking at product of the simple elements above - each element of that subspace
-can be encdoed as a vector of positive real values for powers of $n$, $\log(n)$,
-$\log(\log(n))$, .., $e^n$, On those elements the product reduces to vector addition of the powers
-and addition reduces to the max operation with respect to a dictionary ordering of the vectors.
-While this does describe the behavior of this particular subspace it does not tell the whole story.
+If we restrict to looking at product of the simple elements above - each element of that subspace can be encoded as a vector of positive real values for the powers of $n$, $\log(n)$, $\log(\log(n))$, .., $e^n$, On those elements the product reduces to vector addition of the powers
+and addition reduces to the max operation with respect to a dictionary ordering of the vectors. While this does describe the behavior of this particular subspace it does not tell the whole story.
 For instance one would hope that nothing is living between the powers of $\log(n)$ and powers of $n$ but
 the functions encoded by [L notation](https://en.wikipedia.org/wiki/L-notation) common in
 algorthmic number theory live exactly in that space.
