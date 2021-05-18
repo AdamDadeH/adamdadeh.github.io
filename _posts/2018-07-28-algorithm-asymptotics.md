@@ -7,7 +7,7 @@ use_math: True
 
 In lazily paging through [Cormen et al](https://mitpress.mit.edu/books/introduction-algorithms) 
 I noticed that I have never seriously thought about the mathematical 
-properties of the [asymptotic notations](https://en.wikipedia.org/wiki/Big_O_notation#Family_of_Bachmann.E2.80.93Landau_notations) used in analyzing the behavior of algorithms ($$O$$,$$\Omega$$,$$\Theta$$).
+properties of the [asymptotic notations](https://en.wikipedia.org/wiki/Big_O_notation#Family_of_Bachmann.E2.80.93Landau_notations) used in analyzing the behavior of algorithms ($O$,$\Omega$,$\Theta$).
 In particular I was curious about their properties as [binary relations](https://en.wikipedia.org/wiki/Binary_relation).
 
 ### As Binary Relations
@@ -16,46 +16,52 @@ Big-$$O$$ notations defines relationships between functions - in particular focu
 comparing the asymptotic behavior. The definitions are as follows.
 
 $$
+\begin{equation}
 f \in O(g) \;\rm{if}\; \exists k>0 \; \rm{and} \; \exists n_{0} \; \rm{such} \; \rm{that} \; \forall n>n_{0}, \; f(n)\leq k\cdot g(n) 
+\end{equation}
 $$
 
 $$
+\begin{equation}
 f \in \Omega(g) \;\rm{if}\; \exists k>0 \; \rm{and} \;\exists n_{0} \; \rm{such} \; \rm{that} \; \forall n>n_{0}, \; f(n)\geq k\cdot g(n)
+\end{equation}
 $$
 
 $$
+\begin{equation}
 f \in \Theta(g) \; \rm{if} \; \exists k_1,k_2>0 \; \rm{and} \; \exists n_{0} \; \rm{such} \; \rm{that} \; \forall n>n_{0}, \; k_1\cdot g(n) \geq f(n)\geq k_2\cdot g(n)
+\end{equation}
 $$
 
 Where I am restricting the definition to non-negative functions 
-$$\mathbb{N} \rightarrow \mathbb{R}$$, which we can compactly denote 
-$$\mathbb{R}_{\ge 0}^\mathbb{N}$$.
+$\mathbb{N} \rightarrow \mathbb{R}$, which we can compactly denote 
+$\mathbb{R}_{\ge 0}^\mathbb{N}$.
 
-These 3 satisfy the conditions of an [equivalence relation](https://en.wikipedia.org/wiki/Equivalence_relation), $$\Theta$$, and a [pre-order](https://en.wikipedia.org/wiki/Preorder) $$O$$ or $$\Omega$$ (or a [partial
-ordering](https://en.wikipedia.org/wiki/Partially_ordered_set) relative to the equivalence relation $$\Theta$$). As such it tempting to use binary relation notation, $$f\;O\;g$$ for $$f \in O(g)$$, 
-$$f \;\Omega\; g$$ for $$f \in \Omega(g)$$ and $$f \;\Theta\; g$$ for $$f \in \Theta(g)$$.
+These 3 satisfy the conditions of an [equivalence relation](https://en.wikipedia.org/wiki/Equivalence_relation), $\Theta$, and a [pre-order](https://en.wikipedia.org/wiki/Preorder) $O$ or $\Omega$ (or a [partial
+ordering](https://en.wikipedia.org/wiki/Partially_ordered_set) relative to the equivalence relation $\Theta$). As such it tempting to use binary relation notation, $f\;O\;g$ for $f \in O(g)$, 
+$f \;\Omega\; g$ for $f \in \Omega(g)$ and $f \;\Theta\; g$ for $f \in \Theta(g)$.
 
 Equivalence relation conditions
-1. Reflexive : $$f\;\Theta\;f$$
-2. Symmetric : $$f\;\Theta\;g$$ implies $$g\;\Theta\;f$$
-3. Transitive : $$f\;\Theta\;g$$, $$g\;\Theta\;h$$, implies $$f\;\Theta\;h$$
+1. Reflexive : $f\;\Theta\;f$
+2. Symmetric : $f\;\Theta\;g$ implies $g\;\Theta\;f$
+3. Transitive : $f\;\Theta\;g$, $g\;\Theta\;h$, implies $f\;\Theta\;h$
 
-Pre-Order relations hold for either $$O$$ or $$\Omega$$ so we restrict to $$O$$.
-1. Transitive : $$f\;O\;g$$, $$g\;O\;h$$ implies $$f\;O\;h$$
-2. Reflexive : $$f\;O\;f$$
-3. Anti-symmetric (wrt $$\Theta$$) : $$f\;O\;g$$, $$g\;O\;f$$, implies $$f\;\Theta\;g$$
+Pre-Order relations hold for either $O$ or $\Omega$ so we restrict to $O$.
+1. Transitive : $f\;O\;g$, $g\;O\;h$ implies $f\;O\;h$
+2. Reflexive : $f\;O\;f$
+3. Anti-symmetric (wrt $\Theta$) : $f\;O\;g$, $g\;O\;f$, implies $f\;\Theta\;g$
 
 ### Pre-Order
 
 Why only a pre-order or partial order? We can easily construct functions for
-which neither $$f\;O\;g$$ or $$g\;O\;f$$. Let $$f(n)=n$$ for all positive integers.
-Let $$g(n) = log(n)$$ for all odd positive integers and $$g(n)=n^2$$ for all even 
-positive integers. Then for any choice of constant $$k$$ and for any $$N_o$$ there
-exists $$n,m > N_o$$ such that $$f(n) > k g(n)$$ and $$g(m) > k f(m)$$, so neither
+which neither $f\;O\;g$ or $g\;O\;f$. Let $f(n)=n$ for all positive integers.
+Let $g(n) = log(n)$ for all odd positive integers and $g(n)=n^2$ for all even 
+positive integers. Then for any choice of constant $$k$$ and for any $N_o$$ there
+exists $n,m > N_o$ such that $f(n) > k g(n)$ and $g(m) > k f(m)$, so neither
 $f \; O \; g$ nor $g \; O \; f$. These two functions are incomparable. 
 
 This pre-order is not totally wild - it is a directed pre-order. Given functions
-$$f,g$$ we can define $$h(n) = \max(f(n),g(n))$$. Then $$f \; O \; h$$ and $$g \; O \; h$$ making $$O$$
+$$f,g$$ we can define $h(n) = \max(f(n),g(n))$. Then $f \; O \; h$ and $g \; O \; h$ making $O$
 a [directed pre-order](https://en.wikipedia.org/wiki/Directed_set).
 
 ### Equivalence Classes of $$\Theta$$

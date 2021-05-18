@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Symmetries in Machine Learning I
-use_math: True
+use_math: true
 ---
 
 In this digression into the topic of symmetries in Machine Learning we
