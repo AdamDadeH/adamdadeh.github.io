@@ -69,7 +69,10 @@ exactly invariant with respect to the transformations - how
 do we incorporate that knowledge? Can we directly work with
 functions $f: (\mathbb{Z}_N \rightarrow \mathbb{Z}_2) \rightarrow \mathbb{R}$ that were invariant under the group of transformations?
 
-$$f(\phi_n \cdot x) = f(x) \;\rm{for}\;\rm{all}\; n \in \mathbb{Z}_N$$
+$$
+\begin{equation}
+f(\phi_n \cdot x) = f(x) \;\rm{for}\;\rm{all}\; n \in \mathbb{Z}_N
+\end{equation}$$
 
 What do these invariant functions look like?
 
@@ -78,7 +81,11 @@ What do these invariant functions look like?
 If $f(x) = f(\phi_n(x))$ for all $n$ then clearly it is sufficient
 to specify $f$ for any single element of the following subset of $X$,
 
-$$[x] = \{\phi_n(x) | n \in \mathbb{Z}_N\}$$
+$$
+\begin{equation}
+[x] = \{\phi_n(x) | n \in \mathbb{Z}_N\}
+\end{equation}
+ $$
 
 to know the value of $f$ on the entire subset. This set consists of
 all possible translations / transformations of the element $x$.
