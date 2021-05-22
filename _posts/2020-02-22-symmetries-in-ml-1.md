@@ -43,7 +43,7 @@ function should satisfy.
 
 Such exact symmetries are rare in practice but idealized versions of standard problems do admit exact symmetries.
 
-**Idealized Images** : If we remove questions of ``what happens at the boundary'', allowing images composed of pixels that are infinite (functions $\mathbb{Z}^2$ to $\mathbb{R}^3$). Then we expect:
+**Idealized Images** : If we remove questions of "what happens at the boundary", allowing images composed of pixels that are infinite (functions $\mathbb{Z}^2$ to $\mathbb{R}^3$). Then we expect:
   - **Classification** of image content to be **translation invariant**.
   - Detection of **bounding boxes** to be **translation covariant** with the bounding box being translated along with the image.
   - **Classification** to be **dilation invariant** where we allow transformations that take each pixel and "blow it up" to a $K \times K$ square of pixels of
@@ -71,16 +71,19 @@ functions $f: (\mathbb{Z}_N \rightarrow \mathbb{Z}_2) \rightarrow \mathbb{R}$ th
 
 $$f(\phi_n \cdot x) = f(x) \;\rm{for}\;\rm{all}\; n \in \mathbb{Z}_N$$
 
-In future posts we'll return to this simple example.
+What do these invariant functions look like?
 
-#### Understanding the Equivalence Classes
+#### Exploring Invariant Functions
 
 If $f(x) = f(\phi_n(x))$ for all $n$ then clearly it is sufficient
 to specify $f$ for any single element of the following subset of $X$,
 
 $$[x] = \{\phi_n(x) | n \in \mathbb{Z}_N\}$$
 
-to know the value of $f$ on the entire subset.
+to know the value of $f$ on the entire subset. This set consists of
+all possible translations / transformations of the element $x$.
+
+For $N=3$ and writing the input $x$ as a string of bits - $[101] = \\\{ 101, 011, 110 \\\}$
 
 Each such subset is called an equivalence class under $\sim_\phi$ and we denote the set of these equivalence classes as $X/\sim_{\phi}$.
 One avenue to understanding the invariant functions is to
@@ -88,7 +91,7 @@ directly define the functions on $X / \sim_{\phi}$  (typically called the
 quotient of $X$ with respect to $\sim_{\phi}$).
 
 For our simple example it is amusing to note that these equivalence classes are
-called ``Necklaces'' [necklaces - mathworld](http://mathworld.wolfram.com/Necklace.html) and have been actively studied within [combinatorics](https://oeis.org/A000031) - where the primary object of study is the number of distinct equivalence classes. This also hints that the study of these objects is non-trivial!
+called "Necklaces" [necklaces - mathworld](http://mathworld.wolfram.com/Necklace.html) and have been actively studied within [combinatorics](https://oeis.org/A000031) - where the primary object of study is the number of distinct equivalence classes. This also hints that the study of these objects is non-trivial!
 
 For different $N$ we can write down representatives of the equivalence
 classes.
@@ -97,40 +100,35 @@ classes.
 * $N=2$: `00`, `10`, `11`
 * $N=3$: `000`, `100`, `110`, `111`
 * $N=4$: `0000`, `1000`, `1100`, `1010`, `1110`, `1111`
-* $N=5$: `00000`, `11111` ,`10000`, `11110`, `11000`, `11100`, `10100`, `10110`
+* $N=5$: `00000` ,`10000`,  `11000`,  `10100`, `11100`, `10110`, `11110`,`11111`
 * $N=6$:  `000000`, `100000`, `110000`, `101000`, `100100`, `111000`, `110100`, `110010`, `111111`, `011111`, `001111`, `111010`, `011011`, `101010`
 
 With access to these it is possible to define a general invariant function
 by assigning a value $f([x])$ to each equivalence class $[x]$ and then
 generally we have $f(x) = f([y])$ if $x \in [y]$. While this allows us
-to construct invariant functions we lack the ``nice'' coordinates to represent
-these equivalence classes.
+to construct invariant functions they are not pleasant or efficient to work with.
 
-While we **can** talk about invariant functions - they are not pleasant or efficient to work with.
+With this understanding one can imagine taking each observation $(x, y)$
+and mapping to $([x], y)$, so using $\mathcal{D}' = \\\{ ([x], y) \vert (x,y) \in \mathcal{D} \\\}$ as training data.
 
-1. Where elements of $X$ could be simply expressed as elements of $\mathbb{Z}_2^N$ providing simple coordinates / features - the quotient $X / \sim_{\phi}$ does not have such obvious coordinates.
-2. Given a single example of an invariant function constructed as above - to evaluate it on in input $x$ we need to efficiently determine which equivalence
-class that the $x$ belongs to.
+1. Efficiently determining which equivalence class the input $x$ belongs to may be burdensome.
+2. Where elements of $X$ could be simply expressed as elements of $\mathbb{Z}^N_2$ providing simple coordinates (features) and so a means to define a parametrized family of functions $\phi_{\alpha}$ to optimize over - the quotient $X / \sim_{\phi}$ does not have such obvious coordinates.
 
 #### Equivalence classes of $\mathbb{Z}_N \rightarrow \mathbb{R}$
 
-For functions $\mathbb{Z}_N \rightarrow \mathbb{R}$
-what do the quotients look like? Wait - why do we care? Primarily -
-noticing that the boolean case reduces to a complex combinatorics
+Given that the boolean case reduces to a complex combinatorics
 problem - we can look at a slightly simpler case.
+For functions $\mathbb{Z}_N \rightarrow \mathbb{R}$
+what do the quotients look like?
 
 The 'largest' part of the quotient can be obtained for all functions having unique maximum. We can qauntify largest using the standard
-measure on $\mathbb{R}^n$. Denoting the function with unique maximum
-as $A_{unique}$ - we note that the complement $\mathbb{R}^{N} - A_{unique}$ is contained in $\{f \vert \exists n,m \;\rm{st}\; f(n)=f(m)\}$.
+measure on $\mathbb{R}^N$. Denoting the function with unique maximum
+as $A_{unique}$ - we note that the complement $\mathbb{R}^{N} - A_{unique}$ is contained in $\\\{x \vert \exists n,m \;\rm{st}\; x(n)=x(m)\\\}$.
 
-So $\mu(\mathbb{R}^{N} - A_{unique}) \leq \mu(\{f \vert \exists n,m \;\rm{st}\; f(n)=f(m)\}) = 0$
+So $\mu(\mathbb{R}^{N} - A_{unique}) \leq \mu(\\\{x \vert \exists n,m \;\rm{st}\; x(n)=x(m)\\\}) = 0$
 
 The complement of our set of functions with unique maximum is measure 0.
 
-For any element $f$ with unique maximum we can rotate until the maximum is at 0. Any such $f$ is equivalent to an element of a smaller subset of functions with unique maximum at 0, $\{f  \vert f(0) > f(n) \forall n \neq 0\}$.
+For any element $x$ with unique maximum we can rotate until the maximum is at 0. Any such $x$ is equivalent to an element of the set of functions with unique maximum at 0, $\\\{x  \vert x(0) > x(n) \forall n \neq 0\\\}$.
 
-We can rather compactly describe the quotient as - $\cup_y \{y\} \times [-\infty, y)^{n-1}$.
-
-If we want (or need to) explore the full quotiet we find that
-the problem reduces to the normal necklace problem. If we consider the points that are maxima to be 1's and all others to be 0's then given any
-fn $f$ it is related to one of the necklaces above.
+We can rather compactly describe the quotient as,  $\cup_y \\\{y\\\} \times [-\infty, y)^{n-1}$.
