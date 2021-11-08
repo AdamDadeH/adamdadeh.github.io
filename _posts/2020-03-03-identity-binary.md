@@ -16,10 +16,10 @@ re-investigation of the nature identity elements.
 Definitions
 -----------
 
-For a binary operation $$b : X \times X \rightarrow X$$ defined on
+For a binary operation $b : X \times X \rightarrow X$ defined on
 a set $$X$$ we define :
 
-* **left identity element** : $$e_L \in X$$ such that $$b(e_L, x) = x$$ for all $$x \in X$$
+* **left identity element** : $e_L \in X$ such that $b(e_L, x) = x$ for all $x \in X$
 * **right identity element** : $$e_R \in X$$ such that $$b(x, e_R) = x$$ for all $$x \in X$$
 * **(two-sided) identity element** : $$e \in X$$ such that $$b(x, e) = b(e, x) = x$$ for all $$x \in X$$
 
