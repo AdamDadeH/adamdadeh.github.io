@@ -18,7 +18,8 @@ See also this collection of references and thoughts on notation [hypotext - nota
 
 A good notation will allow one to work more efficiently, convey ideas more concisely, and
 lead to new developments. A poor notation acts as a friction to development and confines
-our thoughts to old ways of thinking. At least for my personal use statistics notation has room for improvement - in particular the language of 'Random Variables' and 'Expectation Values'. A focus on random variables and expectation values :
+our thinking. At least for my personal the language of 'Random Variables' and 'Expectation Values' is overly restrictive. 
+A focus on random variables and expectation values :
 
 * Can mask that probability measures are the critical component of the probability.
 * Artificially restrict analysis to distributions on $\mathbb{R}^n$.
@@ -32,8 +33,7 @@ with the aims of measure theory. Measure theory is commonly introduced as a pre-
 to integration - a theory where we similarly require an means to measure the area / volume
 of subsets of a space. Despite being entangled in how they are taught, measure theory
 is a subject with value of its own beyond the theory of integration. In particular in
-probability theory - measure theory is the star of the show and integration is at best a
-useful tool.
+probability theory - measure theory is the star of the show and integration is a useful tool.
 
 Sample Spaces
 -----------------------------------
