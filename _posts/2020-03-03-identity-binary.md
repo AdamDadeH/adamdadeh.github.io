@@ -131,7 +131,7 @@ conditions hold for all $y \in Y$.
 * For two sided : $b(e, y) = b(y, e) = y$ for all $y \in Y$.
 
 If in addition we have that the binary operation is associative
-then given two $$Y$$ near identities $(e, f)$, $b(e, f)$ is also
+then given two $Y$ near identities $(e, f)$, $b(e, f)$ is also
 a $Y$ near identity.
 
 $b(b(e, f), y) = b(e, b(f, y)) = b(e, y) = y$
@@ -146,7 +146,7 @@ $Y = X/\tilde{} = X-I \cup \{I\}$
 
 $b' : Y \times Y \rightarrow Y$ :
 
-* $b'(x, y) = b(x, y)$$ for $x,y \in X-I$
+* $b'(x, y) = b(x, y)$ for $x,y \in X-I$
 * $b'(I, y) = b'(y, I ) = y$ for $y \in Y$
 
 We can concoct cases with no identity element that have a well-defined
@@ -167,8 +167,8 @@ def concatenate(x: Option[List[Int]], y: Option[List[Int]]): Option[List[Int]] =
 ```
 
 Then neither `None` nor `Some([])` are identity elements, but each
-are near identities for $$Option[List[Int]] - \{None, Some([])\}$$.
-We can quotient this with equivalence relation $$Some([]) \sim None$$
+are near identities for $Option[List[Int]] - \{None, Some([])\}$.
+We can quotient this with equivalence relation $Some([]) \sim None$
 The quotient gets us back to `(List[Int], concatenate)` - so entirely avoiding the `Option`.
 
 This is as far as I will follow this rabbit hole.
