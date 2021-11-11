@@ -103,7 +103,7 @@ the functions encoded by [L notation](https://en.wikipedia.org/wiki/L-notation) 
 algorthmic number theory live exactly in that space. 
 
 These interpolations come from a simple means to construct new
-elements of the quotient - $e^{\log(f) + \log(g))$ where $f \;O\; e^{\log(f) + \log(g)) \;O\; g$ if $f \;O\; g$.
+elements of the quotient - $e^{\log(f) + \log(g)}$ where $f \;O\; e^{\log(f) + \log(g)} \;O\; g$ if $f \;O\; g$.
 
 $\Theta$ and limsup/liminf
 --------------------
