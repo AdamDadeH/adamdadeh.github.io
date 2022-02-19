@@ -24,14 +24,3 @@ Publications :
 <li class="publication"><b>{{pub.date}}</b> - {{pub.authors | array_to_sentence_string: ''}}: <b>{{ pub.title }}</b>. {{pub.journal}} {{pub.issue}}. {% for link in pub.links%}<a href="{{ link.link }}">[{{link.name}}]</a> {%endfor%}</li>
   {% endif %}
 {% endfor %}
-
-Recent Reading :
----------------
-{% for book in site.books %}
-  {% if book.review > 3 %}
-  <h5>{{ book.title }} : <a href="{{ book.url }}">Notes</a></h5>
-  <p>Subject : {{ book.subject }}<br>
-  Author : {{ book.author }}<br>
-  {% endif %}
-{% endfor %}
-
