@@ -81,7 +81,7 @@ This set of coordinates has it's own simple operations.
 
 #### Representation of Groups
 
-For a faithful group representation we have coordinates given by the bijection $$\rho : G \rightarrow \mathbb{C}^{(n \times n)} $$ such that the image of the group binary operation is a simple quadratic function.
+For a faithful group representation we have coordinates given by the bijection $\rho : G \rightarrow \mathbb{C}^{(n \times n)} $ such that the image of the group binary operation is a simple quadratic function.
 
 Given $g$ & $h$ in $G$,
 
