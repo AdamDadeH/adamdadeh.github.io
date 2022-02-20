@@ -6,12 +6,17 @@ subject: Math
 ---
 
 One of my first exposures to the art of proof was
-proving the uniqueness of the additive identity element.
+proving the uniqueness of the additive identity.
 At the convergence of thoughts about algebraic structures
 in the context of category theory and exposure to curious
 binary operations from digging through legacy code -
 I found myself brought full circle recently with a
 re-investigation of the nature identity elements.
+
+This investigation covers
+
+1. What are the minimal conditions for uniqueness of an identity?
+2. Understanding when uniqueness fails.
 
 Definitions
 -----------
@@ -33,7 +38,7 @@ Two-sided identity elements - which we will mostly refer to as simply identity e
 | String Concatenation | "" (Empty string) |
 
 An example of a binary operation with only right identity is
-exponentiation defined on positive integers (amongst other domains).
+exponentiation defined on positive integers.
 
 $b(x, y) = x^y$
 
