@@ -86,7 +86,9 @@ For a faithful group representation we have coordinates given by the bijection $
 Given $g$ & $h$ in $G$,
 
 \[
+\begin{equation}
 \rho(gh)_{ij} = \sum_k \rho(g)_{ik} \rho(h)_{kj}
+\end{equation}
 \]
 
 Or more simply stated : That the image of the groups binary operation is the matrix product.
@@ -114,7 +116,9 @@ Nice coordinates for a set $X$ with a set of structures $\phi$ are $(f, C, \psi)
 such that the image of each structure $\phi_i$ on $X$ in $C$ can be efficiently represented using the structures $\psi$ on $C$. Where the condition on the representation $(f \cdot \phi_i) : C^d \times Y \rightarrow C^r \times Z$ for a particular structure $\phi_i: X^{d} \times Y \rightarrow X^r \times Z$ is that
 
 \[
+\begin{equation}
 (f \times f \times .. \times i_Z) (\phi_i(x_1, x_2, ...,x_d, y))) = (f\cdot\phi)_i (f(x_1), f(x_2), ..., f(x_d), y)
+\end{equation}
 \]
 
 where $(f \cdot \phi)$ is a composition of the structures $\psi$ on $X$.
