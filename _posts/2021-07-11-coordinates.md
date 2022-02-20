@@ -130,7 +130,9 @@ $f(b(x, x')) = (f \cdot b)(f(x), f(x'))$ where $(f \cdot b)$ defined by composit
 For group representations or more generally group morphisms  $(f \cdot b)$ is given by the binary operation on $C$.
 
 \[
+\begin{equation}
 f(b(x, x')) = \psi_b(f(x), f(x'))
+\end{equation}
 \]
 
 Efficiently?
