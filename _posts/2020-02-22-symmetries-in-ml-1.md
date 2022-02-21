@@ -6,8 +6,8 @@ use_math: true
 
 In this digression into the topic of symmetries in Machine Learning we
 
-* define invariance and covariance of supervised ML under a family of transformations.
-* present a simple idealized supervised learning problem with symmetries to explore the concept.
+* Define invariance and covariance of supervised ML under a family of transformations.
+* Present a simple idealized supervised learning problem with symmetries to explore the concept.
 
 This investigation is inspired by [Invariant Information Clustering](https://arxiv.org/abs/1807.06653) in which the concept that a model should be invariant under certain transformations is leveraged for unsupervised learning.
 
@@ -25,8 +25,7 @@ A particular instance of a task consists of
 
   _We say 'simple' here as there are plenty of cases where observations are from $X \times Y$ while the function to learn has a different range $Y'$. The most common example being Logistic regression where the observations are from a discrete set $L$ and the function output is a probability distribution over $L$._
 
-Symmetries are typically observed for tasks where the domain $X$ has
-**transformations**, $\phi_{\alpha} : X \rightarrow X$, such that either
+Symmetries are typically observed for tasks where the domain $X$ has **transformations**, $\phi_{\alpha} : X \rightarrow X$, such that either
 
 a. The outputs are **invariant** under transformation of the inputs by $\phi_{\alpha}$, so the outputs $y$ associated to $x$ and $\phi_{\alpha}(x)$ would be the same for all $\alpha$.
 
@@ -37,25 +36,23 @@ function should satisfy.
 
 1. **Invariance** :
   $f(\phi_{\alpha} \cdot x) = f(x)$ for all $\alpha, x$
-2. **Covariance** : There exists a function $G$ taking transformation of $X$ and producing a transformation of $Y$ - $G : (X \rightarrow X) \rightarrow (Y \rightarrow Y)$ such that it
+2. **Covariance** : There exists a function $G$ taking transformation of $X$ and producing a transformation of $Y$, $G : (X \rightarrow X) \rightarrow (Y \rightarrow Y)$ such that it
   - **Defines transformation of outputs** : $f(\phi_{\alpha} \cdot x) = G(\phi_{\alpha}) \cdot f(x)$ for all $\alpha, x$
   - Is a **Functor** : $f(\phi_{\alpha} \cdot (\phi_{\beta} \cdot x)) = G(\phi_{\alpha} \cdot \phi_{\beta}) \cdot f(x) = G(\phi_{\alpha}) \cdot G(\phi_{\beta}) \cdot f(x)$ for all $\alpha, \beta, x$
 
 Such exact symmetries are rare in practice but idealized versions of standard problems do admit exact symmetries.
 
-**Idealized Images** : If we remove questions of "what happens at the boundary", allowing images composed of pixels that are infinite (functions $\mathbb{Z}^2$ to $\mathbb{R}^3$). Then we expect:
+**Idealized Images** : If we remove questions of "what happens at the boundary", allowing images composed of pixels that extend infinitely in all directions (functions $\mathbb{Z}^2$ to $\mathbb{R}^3$). Then we expect:
   - **Classification** of image content to be **translation invariant**.
   - Detection of **bounding boxes** to be **translation covariant** with the bounding box being translated along with the image.
   - **Classification** to be **dilation invariant** where we allow transformations that take each pixel and "blow it up" to a $K \times K$ square of pixels of
   identical color.
 
-Once we introduce image boundaries we are reduced to having "near" or
-"approximate" symmetries that will be discussed another time.
+Once we introduce image boundaries we are reduced to having "near" or "approximate" symmetries that will be discussed another time.
 
 ### Simple Idealized Example
 
-A **highly** idealized example that is similar to image models takes as domain $X$
-functions from [The cyclic group](https://en.wikipedia.org/wiki/Cyclic_group) $\mathbb{Z}_N$ (addition mod N) to $\mathbb{Z}_2$.
+A **highly** idealized example that is similar to image models takes as domain $X$ functions from [The cyclic group](https://en.wikipedia.org/wiki/Cyclic_group) $\mathbb{Z}_N$ (addition mod N) to $\mathbb{Z}_2$.
 
 - **Domain** $X$ : $\mathbb{Z}_N \rightarrow \mathbb{Z}_2$
   - Interpretation : Finite strings of bits.
@@ -64,31 +61,24 @@ functions from [The cyclic group](https://en.wikipedia.org/wiki/Cyclic_group) $\
     - For $n \in \mathbb{Z}_N$ define $(\phi_n \cdot x)(m) = x(m - n)$
     - Interpretation : Translation with [periodic boundary conditions](https://en.wikipedia.org/wiki/Periodic_boundary_conditions).
 
-Suppose we have domain expert knowledge that the task is
-exactly invariant with respect to the transformations - how
-do we incorporate that knowledge? Can we directly work with
+Suppose we have domain expert knowledge that the task is exactly invariant with respect to the transformations - how do we incorporate that knowledge? Can we directly work with
 functions $f: (\mathbb{Z}_N \rightarrow \mathbb{Z}_2) \rightarrow \mathbb{R}$ that were invariant under the group of transformations?
 
 $$
-\begin{equation}
 f(\phi_n \cdot x) = f(x) \;\rm{for}\;\rm{all}\; n \in \mathbb{Z}_N
-\end{equation}$$
+$$
 
 What do these invariant functions look like?
 
 #### Exploring Invariant Functions
 
-If $f(x) = f(\phi_n(x))$ for all $n$ then clearly it is sufficient
-to specify $f$ for any single element of the following subset of $X$,
+If $f(x) = f(\phi_n(x))$ for all $n$ then clearly it is sufficient to specify $f$ for any single element of the following subset of $X$,
 
 $$
-\begin{equation}
 [x] = \{\phi_n(x) | n \in \mathbb{Z}_N\}
-\end{equation}
- $$
+$$
 
-to know the value of $f$ on the entire subset. This set consists of
-all possible translations / transformations of the element $x$.
+to know the value of $f$ on the entire subset. This set consists of all possible translations / transformations of the element $x$.
 
 For $N=3$ and writing the input $x$ as a string of bits - $[101] = \\\{ 101, 011, 110 \\\}$
 
@@ -97,8 +87,7 @@ One avenue to understanding the invariant functions is to
 directly define the functions on $X / \sim_{\phi}$  (typically called the
 quotient of $X$ with respect to $\sim_{\phi}$).
 
-For our simple example it is amusing to note that these equivalence classes are
-called "Necklaces" [necklaces - mathworld](http://mathworld.wolfram.com/Necklace.html) and have been actively studied within [combinatorics](https://oeis.org/A000031) - where the primary object of study is the number of distinct equivalence classes. This also hints that the study of these objects is non-trivial!
+For our simple example it is amusing to note that these equivalence classes are called "Necklaces" [necklaces - mathworld](http://mathworld.wolfram.com/Necklace.html) and have been actively studied within [combinatorics](https://oeis.org/A000031) - where the primary object of study is the number of distinct equivalence classes. This also hints that the study of these objects is non-trivial!
 
 For different $N$ we can write down representatives of the equivalence
 classes.
@@ -110,16 +99,14 @@ classes.
 * $N=5$: `00000` ,`10000`,  `11000`,  `10100`, `11100`, `10110`, `11110`,`11111`
 * $N=6$:  `000000`, `100000`, `110000`, `101000`, `100100`, `111000`, `110100`, `110010`, `111111`, `011111`, `001111`, `111010`, `011011`, `101010`
 
-With access to these it is possible to define a general invariant function
-by assigning a value $f([x])$ to each equivalence class $[x]$ and then
-generally we have $f(x) = f([y])$ if $x \in [y]$. While this allows us
-to construct invariant functions they are not pleasant or efficient to work with.
+With access to these it is possible to define a general invariant function by assigning a value $f([x])$ to each equivalence class $[x]$ and then
+generally we have $f(x) = f([y])$ if $x \in [y]$. While this allows us to construct invariant functions they are not pleasant or efficient to work with.
 
 With this understanding one can imagine taking each observation $(x, y)$
 and mapping to $([x], y)$, so using $\mathcal{D}' = \\\{ ([x], y) \vert (x,y) \in \mathcal{D} \\\}$ as training data.
 
 1. Efficiently determining which equivalence class the input $x$ belongs to may be burdensome.
-2. Where elements of $X$ could be simply expressed as elements of $\mathbb{Z}^N_2$ providing simple coordinates (features) and so a means to define a parametrized family of functions $\phi_{\alpha}$ to optimize over - the quotient $X / \sim_{\phi}$ does not have such obvious coordinates.
+2. Where elements of $X$ could be simply expressed as elements of $\mathbb{Z}^N_2$ providing simple coordinates (features) and so a means to define a parametrized family of functions $f_{\theta}$ to optimize over - the quotient $X / \sim_{\phi}$ does not have such obvious coordinates.
 
 #### Equivalence classes of $\mathbb{Z}_N \rightarrow \mathbb{R}$
 
