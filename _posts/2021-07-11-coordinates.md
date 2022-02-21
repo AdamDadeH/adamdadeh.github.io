@@ -81,11 +81,15 @@ This set of coordinates has it's own simple operations.
 
 #### Representation of Groups
 
-For a faithful group representation we have coordinates given by the bijection $$\rho : G \rightarrow \mathbb{C}^{(n \times n)} $$ such that the image of the group binary operation is a simple quadratic function.
+For a faithful group representation we have coordinates given by the bijection $\rho : G \rightarrow \mathbb{C}^{(n \times n)} $ such that the image of the group binary operation is a simple quadratic function.
 
 Given $g$ & $h$ in $G$,
 
-$$\rho(gh)_{ij} = \sum_k \rho(g)_{ik} \rho(h)_{kj}$$
+\[
+\begin{equation}
+\rho(gh)_{ij} = \sum_k \rho(g)_{ik} \rho(h)_{kj}
+\end{equation}
+\]
 
 Or more simply stated : That the image of the groups binary operation is the matrix product.
 
@@ -111,7 +115,11 @@ Nice coordinates for a set $X$ with a set of structures $\phi$ are $(f, C, \psi)
 
 such that the image of each structure $\phi_i$ on $X$ in $C$ can be efficiently represented using the structures $\psi$ on $C$. Where the condition on the representation $(f \cdot \phi_i) : C^d \times Y \rightarrow C^r \times Z$ for a particular structure $\phi_i: X^{d} \times Y \rightarrow X^r \times Z$ is that
 
-$(f \times f \times .. \times i_Z) (\phi_i(x_1, x_2, ...,x_d, y))) = (f\cdot\phi)_i (f(x_1), f(x_2), ..., f(x_d), y)$
+\[
+\begin{equation}
+(f \times f \times .. \times i_Z) (\phi_i(x_1, x_2, ...,x_d, y))) = (f\cdot\phi)_i (f(x_1), f(x_2), ..., f(x_d), y)
+\end{equation}
+\]
 
 where $(f \cdot \phi)$ is a composition of the structures $\psi$ on $X$.
 
@@ -125,7 +133,11 @@ $f(b(x, x')) = (f \cdot b)(f(x), f(x'))$ where $(f \cdot b)$ defined by composit
 
 For group representations or more generally group morphisms  $(f \cdot b)$ is given by the binary operation on $C$.
 
-$f(b(x, x')) = \psi_b(f(x), f(x'))$
+\[
+\begin{equation}
+f(b(x, x')) = \psi_b(f(x), f(x'))
+\end{equation}
+\]
 
 Efficiently?
 -------------

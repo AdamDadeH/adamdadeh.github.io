@@ -63,9 +63,15 @@ This pre-order is not totally wild - it is a directed pre-order. Given functions
 $f,g$ we can define $h(n) = \max(f(n),g(n))$. Then $f \; O \; h$ and $g \; O \; h$ making $O$
 a [directed pre-order](https://en.wikipedia.org/wiki/Directed_set).
 
+<I am curious restriction we can make on the space of functions to remove the
+non-comparable pairs. Clearly restriction to monotonic functions removes the
+non-comparable pair introduced above.>
+
 ### Equivalence Classes of $\Theta$
 
-Given that $\Theta$ is an equivalence relation what does the quotient look like?
+Given that $\Theta$ is an equivalence relation what does the quotient look like? How do we 
+do arithmetic in the quotient, or how do we combine asymptotic estimates?
+
 The quotient $\mathbb{R}_{\ge 0}^\mathbb{N} / \Theta$ has some very familiar elements.
 
 0. $\Theta(1)$ - which includes all bounded functions.
@@ -94,7 +100,10 @@ If we restrict to looking at product of the simple elements above - each element
 and addition reduces to the max operation with respect to a dictionary ordering of the vectors. While this does describe the behavior of this particular subspace it does not tell the whole story.
 For instance one would hope that nothing is living between the powers of $\log(n)$ and powers of $n$ but
 the functions encoded by [L notation](https://en.wikipedia.org/wiki/L-notation) common in
-algorthmic number theory live exactly in that space.
+algorthmic number theory live exactly in that space. 
+
+These interpolations come from a simple means to construct new
+elements of the quotient - $e^{\log(f) + \log(g)}$ where $f \;O\; e^{\log(f) + \log(g)} \;O\; g$ if $f \;O\; g$.
 
 $\Theta$ and limsup/liminf
 --------------------
@@ -113,13 +122,6 @@ that $M > N$ implies that $sup_{n > M} (g(n)/f(n)) < \beta + \epsilon$ and $inf_
 So $g(n) / f(n) < \beta + \epsilon$ for all $n > N$
 
 and $g(n) / f(n) > \alpha - \epsilon$ for all $n > N$, thus $f \;\Theta\; g$.
-
-Non-Comparable Pairs
---------------------
-
-I am curious restriction we can make on the space of functions to remove the
-non-comparable pairs. Clearly restriction to monotonic functions removes the
-non-comparable pair introduced above.
 
 More general asymptotics
 ---------------------
