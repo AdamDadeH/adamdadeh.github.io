@@ -36,7 +36,8 @@ Familiar convolution appearing in real analysis, addition of random variables, .
 
 **Def : Group Convolution**
 For a group $G$, functions $f, g : G \rightarrow \mathbb{C}$ and a measure $\mu$ on $G$.
-$$\begin{equation}(f * g)(x) = \int d\mu(y) f(y)g(y^{-1}x)\end{equation}$$
+
+\begin{equation}(f * g)(x) = \int d\mu(y) f(y)g(y^{-1}x)\end{equation}
 
 The key components of these definitions are
 * Two functions $f,g$ with a common domain $X$.
@@ -50,23 +51,23 @@ General Convolution for Binary Operation
 
 **Def : Binary Operation convolution**
 For $f, g : M \rightarrow \mathbb{C}$, a measure $\mu$ on $M$, and a binary operation $b : M \times M \rightarrow M$.
-$$\begin{equation}(f *_{b,\mu} g)(z) = \int d\mu(x) d\mu(y) f(x)g(y)\delta(z, b(x,y))\end{equation}$$
+\begin{equation}(f *_{b,\mu} g)(z) = \int d\mu(x) d\mu(y) f(x)g(y)\delta(z, b(x,y))\end{equation}
 
 with $\delta(x,y)$ the dirac delta distribution, $\int d\mu(x) f(x) \delta(x,y) = f(y)$
 
 For our real convolution this reduces to the expected:
 
-$$\begin{equation}(f *_{+,\mu_L} g)(z) =\int dx f(x)g(y)\delta(z-x-y) = \int dx f(x)g(z-x)\end{equation}$$
+\begin{equation}(f *_{+,\mu_L} g)(z) =\int dx f(x)g(y)\delta(z-x-y) = \int dx f(x)g(z-x)\end{equation}
 
 For a group :
 
-$$\begin{equation}(f *_{\cdot,\mu} g)(z) =  \int d\mu(x) d\mu(y) f(x) g(y) \delta(z, xy)\end{equation}$$
+\begin{equation}(f *_{\cdot,\mu} g)(z) =  \int d\mu(x) d\mu(y) f(x) g(y) \delta(z, xy)\end{equation}
 
 With a change of variables $y = x^{-1}y'$ (assuming the measure is invariant under group action)
 
-$$\begin{equation}
+\begin{equation}
 \int  d\mu(x) d\mu(y') f(x) g(x^{-1}y') \delta(z, y') = \int  d\mu(x)  f(x) g(x^{-1}z)
-$$\end{equation}
+\end{equation}
 
 Example
 ---
@@ -111,13 +112,13 @@ Fourier Transform
 
 For $*_{+,\mu_{L}}$ on $\mathbb{R}$ we have the nice property that
 
-$$\begin{equation}\widehat{f*g}(\omega) = \widehat{f}(\omega)\widehat{g}(\omega)\end{equation}$$
+\begin{equation}\widehat{f*g}(\omega) = \widehat{f}(\omega)\widehat{g}(\omega)\end{equation}
 
 there is an interplay between convolution and the fourier transform.
 
 When is such an identity satisfied for a transform $f(\rho) = \int dx \rho(x) f(x)$?
 
-$$\begin{equation} \int dz \int dx dy \rho(z) f(x)g(y) \delta(z = b(x,y)) = \int dx f(x) \rho(x) \int dy \rho(y) g(y).\end{equation}$$
+\begin{equation} \int dz \int dx dy \rho(z) f(x)g(y) \delta(z = b(x,y)) = \int dx f(x) \rho(x) \int dy \rho(y) g(y).\end{equation}
 
 Clearly this holds if $\rho(b(x,y)) = \rho(x) \rho(y)$ or if we have a one dimensional representation of the binary operation $b$.
 
@@ -137,15 +138,15 @@ For the external binary operation is something similar available?
 
 Consider a representation of the external binary operation to be a pair
 
-$$\begin{equation}\phi : X \rightarrow V\end{equation}$$
+\begin{equation}\phi : X \rightarrow V\end{equation}
 
-$$\begin{equation}\rho : K \rightarrow GL(V)\end{equation}$$
+\begin{equation}\rho : K \rightarrow GL(V)\end{equation}
 
 $\phi$ a mapping of each $x\in X$ to a vector and $\rho$ a mapping of $k \in K$ to a linear map (matrix) on the vector space.
 
 Such that
 
-$$\begin{equation}\phi(e(k, x)) = \rho(k) \phi(x)\end{equation}$$
+\begin{equation}\phi(e(k, x)) = \rho(k) \phi(x)\end{equation}
 
 For this to be a faithful representation - we need to place restrictions on the external binary operation?
 
@@ -154,14 +155,14 @@ Given a function $f : X \to \mathbb{C}$ and $g: K \to \mathbb{C}$ we have
 f(\phi) = \int dx f(x) \phi(x)
 g(\rho) = \int dk g(k) \rho(k)
 
-$$\begin{equation}(g * f)(\phi) = \int dy (g * f)(y) \phi(y)\end{equation}$$
+\begin{equation}(g * f)(\phi) = \int dy (g * f)(y) \phi(y)\end{equation}
 
-$$\begin{equation} = \int dy \int dk \int dx g(k) f(x) \delta(y = e(k,x)) \phi(y)\end{equation}$$
+\begin{equation} = \int dy \int dk \int dx g(k) f(x) \delta(y = e(k,x)) \phi(y)\end{equation}
 
-$$\begin{equation} = \int dk \int dx g(k) f(x) \phi(e(k,x))\end{equation}$$
+\begin{equation} = \int dk \int dx g(k) f(x) \phi(e(k,x))\end{equation}
 
-$$\begin{equation} = \int dx \int dy g(k) f(x) \rho(k) \phi(x) \end{equation}$$
+\begin{equation} = \int dx \int dy g(k) f(x) \rho(k) \phi(x) \end{equation}
 
-$$\begin{equation} = g(\rho) f(\phi)\end{equation}$$
+\begin{equation} = g(\rho) f(\phi)\end{equation}
 
 How fun :D  
