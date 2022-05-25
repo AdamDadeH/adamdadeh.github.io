@@ -21,22 +21,22 @@ For functions $f, g : \mathbb{Z^m} \to \mathbb{C}$
 
 The convolution is given by
 
-$$(f * g)(x) = \sum_{y \in \mathbb{Z^m}} f(y)g(x-y)$$
+\begin{equation}(f * g)(x) = \sum_{y \in \mathbb{Z^m}} f(y)g(x-y)\end{equation}
 
 This is familiar from convolutional neural networks and discrete signals analysis.
 
 **Def : Real convolution**
 For $f, g : \mathbb{R} \rightarrow \mathbb{C}$ we can define their convolution $f * g$ by
 
-$$
+\begin{equation}
 (f * g)(x) = \int dy f(y)g(x - y)
-$$
+\end{equation}
 
 Familiar convolution appearing in real analysis, addition of random variables, ..
 
 **Def : Group Convolution**
 For a group $G$, functions $f, g : G \rightarrow \mathbb{C}$ and a measure $\mu$ on $G$.
-$$(f * g)(x) = \int d\mu(y) f(y)g(y^{-1}x)$$
+$$\begin{equation}(f * g)(x) = \int d\mu(y) f(y)g(y^{-1}x)\end{equation}$$
 
 The key components of these definitions are
 * Two functions $f,g$ with a common domain $X$.
@@ -50,23 +50,23 @@ General Convolution for Binary Operation
 
 **Def : Binary Operation convolution**
 For $f, g : M \rightarrow \mathbb{C}$, a measure $\mu$ on $M$, and a binary operation $b : M \times M \rightarrow M$.
-$$(f *_{b,\mu} g)(z) = \int d\mu(x) d\mu(y) f(x)g(y)\delta(z, b(x,y))$$
+$$\begin{equation}(f *_{b,\mu} g)(z) = \int d\mu(x) d\mu(y) f(x)g(y)\delta(z, b(x,y))\end{equation}$$
 
 with $\delta(x,y)$ the dirac delta distribution, $\int d\mu(x) f(x) \delta(x,y) = f(y)$
 
 For our real convolution this reduces to the expected:
 
-$$(f *_{+,\mu_L} g)(z) =\int dx f(x)g(y)\delta(z-x-y) = \int dx f(x)g(z-x)$$
+$$\begin{equation}(f *_{+,\mu_L} g)(z) =\int dx f(x)g(y)\delta(z-x-y) = \int dx f(x)g(z-x)\end{equation}$$
 
 For a group :
 
-$$(f *_{\cdot,\mu} g)(z) =  \int d\mu(x) d\mu(y) f(x) g(y) \delta(z, xy)$$
+$$\begin{equation}(f *_{\cdot,\mu} g)(z) =  \int d\mu(x) d\mu(y) f(x) g(y) \delta(z, xy)\end{equation}$$
 
 With a change of variables $y = x^{-1}y'$ (assuming the measure is invariant under group action)
 
-$$
+$$\begin{equation}
 \int  d\mu(x) d\mu(y') f(x) g(x^{-1}y') \delta(z, y') = \int  d\mu(x)  f(x) g(x^{-1}z)
-$$
+$$\end{equation}
 
 Example
 ---
@@ -75,15 +75,15 @@ Example
 
 Taking domain $\mathbb{N}$ and integer multiplication
 
-$$
+\begin{equation}
 (f * g)(n) = \sum_{m \in \mathbb{Z}} \sum_{d \in \mathbb{Z}} f(d)g(m) \delta(n, md)
-$$
+\end{equation}
 
 For a fixed $d$ the delta is non-zero if $d$ divides $n$
 
-$$
+\begin{equation}
 (f * g)(n) =  \sum_{d | n} f(d)g(n/d)  
-$$
+\end{equation}
 
 Properties
 ---
@@ -100,7 +100,7 @@ Given an external binary operation from $e: K \times X \to X$.
 
 Given a measure $\nu$ on $K$ and a measure $\mu$ on $X$.
 
-$$(f *_{e,\nu,\mu} g)(y) = \int d\nu(k) d\mu(x) f(k)g(x)\delta(y, b(k,x))$$
+\begin{equation}(f *_{e,\nu,\mu} g)(y) = \int d\nu(k) d\mu(x) f(k)g(x)\delta(y, b(k,x))\end{equation}
 
 Familiar Example : Graph Convolution
 
@@ -111,13 +111,13 @@ Fourier Transform
 
 For $*_{+,\mu_{L}}$ on $\mathbb{R}$ we have the nice property that
 
-$$\widehat{f*g}(\omega) = \widehat{f}(\omega)\widehat{g}(\omega)$$
+$$\begin{equation}\widehat{f*g}(\omega) = \widehat{f}(\omega)\widehat{g}(\omega)\end{equation}$$
 
 there is an interplay between convolution and the fourier transform.
 
 When is such an identity satisfied for a transform $f(\rho) = \int dx \rho(x) f(x)$?
 
-$$ \int dz \int dx dy \rho(z) f(x)g(y) \delta(z = b(x,y)) = \int dx f(x) \rho(x) \int dy \rho(y) g(y).$$
+$$\begin{equation} \int dz \int dx dy \rho(z) f(x)g(y) \delta(z = b(x,y)) = \int dx f(x) \rho(x) \int dy \rho(y) g(y).\end{equation}$$
 
 Clearly this holds if $\rho(b(x,y)) = \rho(x) \rho(y)$ or if we have a one dimensional representation of the binary operation $b$.
 
@@ -137,15 +137,15 @@ For the external binary operation is something similar available?
 
 Consider a representation of the external binary operation to be a pair
 
-$$\phi : X \rightarrow V$$
+$$\begin{equation}\phi : X \rightarrow V\end{equation}$$
 
-$$\rho : K \rightarrow GL(V)$$
+$$\begin{equation}\rho : K \rightarrow GL(V)\end{equation}$$
 
 $\phi$ a mapping of each $x\in X$ to a vector and $\rho$ a mapping of $k \in K$ to a linear map (matrix) on the vector space.
 
 Such that
 
-$$\phi(e(k, x)) = \rho(k) \phi(x)$$
+$$\begin{equation}\phi(e(k, x)) = \rho(k) \phi(x)\end{equation}$$
 
 For this to be a faithful representation - we need to place restrictions on the external binary operation?
 
@@ -154,14 +154,14 @@ Given a function $f : X \to \mathbb{C}$ and $g: K \to \mathbb{C}$ we have
 f(\phi) = \int dx f(x) \phi(x)
 g(\rho) = \int dk g(k) \rho(k)
 
-$$(g * f)(\phi) = \int dy (g * f)(y) \phi(y)$$
+$$\begin{equation}(g * f)(\phi) = \int dy (g * f)(y) \phi(y)\end{equation}$$
 
-$$ = \int dy \int dk \int dx g(k) f(x) \delta(y = e(k,x)) \phi(y)$$
+$$\begin{equation} = \int dy \int dk \int dx g(k) f(x) \delta(y = e(k,x)) \phi(y)\end{equation}$$
 
-$$ = \int dk \int dx g(k) f(x) \phi(e(k,x))$$
+$$\begin{equation} = \int dk \int dx g(k) f(x) \phi(e(k,x))\end{equation}$$
 
-$$ = \int dx \int dy g(k) f(x) \rho(k) \phi(x) $$
+$$\begin{equation} = \int dx \int dy g(k) f(x) \rho(k) \phi(x) \end{equation}$$
 
-$$ = g(\rho) f(\phi)$$
+$$\begin{equation} = g(\rho) f(\phi)\end{equation}$$
 
 How fun :D  
