@@ -57,7 +57,11 @@ Ingredients:
 
 All together this defines a probability distribution on the sample space of pairs of time-series (T long vectors) $x_t$ and $\mu_t$.
 
-$$\rho[\sigma_\nu, \sigma_\epsilon](x, \mu) = \prod_{t=1}^T \frac{1}{\sqrt{2\pi}\sigma_\epsilon} e^{-(x_t - \mu_t)^2/2\sigma_\epsilon^2} \prod_{t=1}^{T-1} \frac{1}{\sqrt{2\pi}\sigma_\nu} e^{-(\mu_{t+1} - \mu_t)^2/2\sigma_\nu^2}$$
+$$
+\begin{equation}
+\rho[\sigma_\nu, \sigma_\epsilon](x, \mu) = \prod_{t=1}^T \frac{1}{\sqrt{2\pi}\sigma_\epsilon} e^{-(x_t - \mu_t)^2/2\sigma_\epsilon^2} \prod_{t=1}^{T-1} \frac{1}{\sqrt{2\pi}\sigma_\nu} e^{-(\mu_{t+1} - \mu_t)^2/2\sigma_\nu^2}
+\end{equation}
+$$
 
 ### Estimating States Part 1 - Most Probable History
 
@@ -65,11 +69,19 @@ Given observation for $x_t$ we want to get a best estimate of the underlying sta
 
 This involves fixing the values $x$ in the above density to be the our observed values and determining a new normalization constant $Z$ by integrating over $\mu$.
 
-$$\rho[\sigma_\nu, \sigma_\epsilon](\mu | x) = \frac{1}{Z(\sigma_\epsilon, \sigma_\nu, x)} \rho[\sigma_\nu^2, \sigma_\epsilon^2](x, \mu)$$
+$$
+\begin{equation}
+\rho[\sigma_\nu, \sigma_\epsilon](\mu | x) = \frac{1}{Z(\sigma_\epsilon, \sigma_\nu, x)} \rho[\sigma_\nu^2, \sigma_\epsilon^2](x, \mu)
+\end{equation}
+$$
 
 A natural direction to take is looking for the maxima of this density - or simpler extreme values of the log of the density.
 
-$$\sum_{t=1}^T (x_t - \mu_t)^2/2\sigma_\epsilon^2 + \sum_{t=1}^{T-1} (\mu_{t+1} - \mu_t)^2/2\sigma_\nu^2 + \log{Z}$$
+$$
+\begin{equation}
+\sum_{t=1}^T (x_t - \mu_t)^2/2\sigma_\epsilon^2 + \sum_{t=1}^{T-1} (\mu_{t+1} - \mu_t)^2/2\sigma_\nu^2 + \log{Z}
+\end{equation}
+$$
 
 $\mu_t$ are our free variables here - so we look for the $\mu_t$ that
 minimizes this expression. Varying the density with respect to $\mu_t$
@@ -81,7 +93,10 @@ we get the following set of equations.
 
 Which is the following tri-diagonal system. Where we have defined
 
-$\lambda = \sigma_\epsilon^2/\sigma_\nu^2$. $$\label{eq:matrixeqn}
+$\lambda = \sigma_\epsilon^2/\sigma_\nu^2$.
+
+$$\label{eq:matrixeqn}
+  \begin{equation}
     \begin{bmatrix}
       1+ \lambda & -\lambda & 0  & \dots & 0 & 0  \\
       -\lambda & 1+ 2\lambda & -\lambda  & \dots & 0 & 0  \\
@@ -101,7 +116,8 @@ $\lambda = \sigma_\epsilon^2/\sigma_\nu^2$. $$\label{eq:matrixeqn}
       x_2 \\
       \vdots \\
       x_T
-    \end{bmatrix}$$
+    \end{bmatrix}
+  \end{equation}$$
 
 There is a simple algorithm for tridiagonal linear systems. We first
 define $a_i$ and $b_i$ recursively (comes from an LU decomp).
@@ -139,7 +155,7 @@ Example outputs for different values of $\lambda$
 
 There is an alternative way to derive the same solution that gives a clearer interpretation. Looking at the linear system of equations above - they are extremely close to being the following.
 
-$$(1+\lambda (2 - S - S^{-1}))\mu = \Lambda' \mu = x$$
+$$\begin{equation}(1+\lambda (2 - S - S^{-1}))\mu = \Lambda' \mu = x\end{equation}$$
 
 Where $S$ is a circular shift operator. $(Sx)_t = x_{t+1}$.
 With the exceptions being the equations for the end-points. I have no idea if the following can be generalized ... but ... notice that if we embed $\mathbb{R}^T$ in $\mathbb{R}^{2T}$ via a map $\phi$ defined as.
@@ -158,7 +174,7 @@ Or in other words we append the mirror reverse to the original. Then
 
 So we map $x$ into $R^{2T}$ via $\phi$ invert the simple operator - and then apply the inverse $\phi^{-1}$ (just take the first half of the vector) to get the solution. What makes this nice is that the operator can be simply inverted via Fourier transform.
 
-$$\frac{1}{1 + \lambda(2 - e^{2\pi i p/2T} - e^{-2\pi i p/2T})} \widetilde{\phi(x)}_p$$
+$$\begin{equation}\frac{1}{1 + \lambda(2 - e^{2\pi i p/2T} - e^{-2\pi i p/2T})} \widetilde{\phi(x)}_p\end{equation}$$
 
 In this expression we see the local level smoother as being simply a Fourier smoother - and $\lambda$ picks up a simple interpretation as determining at which time-scale (or frequency) the damping of Fourier modes kicks in.
 
@@ -172,15 +188,15 @@ This is solving a slightly different problem that above - where we were looking 
 
 Still starting from.
 
-$$\rho[\sigma_\nu, \sigma_\epsilon](x, \mu) = \prod_{t=1}^T \frac{1}{\sqrt{2\pi}\sigma_\epsilon} e^{-(x_t - \mu_t)^2/2\sigma_\epsilon^2} \prod_{t=1}^{T-1} \frac{1}{\sqrt{2\pi}\sigma_\nu} e^{-(\mu_{t+1} - \mu_t)^2/2\sigma_\nu^2}$$
+$$\begin{equation}\rho[\sigma_\nu, \sigma_\epsilon](x, \mu) = \prod_{t=1}^T \frac{1}{\sqrt{2\pi}\sigma_\epsilon} e^{-(x_t - \mu_t)^2/2\sigma_\epsilon^2} \prod_{t=1}^{T-1} \frac{1}{\sqrt{2\pi}\sigma_\nu} e^{-(\mu_{t+1} - \mu_t)^2/2\sigma_\nu^2}\end{equation}$$
 
 If we have a set of observations $x_1, x_2, ... x_t$ with t \<=T. We can look at the probability of having a history of states given these observations. Requires two steps : conditioning on the observations $x_1, x_2, .., x_t$ and marginalize / integrate out the rest of $x_t$. Or another way to think of this - is to say that our sample space at time $t$ is Only series up to $t$ - so the sample space and distribution evolve with time.
 
-$$P(\mu_1, \mu_2, ..., \mu_t | x_1, x_2, ..., x_t)$$
+$$\begin{equation}P(\mu_1, \mu_2, ..., \mu_t | x_1, x_2, ..., x_t)\end{equation}$$
 
 The Kalman filter is computing.
 
-$$P(\mu_t | x_1, x_2, ..., x_{t-1}) = N(a_t, P_t)(\mu_t)$$
+$$\begin{equation}P(\mu_t | x_1, x_2, ..., x_{t-1}) = N(a_t, P_t)(\mu_t)\end{equation}$$
 
 A nice side effect of having all Normal distributions is that the space of Gaussian functions is closed under tons of operations - so this probability distribution is normal at each step.
 
@@ -240,11 +256,11 @@ It does not quite live up to it's \"Local Level\" name though, since the output 
 It is simplest to jump directly to the optimization problem where we specify the following cost function (for state $\mu$ given measurements
 $x$)
 
-$$C(\mu, x) = \lambda \sum_{t=2}^T |\mu_{t} - \mu_{t-1}| + \sum_{t=1}^T (\mu_t - x_t)^2$$
+$$\begin{equation}C(\mu, x) = \lambda \sum_{t=2}^T |\mu_{t} - \mu_{t-1}| + \sum_{t=1}^T (\mu_t - x_t)^2\end{equation}$$
 
 This can be molded into a Lasso linear regression problem but considering the values $v_t = \mu_{t} - \mu_{t-1}$ to be coefficients and rewrite the quadratic term in terms of these variables.
 
-$$C(\mu, x) = \lambda \sum_{t=2}^T |v_t| + \sum_{t=1}^T (\mu_1 + \sum_{t'=2}^t v_{t'}- x_t)^2$$
+$$\begin{equation}C(\mu, x) = \lambda \sum_{t=2}^T |v_t| + \sum_{t=1}^T (\mu_1 + \sum_{t'=2}^t v_{t'}- x_t)^2\end{equation}$$
 
 Where we now have a linear model with intercept $\mu_1$ with
 input/output pairs : $([0,0,\cdots,0,0],x_1),
@@ -260,28 +276,28 @@ In going to an $L_1$ penalty on the first derivative - we have broken the scale 
 
 Probability interpretation? From the cost function we have the following
 
-$$x_t - \mu_t \sim N(0,\sigma^2)$$
+$$\begin{equation}x_t - \mu_t \sim N(0,\sigma^2)\end{equation}$$
 
-$$|\mu_t - \mu_{t-1}| \sim \mathrm{Exponential} (\lambda)$$
+$$\begin{equation}|\mu_t - \mu_{t-1}| \sim \mathrm{Exponential} (\lambda)\end{equation}$$
 
 So overall probability
 
-$$\rho[\sigma_\nu, \sigma_\epsilon](x, \mu) = \prod_{t=1}^T \frac{1}{\sqrt{2\pi}\sigma} e^{-(x_t - \mu_t)^2/2\sigma^2} \prod_{t=2}^{T} \lambda e^{-\lambda |\mu_{t} - \mu_{t-1}|}$$
+$$\begin{equation}\rho[\sigma_\nu, \sigma_\epsilon](x, \mu) = \prod_{t=1}^T \frac{1}{\sqrt{2\pi}\sigma} e^{-(x_t - \mu_t)^2/2\sigma^2} \prod_{t=2}^{T} \lambda e^{-\lambda |\mu_{t} - \mu_{t-1}|}\end{equation}$$
 
 Resulting in likelihood (which shifts by a constant depending on measurements when we condition on $x$).
 
-$$C(\mu, x) = \lambda \sum_{t=2}^T |\mu_{t} - \mu_{t-1}| + \frac{1}{2\sigma^2} \sum_{t=1}^T (\mu_t - x_t)^2 - (T-1) \ln(\lambda) + T\ln(\sigma)$$
+$$\begin{equation}C(\mu, x) = \lambda \sum_{t=2}^T |\mu_{t} - \mu_{t-1}| + \frac{1}{2\sigma^2} \sum_{t=1}^T (\mu_t - x_t)^2 - (T-1) \ln(\lambda) + T\ln(\sigma)\end{equation}$$
 
 ## Sparse Trend Change
 
 Again simplest to jump directly to the optimization problem where we specify the following cost function (for state $\mu$ given measurements
 $x$)
 
-$$C(\mu, x) = \lambda \sum_{t=3}^T |\mu_{t} - 2\mu_{t-1}+\mu_{t-2}| + \sum_{t=1}^T (\mu_t - x_t)^2$$
+$$\begin{equation}C(\mu, x) = \lambda \sum_{t=3}^T |\mu_{t} - 2\mu_{t-1}+\mu_{t-2}| + \sum_{t=1}^T (\mu_t - x_t)^2\end{equation}$$
 
 This can be molded into a Lasso linear regression problem but considering the values $a_t = \mu_{t} - 2\mu_{t-1}+\mu_{t-2}$ and $v_2 = \mu_2 - \mu_1$ to be coefficients, $x_1$ intercept and rewrite quadratic term in terms of these variables.
 
-$$C(\mu, x) = \lambda \sum_{t=3}^T |a_t| + \sum_{t=1}^T (\mu_t(\mu_1, v_2, a) - x_t)^2$$
+$$\begin{equation}C(\mu, x) = \lambda \sum_{t=3}^T |a_t| + \sum_{t=1}^T (\mu_t(\mu_1, v_2, a) - x_t)^2\end{equation}$$
 
 Where we read of the 'inputs' from linear relations between $\mu_t$ and $x_1,v_2,a_t$ as above.
 
