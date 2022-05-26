@@ -57,11 +57,8 @@ Ingredients:
 
 All together this defines a probability distribution on the sample space of pairs of time-series (T long vectors) $x_t$ and $\mu_t$.
 
-$$
-\begin{equation}
-\rho[\sigma_\nu, \sigma_\epsilon](x, \mu) = \prod_{t=1}^T \frac{1}{\sqrt{2\pi}\sigma_\epsilon} e^{-(x_t - \mu_t)^2/2\sigma_\epsilon^2} \prod_{t=1}^{T-1} \frac{1}{\sqrt{2\pi}\sigma_\nu} e^{-(\mu_{t+1} - \mu_t)^2/2\sigma_\nu^2}
+\begin{equation} \rho\[\sigma_\nu,\sigma_\epsilon\](x, \mu) =\prod_{t=1}^T\frac{1}{\sqrt{2\pi}\sigma_\epsilon} e^{-(x_t - \mu_t)^2/2\sigma_\epsilon^2} \prod_{t=1}^{T-1} \frac{1}{\sqrt{2\pi}\sigma_\nu} e^{-(\mu_{t+1} - \mu_t)^2/2\sigma_\nu^2}
 \end{equation}
-$$
 
 ### Estimating States Part 1 - Most Probable History
 
@@ -69,19 +66,17 @@ Given observation for $x_t$ we want to get a best estimate of the underlying sta
 
 This involves fixing the values $x$ in the above density to be the our observed values and determining a new normalization constant $Z$ by integrating over $\mu$.
 
-$$
+
 \begin{equation}
-\rho[\sigma_\nu, \sigma_\epsilon](\mu | x) = \frac{1}{Z(\sigma_\epsilon, \sigma_\nu, x)} \rho[\sigma_\nu^2, \sigma_\epsilon^2](x, \mu)
+\rho\[\sigma_\nu, \sigma_\epsilon\](\mu \vert x) = \frac{1}{Z(\sigma_\epsilon, \sigma_\nu, x)} \rho\[\sigma_\nu^2, \sigma_\epsilon^2\](x, \mu)
 \end{equation}
-$$
 
 A natural direction to take is looking for the maxima of this density - or simpler extreme values of the log of the density.
 
-$$
 \begin{equation}
 \sum_{t=1}^T (x_t - \mu_t)^2/2\sigma_\epsilon^2 + \sum_{t=1}^{T-1} (\mu_{t+1} - \mu_t)^2/2\sigma_\nu^2 + \log{Z}
 \end{equation}
-$$
+
 
 $\mu_t$ are our free variables here - so we look for the $\mu_t$ that
 minimizes this expression. Varying the density with respect to $\mu_t$
@@ -155,10 +150,10 @@ Example outputs for different values of $\lambda$
 
 There is an alternative way to derive the same solution that gives a clearer interpretation. Looking at the linear system of equations above - they are extremely close to being the following.
 
-$$\begin{equation}(1+\lambda (2 - S - S^{-1}))\mu = \Lambda' \mu = x\end{equation}$$
+\begin{equation}(1+\lambda (2 - S - S^{-1}))\mu = \Lambda' \mu = x\end{equation}
 
-Where $S$ is a circular shift operator. $(Sx)_t = x_{t+1}$.
-With the exceptions being the equations for the end-points. I have no idea if the following can be generalized ... but ... notice that if we embed $\mathbb{R}^T$ in $\mathbb{R}^{2T}$ via a map $\phi$ defined as.
+Where $S$ is a circular shift operator. $Sx_t=x_{t+1}$.
+With the exceptions being the equations for the end-points. I have no idea if the following can be generalized, but notice that if we embed $\mathbb{R}^T$ in $\mathbb{R}^{2T}$ via a map $\phi$ defined as.
 
 $$\begin{aligned}
 \phi(x)_i = x_{i} \quad i = 1 \cdots T \\
@@ -174,7 +169,9 @@ Or in other words we append the mirror reverse to the original. Then
 
 So we map $x$ into $R^{2T}$ via $\phi$ invert the simple operator - and then apply the inverse $\phi^{-1}$ (just take the first half of the vector) to get the solution. What makes this nice is that the operator can be simply inverted via Fourier transform.
 
-$$\begin{equation}\frac{1}{1 + \lambda(2 - e^{2\pi i p/2T} - e^{-2\pi i p/2T})} \widetilde{\phi(x)}_p\end{equation}$$
+\begin{equation}
+\frac{1}{1 + \lambda(2 - e^{2\pi i p/2T} - e^{-2\pi i p/2T})} \widetilde{\phi(x)}_p
+\end{equation}
 
 In this expression we see the local level smoother as being simply a Fourier smoother - and $\lambda$ picks up a simple interpretation as determining at which time-scale (or frequency) the damping of Fourier modes kicks in.
 
@@ -188,15 +185,19 @@ This is solving a slightly different problem that above - where we were looking 
 
 Still starting from.
 
-$$\begin{equation}\rho[\sigma_\nu, \sigma_\epsilon](x, \mu) = \prod_{t=1}^T \frac{1}{\sqrt{2\pi}\sigma_\epsilon} e^{-(x_t - \mu_t)^2/2\sigma_\epsilon^2} \prod_{t=1}^{T-1} \frac{1}{\sqrt{2\pi}\sigma_\nu} e^{-(\mu_{t+1} - \mu_t)^2/2\sigma_\nu^2}\end{equation}$$
+\begin{equation}
+\rho\[\sigma_\nu, \sigma_\epsilon\](x, \mu) = \prod_{t=1}^T \frac{1}{\sqrt{2\pi}\sigma_\epsilon} e^{-(x_t - \mu_t)^2/2\sigma_\epsilon^2} \prod_{t=1}^{T-1} \frac{1}{\sqrt{2\pi}\sigma_\nu} e^{-(\mu_{t+1} - \mu_t)^2/2\sigma_\nu^2}
+\end{equation}
 
 If we have a set of observations $x_1, x_2, ... x_t$ with t \<=T. We can look at the probability of having a history of states given these observations. Requires two steps : conditioning on the observations $x_1, x_2, .., x_t$ and marginalize / integrate out the rest of $x_t$. Or another way to think of this - is to say that our sample space at time $t$ is Only series up to $t$ - so the sample space and distribution evolve with time.
 
-$$\begin{equation}P(\mu_1, \mu_2, ..., \mu_t | x_1, x_2, ..., x_t)\end{equation}$$
+\begin{equation}
+P(\mu_1, \mu_2, ..., \mu_t | x_1, x_2, ..., x_t)\end{equation}
 
 The Kalman filter is computing.
 
-$$\begin{equation}P(\mu_t | x_1, x_2, ..., x_{t-1}) = N(a_t, P_t)(\mu_t)\end{equation}$$
+\begin{equation}
+P(\mu_t | x_1, x_2, ..., x_{t-1}) = N(a_t, P_t)(\mu_t)\end{equation}
 
 A nice side effect of having all Normal distributions is that the space of Gaussian functions is closed under tons of operations - so this probability distribution is normal at each step.
 
@@ -276,13 +277,15 @@ In going to an $L_1$ penalty on the first derivative - we have broken the scale 
 
 Probability interpretation? From the cost function we have the following
 
-$$\begin{equation}x_t - \mu_t \sim N(0,\sigma^2)\end{equation}$$
+\begin{equation}
+x_t - \mu_t \sim N(0,\sigma^2)
+\end{equation}
 
-$$\begin{equation}|\mu_t - \mu_{t-1}| \sim \mathrm{Exponential} (\lambda)\end{equation}$$
+\begin{equation}\vert\mu_t - \mu_{t-1}\vert \sim \mathrm{Exponential} (\lambda)\end{equation}
 
 So overall probability
 
-$$\begin{equation}\rho[\sigma_\nu, \sigma_\epsilon](x, \mu) = \prod_{t=1}^T \frac{1}{\sqrt{2\pi}\sigma} e^{-(x_t - \mu_t)^2/2\sigma^2} \prod_{t=2}^{T} \lambda e^{-\lambda |\mu_{t} - \mu_{t-1}|}\end{equation}$$
+\begin{equation}\rho\[\sigma_\nu, \sigma_\epsilon\](x, \mu) = \prod_{t=1}^T \frac{1}{\sqrt{2\pi}\sigma} e^{-(x_t - \mu_t)^2/2\sigma^2} \prod_{t=2}^{T} \lambda e^{-\lambda \vert\mu_{t} - \mu_{t-1}\vert}\end{equation}
 
 Resulting in likelihood (which shifts by a constant depending on measurements when we condition on $x$).
 
