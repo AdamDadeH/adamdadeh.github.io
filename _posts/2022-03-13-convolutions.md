@@ -5,9 +5,6 @@ layout: post
 use_math: true
 ---
 
-Convolutions
-==========
-
 These are quick notes on convolutions, their generalizations, and their relationship to Fourier transforms.
 
 [Convolution (Wikipedia)](https://en.wikipedia.org/wiki/Convolution#Convolutions_on_groups)
