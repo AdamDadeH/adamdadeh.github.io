@@ -25,6 +25,21 @@ markdown: kramdown
 remote_theme: "mmistakes/minimal-mistakes@4.19.1"
 #theme: minimal-mistakes-jekyll
 
+breadcrumbs: true
+search: true
+
+defaults:
+  # _posts
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: single
+      author_profile: true
+      read_time: true
+      comments: true
+      share: true
+      related: true
 
 plugins:
   - jekyll-paginate
@@ -34,10 +49,6 @@ plugins:
   - jemoji
   - jekyll-include-cache
   - jekyll-remote-theme
-
-collections:
-  books:
-    output: True
 
 # All Jekyll-Bootstrap specific configurations are namespaced into this hash
 #

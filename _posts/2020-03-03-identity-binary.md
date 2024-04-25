@@ -2,7 +2,8 @@
 layout: post
 title: Identity Elements for Binary Operations
 use_math: True
-subject: Math
+category: Math
+tags: Math Algebra
 ---
 
 One of my first exposures to the art of proof was
@@ -11,7 +12,7 @@ At the convergence of thoughts about algebraic structures
 in the context of category theory and exposure to curious
 binary operations from digging through legacy code -
 I found myself brought full circle recently with a
-re-investigation of the nature identity elements.
+re-investigation identity elements.
 
 This investigation covers
 
@@ -21,39 +22,39 @@ This investigation covers
 Definitions
 -----------
 
-For a binary operation $b : X \times X \rightarrow X$ defined on
-a set $X$ we define :
+For a binary operation $b : X \times X \rightarrow X$ defined on a set $X$ we define :
 
-* **left identity element** : $e_L \in X$ such that $b(e_L, x) = x$ for all $x \in X$
-* **right identity element** : $e_R \in X$ such that $b(x, e_R) = x$ for all $x \in X$
-* **(two-sided) identity element** : $e \in X$ such that $b(x, e) = b(e, x) = x$ for all $x \in X$
+Def. **left identity element** : \\
+  $e_L \in X$ such that $b(e_L, x) = x$ for all $x \in X$
+
+Def. **right identity element** : \\
+$e_R \in X$ such that $b(x, e_R) = x$ for all $x \in X$
+
+Def. **(two-sided) identity element** : \\
+$e \in X$ such that $b(x, e) = b(e, x) = x$ for all $x \in X$
 
 Two-sided identity elements - which we will mostly refer to as simply identity elements are quite familiar.
 
 | **Binary op** | **Identity** |
 | ------ | ------ |
-| Addition | $0$ |
+| Addition       | $0$ |
 | Multiplication | $1$ |
-| Matrix mult. | Identity matrix |
+| Matrix mult.   | Identity matrix |
 | String Concatenation | "" (Empty string) |
 
-An example of a binary operation with only right identity is
+An example of binary operation with only right identity is
 exponentiation defined on positive integers.
 
-$b(x, y) = x^y$
+$b(x, y) = x^y$ where $b(x, 1) = x^1 = x$, but there there is no left identity.
 
-$b(x, 1) = x^1 = x$
-
-Simple Results
+Simple Uniqueness
 ---------------
 
-The classic uniqueness result for an identity element
+The classic uniqueness for an identity element
 
-**Uniqueness of Identity** : For a binary operation $b: X \times X \rightarrow X$
-there is at most one identity element.
+**Uniqueness of Identity** : For a binary operation $b: X \times X \rightarrow X$ there is at most one (two-sided) identity element.
 
-Proof : Suppose that for a binary operation $b$ there are two identity elements $e$ and $f$. Then, $b(e, f) = f$ as $e$ is
-an identity and $b(e, f) = e$ as $f$ is an identity. Thus $e=f$.
+Proof : Suppose that for a binary operation $b$ there are two identity elements $e$ and $f$. Then, $b(e, f) = f$ as $e$ is an identity and $b(e, f) = e$ as $f$ is an identity. Thus $e=f$.
 
 **Exclusivity** : For a binary operation $b: X \times X \rightarrow X$ it has one of
   1. One or more left identities
@@ -76,13 +77,12 @@ left identities $e$ and $f$.
 * $b(e, e) = e$  and $b(e, f) = f$
 * $b(f, f) = f$  and $b(f, e) = e$
 
-This is a well defined binary operation with two left identities.
+This is a well defined binary operation with two left identities. 
 
 Multiple (Almost) Identity Elements
 -----------------------
 
-In the wilds of software development strange things abound...
-that nearly break the pattern above.
+In the wilds of software development strange things abound... that nearly break the pattern above.
 
 One such example was observed when mixing ```Lists``` together with ```Options``` in Scala. Consider the set ```List[Int]``` whose elements are finite sequences of integers. A simple operation on
 lists is concatenation

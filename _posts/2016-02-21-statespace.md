@@ -2,7 +2,8 @@
 title: "State Space Modeling - Kalman Filter"
 layout: post
 author: Adam Henderson
-category: Math
+category: ML
+tags: ML Statistics State-Space
 use_math: true
 ---
 

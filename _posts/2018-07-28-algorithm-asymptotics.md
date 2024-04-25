@@ -12,35 +12,30 @@ In particular I was curious about their properties as [binary relations](https:/
 
 ### As Binary Relations
 
-Big-$O$ notations defines relationships between functions - in particular focusing on comparing the asymptotic behavior. The definitions are as follows:
+Big-$O$ notations defines relationships between functions - in particular comparing the asymptotic behavior. Restricting to functions $\mathbb{N} \to \mathbb{R}$, the definitions are as follows:
 
-
-\begin{equation}
-f \in O(g) \;\rm{if}\; \exists k>0 \; \rm{and} \; \exists n_{0} \; \rm{such} \; \rm{that} \; \forall n>n_{0}, \; f(n)\leq k\cdot g(n)
-\end{equation}
-
-
+Definition : $f \in O(g)$
 
 \begin{equation}
-f \in \Omega(g) \;\rm{if}\; \exists k>0 \; \rm{and} \;\exists n_{0} \; \rm{such} \; \rm{that} \; \forall n>n_{0}, \; f(n)\geq k\cdot g(n)
+\exists k>0 \; \rm{and} \; \exists n_{0} \; \rm{such} \; \rm{that} \; \forall n>n_{0}, \; f(n)\leq k\cdot g(n)
 \end{equation}
 
-
+Definition $f \in \Omega(g)$
 
 \begin{equation}
-f \in \Theta(g) \; \rm{if} \; \exists k_1,k_2>0 \; \rm{and} \; \exists n_{0} \; \rm{such} \; \rm{that} \; \forall n>n_{0}, \; k_1\cdot g(n) \geq f(n)\geq k_2\cdot g(n)
+\exists k>0 \; \rm{and} \;\exists n_{0} \; \rm{such} \; \rm{that} \; \forall n>n_{0}, \; f(n)\geq k\cdot g(n)
 \end{equation}
 
-
-Where I am restricting the definition to non-negative functions
-$\mathbb{N} \rightarrow \mathbb{R}$, which we can compactly denote
-$\mathbb{R}_{\ge 0}^\mathbb{N}$.
+Definition : $f \in \Theta(g)$
+\begin{equation}
+\exists k_1,k_2>0 \; \rm{and} \; \exists n_{0} \; \rm{such} \; \rm{that} \; \forall n>n_{0}, \; k_1\cdot g(n) \geq f(n)\geq k_2\cdot g(n)
+\end{equation}
 
 These 3 satisfy the conditions of an [equivalence relation](https://en.wikipedia.org/wiki/Equivalence_relation), $\Theta$, and a [pre-order](https://en.wikipedia.org/wiki/Preorder) $O$ or $\Omega$ (or a [partial
 ordering](https://en.wikipedia.org/wiki/Partially_ordered_set) relative to the equivalence relation $\Theta$). As such it tempting to use binary relation notation, $f\;O\;g$ for $f \in O(g)$,
 $f \;\Omega\; g$ for $f \in \Omega(g)$ and $f \;\Theta\; g$ for $f \in \Theta(g)$.
 
-Equivalence relation conditions
+Can verify that $\Theta$ satisfies the conditions of an equivalence relation.
 1. Reflexive : $f\;\Theta\;f$
 2. Symmetric : $f\;\Theta\;g$ implies $g\;\Theta\;f$
 3. Transitive : $f\;\Theta\;g$, $g\;\Theta\;h$, implies $f\;\Theta\;h$
@@ -50,18 +45,24 @@ Pre-Order relations hold for either $O$ or $\Omega$ so we restrict to $O$.
 2. Reflexive : $f\;O\;f$
 3. Anti-symmetric (wrt $\Theta$) : $f\;O\;g$, $g\;O\;f$, implies $f\;\Theta\;g$
 
-### Pre-Order
+### Why a Pre-Order?
 
-Why only a pre-order or partial order? We can easily construct functions for
-which neither $f\;O\;g$ or $g\;O\;f$. Let $f(n)=n$ for all positive integers.
-Let $g(n) = log(n)$ for all odd positive integers and $g(n)=n^2$ for all even
-positive integers. Then for any choice of constant $k$ and for any $N_o$ there
+Why only a pre-order and not a total order? 
+
+We can easily construct functions for which neither $f\;O\;g$ or $g\;O\;f$ holds. Let 
+
+ * $f(n)=n$ for all positive integers.
+ * $g(n) = log(n)$ for all odd positive integers
+ *  $g(n)=n^2$ for all even positive integers. 
+
+Then for any choice of constant $k$ and for any $N_o$ there
 exists $n,m > N_o$ such that $f(n) > k g(n)$ and $g(m) > k f(m)$, so neither
 $f \; O \; g$ nor $g \; O \; f$. These two functions are incomparable.
 
-This pre-order is not totally wild - it is a directed pre-order. Given functions
-$f,g$ we can define $h(n) = \max(f(n),g(n))$. Then $f \; O \; h$ and $g \; O \; h$ making $O$
-a [directed pre-order](https://en.wikipedia.org/wiki/Directed_set).
+### Well Behaved Pre-Order (Directed)
+
+While we can construct $f,g$ that cannot be compared we can define $h(n) = \max(f(n),g(n))$. Then $f \; O \; h$ and $g \; O \; h$ making $O$
+a [directed pre-order](https://en.wikipedia.org/wiki/Directed_set). 
 
 <I am curious restriction we can make on the space of functions to remove the
 non-comparable pairs. Clearly restriction to monotonic functions removes the
@@ -69,8 +70,7 @@ non-comparable pair introduced above.>
 
 ### Equivalence Classes of $\Theta$
 
-Given that $\Theta$ is an equivalence relation what does the quotient look like? How do we
-do arithmetic in the quotient, or how do we combine asymptotic estimates?
+Given that $\Theta$ is an equivalence relation what does the quotient look like? How do we do arithmetic in the quotient, or how do we combine asymptotic estimates?
 
 The quotient $\mathbb{R}_{\ge 0}^\mathbb{N} / \Theta$ has some very familiar elements.
 
