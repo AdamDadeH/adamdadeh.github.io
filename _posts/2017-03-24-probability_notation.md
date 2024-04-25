@@ -1,7 +1,9 @@
 ---
 title: "Notation in Statistics"
 layout: post
+author: Adam Henderson
 category: Statistics
+tags: Statistics Notation
 use_math: True
 ---
 

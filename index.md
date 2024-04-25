@@ -1,13 +1,15 @@
 ---
 layout: home
 title: Adam Henderson
-tagline: Math, Stats, and Coffee
-description: Math, Stats, and Coffee
+tagline: For Abstractions Sake
+description: For Abstractions Sake
 ---
 
-Background : PhD in theoretical physics - focusing on quantum and classical gravity. Since PhD, I have gravitated more towards research in applied mathematics with a focus on statistics and data science as it is a fertile area for new advancements.
+"One of the principle objects of theoretical research in any department of knowledge is to find the point of view from which the subject appears in its greatest simplicity." - Josiah Willard Gibbs
 
-[List of Publications](http://inspirehep.net/author/profile/A.Henderson.1) from my quantum gravity era. Without academic pressure I have lacked the impetus to write. Although - this page will exist as an outlet for random ideas.
+This is the core thread of my research / professional career across Theoretical Physics (Quantum Gravity & General Relativity), applied math, machine learning, and software engineering. 
+
+[List of Publications](http://inspirehep.net/author/profile/A.Henderson.1) from my quantum gravity era. Without the academic pressure to write papers I am less and less inclined to share research. 
 
 * [Research Gate](https://www.researchgate.net/profile/Adam_Henderson12)
 * [Linkedin](https://www.linkedin.com/in/adam-henderson-b4887b29)

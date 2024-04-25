@@ -1,4 +1,20 @@
 - authors : 
+   - Adam Henderson
+   - Ruocheng Guo
+   - Xiaoting Zhao
+   - Liangjie Hong
+  date: 2020-08
+  doi: 10.1145/3394486.3403336
+  type: conference
+  conference : "KDD '20: The 26th ACM SIGKDD Conference on Knowledge Discovery and Data Mining"
+  year: 2020
+  location: "Virtual"
+  title: Debiasing Grid-based Product Search in E-commerce
+  links:
+    - name: ResearchGate
+      link: "https://www.researchgate.net/publication/343779602_Debiasing_Grid-based_Product_Search_in_E-commerce"
+
+- authors : 
    - Hao Jiang
    - Aakash Sabharwal
    - Adam Henderson
