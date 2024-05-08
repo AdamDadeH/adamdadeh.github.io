@@ -5,9 +5,6 @@ permalink: /:categories/:year/:month/:day/:title
 exclude: [".rvmrc", ".rbenv-version", "ReadMe.md", "Rakefile", "changelog.md", "License.md"]
 highlighter: rouge
 
-# Themes are encouraged to use these universal variables
-# so be sure to set them if your theme uses them.
-#
 title : Adam Henderson
 author :
   name : Adam Henderson
@@ -19,14 +16,13 @@ production_url : https://adamdadeh.github.io/
 # Tell Github to use the kramdown markdown interpreter
 # (see https://help.github.com/articles/migrating-your-pages-site-from-maruku)
 markdown: kramdown
-#remote_theme: poole/poole
-#remote_theme: daattali/beautiful-jekyll
-#remote_theme: vinitkumar/white-paper
 remote_theme: "mmistakes/minimal-mistakes@4.19.1"
-#theme: minimal-mistakes-jekyll
 
 breadcrumbs: true
 search: true
+paginate: 5
+paginate_path: /page:num/
+
 
 defaults:
   # _posts
