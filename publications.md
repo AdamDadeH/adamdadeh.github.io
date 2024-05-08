@@ -1,6 +1,7 @@
 ---
 title: Publications
 layout: single
+permalink: /publications/
 ---
 
 {% for pub in site.data.publications %}

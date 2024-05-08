@@ -1,8 +1,10 @@
 ---
 title: Convolutions
-author: adamhenderson
+author: Adam Henderson
 layout: post
 use_math: true
+category: Math
+tags: Math Analysis
 ---
 
 These are quick notes on convolutions, their generalizations, and their relationship to Fourier transforms.
