@@ -6,25 +6,25 @@ category: Math
 use_math: true
 ---
 
-"What is the most efficient syntax?" is a recurring question whenver I read math text, machine learning, or more general technical document. Which is followed
-by working with the default syntax of the text - or mapping to my own preferred
-syntax.
+"What is the most efficient syntax?" is a recurring question whenver I read math, machine learning, or other technical publications. Which is followed by the debate of working with the default syntax of the text - or mapping to my own preferred syntax.
 
-For example : Converting expressions in "convential matrix notation" $A^TBv$ into $A_{ba} B_{bc} v_c$.
+For example : Do we convert expressions in "convential matrix notation" $A^TBv$ into abstract index notation $A_{ba} B_{bc} v_c$?
 
 Given the repetition of the question and redundant efforts I want to collect observations on syntax to streamline this debate. I'm also inspired by deeper investigations into syntax from likes of Djikstra ([On Notation](https://www.cs.utexas.edu/users/EWD/ewd09xx/EWD950a.PDF) and [Adopted Notation](https://www.cs.utexas.edu/users/EWD/ewd13xx/EWD1300.PDF)), Knuth, and Iverson.
 
 I'll start with the most recent obsession of syntax for functions. There are a few types of function notation that frequently occur : 
 
-* Applying a function $f$ to a value $x$.
+* Evaluating a function $f$ at a value $x$.
 * Function composition - applying function $g$ to the output of $f$.
 * Expressing "$f$ is a function from $X$ to $Y$".
 * Expressing the set of all functions $X$ to $Y$.
 * Currying 
 
+To keep this short I'll focus further on function evaluation.
+
 # **Notations for Function Evaluation :**
 
-Function evaluation, image of $x$ under $f$, function application, ..
+Function evaluation, or applying a function to an input, can be expressed in various ways, each with specific advantages and context-dependent appropriateness.
 
 ## Univariate
 
@@ -42,8 +42,9 @@ Function evaluation, image of $x$ under $f$, function application, ..
     - Category theory as application of Functor - $Sf$
     - Linear Algebra : $Ax$ for matrix $A$, vector $x$.
 
-- `apply(f, x)`
-- **Lisp Style :** `(f x)`
+- **Function Application** : 
+    - `apply(f, x)`
+    - **Lisp Style :** `(f x)`
 
 ## Why So Many?
 
@@ -63,13 +64,11 @@ transformations / calculations.
 ## Multivariante
 
 - **Comma Delimited** : 
-	- $f(x,y)$, $f[x,y]$
-	- $f_{x,y}$, $f^{x,y}$
-	- Reminiscent of $f((x,y))$ viewing as a univariate function of a tuple or Cartesian product.
-	- Emphasizes function as $f : X_1 \times X_2 .. \to Y$
+	- $f(x,y)$, $f_{x,y}$
+	- Standard notation emphasizing the function's domain as a product space, $f : X_1 \times X_2 .. \to Y$
 
 - **Parentheses w/ Different Delimiter :**
-    - Vert - Conditional Probability (single param, single variable case) : $P(x|\phi)$
+    - Vert - Conditional Probability (single param, single variable case) : $P(x \vert \phi)$
     - Semicolon - May be used to separate variables from fixed parameters - [link](https://en.wikipedia.org/wiki/Semicolon#:~:text=Mathematics,-In%20the%20argument&text=%2C%20a%20semicolon%20may%20be%20used,coordinate%20associated%20with%20that%20index.) - $f(x;y)$
       
 - **Curry Everything :** $f(x)(y)$  
