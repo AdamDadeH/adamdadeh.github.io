@@ -6,7 +6,7 @@ category: Math
 use_math: true
 ---
 
-"What is the most efficient syntax?" is a recurring question whenver I read math, machine learning, or other technical publications. Which is followed by the debate of working with the default syntax of the text - or mapping to my own preferred syntax.
+"What is the most efficient syntax?" is a recurring question when I read math, machine learning, or other technical publications. Which is followed by the debate of working with the default syntax of the text - or mapping to my own preferred syntax.
 
 For example : Do we convert expressions in "convential matrix notation" $A^TBv$ into abstract index notation $A_{ba} B_{bc} v_c$?
 
@@ -55,13 +55,14 @@ related domains, and character count. These are in order of importance (to me)
 with character count being *dangerous* to directly optimize for and unambiguous parsing being table stakes.
 
 *Ease of Manipulation* : Does the syntax make it easier to perform common
-transformations / calculations.
+transformations / calculations?
 
- * Juxtaposition $fx$ is extremely compact, but requires single character names for everything and the risk of ambiguity is high.
+## My current viewpoint 
 
- * Bracket syntax - $f(x)$, $f[x]$ - can cause headaches when the same brackets is heavily used for grouping terms $(x + f(g(z + w*(x+y))))$.
+Yes : A mixed use of parentheses $f(x)$ and subscript/superscript.
+Never : Juxtaposition, Mixing $f(x)$ and $g[x]$.
 
-## Multivariante
+## Multivariate
 
 - **Comma Delimited** : 
 	- $f(x,y)$, $f_{x,y}$
@@ -79,9 +80,10 @@ transformations / calculations.
 
 ## Equivalent Spaces of Functions but Different Emphasis
 
-The set of functions $f: X \times Y \to Z$ is equivalent to the set of
-functions $f: X \to (Y \to Z)$ or $f: Y \to (X \to Z)$. Each is tied
-to a family of notations for multivariate functions.
+The different notations for multivariate functions emphasize different
+isomorphic spaces of functions. The set of functions $f: X \times Y \to Z$ 
+is equivalent to the set of functions $f: X \to (Y \to Z)$ or $f: Y \to (X \to Z)$. 
+Each is tied to a family of notations for multivariate functions.
 
  * Comma delimited $f(x,y)$ => $f: X \times Y \to Z$
  * Currying $f(x)(y)$ => $f: Y \to (X \to Z)$
@@ -91,7 +93,24 @@ to a family of notations for multivariate functions.
 
  * Vector valued function $v_i(x)$ => $v : X \to (I \to Y)$
 
-This to other places in math where there are structures that are isomorphic but the details can matter in practice - different representations of a the same finite field, different ways of presenting a group.
+The variety of syntax is valuable to emphasizing different isomorphic but
+practically different representations.
+
+## Positional vs Named Inputs
+
+In function notation, distinguishing between positional and named inputs can significantly affect readability and clarity. 
+
+Positional Inputs:
+
+Example: $f(2, 3, "Fred")$ - Inputs are provided directly in the order the function expects them.
+Advantage: Conciseness and ease of writing.
+Disadvantage: Can lead to confusion without clear documentation, as the meaning of each position must be remembered or looked up.
+
+Named Inputs:
+
+Syntax: $f(x=2, y=3, cat="fred")$ - Each argument is explicitly named.
+Advantage: Enhances readability and self-documentation, especially in functions with many parameters or optional parameters.
+Disadvantage: More verbose, can lead to cluttered expressions in complex formulas.
 
 ## Special Cases
 
@@ -102,4 +121,10 @@ Infix notation ($x+y$, $f \circ g$) is especially valuable for associative binar
 is easy to read.
 
 Involutions: $\bar{x}$, $x^*$, $x^{\dagger}$
+
+## Conclusion
+
+The choice of function notation depends on several factors including readability, ease of manipulation, and the specific mathematical or programming context. I am comfortable with the wide variety of syntax in this case as each emphasizes different ways to represent functions
+or is valuable in different contexts.
+
 
