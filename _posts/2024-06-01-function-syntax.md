@@ -59,8 +59,9 @@ transformations / calculations?
 
 ## My current viewpoint 
 
-Yes : A mixed use of parentheses $f(x)$ and subscript/superscript.
-Never : Juxtaposition, Mixing $f(x)$ and $g[x]$.
+Adopted : A mixed use of parentheses $f(x)$ and subscript/superscript.
+
+Avoiding : Juxtaposition, Mixing $f(x)$ and $g[x]$.
 
 ## Multivariate
 
@@ -98,29 +99,32 @@ practically different representations.
 
 ## Positional vs Named Inputs
 
-In function notation, distinguishing between positional and named inputs can significantly affect readability and clarity. 
+In function notation, distinguishing between positional and named inputs can significantly affect readability and clarity. The distinction of named and positional inputs is more common in programming where nearly everyone gets burned by positional arguments.
 
 Positional Inputs:
 
-Example: $f(2, 3, "Fred")$ - Inputs are provided directly in the order the function expects them.
-Advantage: Conciseness and ease of writing.
-Disadvantage: Can lead to confusion without clear documentation, as the meaning of each position must be remembered or looked up.
+ - Example: $f(2, 3, "Fred")$ - Inputs are provided directly in the order the function expects them.
+ - Advantage: Conciseness and ease of writing.
+ - Disadvantage: Can lead to confusion without clear documentation, as the meaning of each position must be remembered or looked up.
 
 Named Inputs:
 
-Syntax: $f(x=2, y=3, cat="fred")$ - Each argument is explicitly named.
-Advantage: Enhances readability and self-documentation, especially in functions with many parameters or optional parameters.
-Disadvantage: More verbose, can lead to cluttered expressions in complex formulas.
+ - Syntax: $f(x=2, y=3, cat="fred")$ - Each argument is explicitly named.
+ - Advantage: Enhances readability and self-documentation, especially in functions with many parameters or optional parameters.
+ - Disadvantage: More verbose, can lead to cluttered expressions in complex formulas.
 
 ## Special Cases
 
 There are functions that occur so commonly in their associated domain they get
-special compact syntax. Norms ($\vert x\vert$, $\vert \vert x \vert \vert$), Brackets (Commutator $[x,y]$, Poisson $\\{x,y\\}$), and inner products $(x, y)$, $\langle x \vert y \rangle$ are essentially a bracket syntax without a function `name`.
+special compact syntax. For example there is a wide variety of two arguments functions which use bracket syntax without a function `name`
+ * Norms : $\vert x\vert$, $\vert \vert x \vert \vert$
+ * Brackets : Commutator $[x,y]$, Poisson $\\{x,y\\}$
+ * Inner products : $(x, y)$, $\langle x \vert y \rangle$.
 
-Infix notation ($x+y$, $f \circ g$) is especially valuable for associative binary operations where $+(x, +(y, +(z, w)))) is awful, but $x + y + z + w$ 
+Infix notation ($x+y$, $f \circ g$) is especially valuable for associative binary operations where $+(x, +(y, +(z, w))))$ is awful, but $x + y + z + w$ 
 is easy to read.
 
-Involutions: $\bar{x}$, $x^*$, $x^{\dagger}$
+There is similarly a large family of unary functions that occur commly enough to show up as little "decorations" on the arguments ($\bar{x}$, $x^*$, $x^{\dagger}$). These are most common in "involutions" where are their own inverse, so that painful expression like $x^{\dagger \dagger \dagger}$ don't occur.
 
 ## Conclusion
 
