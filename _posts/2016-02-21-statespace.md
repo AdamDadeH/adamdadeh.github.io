@@ -9,11 +9,9 @@ use_math: true
 
 # State Space Modeling
 
-As with most topics in data science, State Space Modeling is a general concept used to construct more complex statistical models.The concept of State Space modeling is the following: We are given a set of observations (samples) $x_t$. In lieu of defining a statistical model directly on the observations - we view them as noisy (errorful, partial) observations of some underlying state $\mu_t$ by defining a probability model that relates observations to states. We then specify a model on the states $\mu_t$.
+As with most topics in Machine Learning, State Space Modeling is a general concept used to construct more complex models.The concept of State Space modeling is the following: We are given a set of observations (samples) $x_t$. In lieu of defining a statistical model directly on the observations - we view them as noisy (errorful, partial) observations of some underlying state $\mu_t$ by defining a probability model that relates observations to states. We then specify a model on the states $\mu_t$.
 
-As this is a natural concept it shows up in various fields in different guises, using different terminology, and different algorithms. In this chapter we will explore state space modelling using examples and along the way make connections between it's varied uses.
-
-Terminology: Kalman Filter, Hidden Markov Models, Control Theory Example Example Uses : Hodrick Prescott filter
+As this is a natural concept it shows up in various fields in different guises, using different terminology, and different algorithms. In this post we will explore state space modelling using examples and along the way make connections between it's varied uses.
 
 ## Ingredients
 
@@ -29,14 +27,10 @@ The ingredients for a state space model are roughly the following.
 
 -   A model for the states.
 
-Example sample spaces are discrete with some labels $[1,2,...,K]$, the integers $\mathbb{Z}$, $\mathbb{Z}^d$,
-continuous $\mathbb{R}^d$.
-
 ## Simplest Example - Local Level Model
 
 We start with the most elementary example of a continuous state space
-model. We have a set of $T$ measurements taken over time, $x_t$, which
-we assume derive from states $\mu_t$ which are nearly constant.
+model. We have a set of $T$ measurements taken over time, $x_t \in \mathbb{R}$, which we assume derive from states $\mu_t$ which are nearly constant.
 
 Ingredients:
 
@@ -44,7 +38,7 @@ Ingredients:
 
 -   State sample space: $\mathbb{R}$
 
--   Measurement Model : Errors $x_t -\mu_t$ are independently normally distributed with mean 0 and standard deviation $\sigma_\epsilon$.
+-   Measurement Model : Errors $x_t - \mu_t$ are independently normally distributed with mean 0 and standard deviation $\sigma_\epsilon$.
 
     $$\begin{aligned}
         x_{t} &= \mu_t + \epsilon_t . \\
