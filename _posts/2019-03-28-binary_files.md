@@ -2,7 +2,7 @@
 title: "Editing Binary Data : Gran Turismo 2"
 layout : post
 author : Adam Henderson
-category : Software
+category : Fun
 use_math : true
 ---
 
@@ -11,15 +11,15 @@ Topics:
 * Tools for analyzing and modifying binary files. (`cmp`, `dd`, `xxd`)
 * Inferring the format of binary files.
 
-When sitting down to play through Gran Turismo 2 with a young child I faced with a conflict. I wanted to field frequent requests to purchase and race new cars while not dedicating play time to grind for credits (together or on my own). Despite owning the physical game and console(s) capable of playing it - I find it pleasant to play in an emulator to make heavy use of the ability to save anywhere and fast forward. Playing on a emulator also raised the possibility of accessing and modifying save states. Thus began a detour into the feasibility of editing the GT2 save files.
+When sitting down to play through Gran Turismo 2 with a young child I faced a conflict. I wanted to field frequent requests to purchase and race new cars while not dedicating play time to grind for credits (together or on my own). Despite owning the physical game and console(s) capable of playing it - I prefer emulating to use of the ability to save anywhere and fast forward. Playing on a emulator also raised the possibility of accessing and modifying save states. Thus began a detour into the feasibility of editing the GT2 save files.
 
 Challenge 1 : Where are save files? 
 -----
-In my case I am running on Mac OS X using OpenEmu, which under the hood is running Playstation via Mednafen. Checking “Library/Application Support/OpenEmu/Mednafen/Battery Saves” we can find save states for this particular back-end.
+In my case I was running on Mac OS X using OpenEmu, which under the hood is running Playstation via Mednafen. Checking “Library/Application Support/OpenEmu/Mednafen/Battery Saves” we can find save states for this particular back-end.
 
 Challenge 2 : Where is the number of credits encoded in the files?
 -----
-Plan of attack - generate 3 different safe states
+Plan of attack - generate 3 different save states
 * base save : `gt2_base.mcr`
 * base save after buying hubcap : `gt2_less_1.mcr`
 * base save after buying car : `gt2_less_2.mcr`
