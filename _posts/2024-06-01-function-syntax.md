@@ -2,11 +2,11 @@
 title: "Function Notation : Evaluation"
 layout: post
 author: Adam Henderson
-category: Math
+category: Math Notation
 use_math: true
 ---
 
-"What is the most efficient syntax?" is a recurring question when I read math, machine learning, or other technical publications. Which is followed by the debate of working with the default syntax of the text - or mapping to my own preferred syntax.
+"What is the most efficient notation?" is a recurring question when I read math, machine learning, or other technical publications. Which is followed by the debate of working with the default syntax of the text - or mapping to my own preferred syntax.
 
 For example : Do we convert expressions in "convential matrix notation" $A^TBv$ into abstract index notation $A_{ba} B_{bc} v_c$?
 
