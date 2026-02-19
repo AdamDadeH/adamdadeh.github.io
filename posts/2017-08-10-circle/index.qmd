@@ -3,7 +3,7 @@ title: Statistical Inference on the Circle
 date: '2017-08-10'
 categories:
 - Statistics
-description: ''
+description: 'What is the natural analog of the Gaussian on the circle? The diffusion equation picks out the theta function. Maximum likelihood then reveals a posterior that is a mixture peaked at each possible mean value — a direct consequence of the circle having no unique notion of average.'
 ---
 
 This is a mathematical digression into statistical inference on the circle.
@@ -178,9 +178,11 @@ distribution is often called the [Wrapped Normal Distribution](https://en.wikipe
 part of a wider family of distribution obtained by 'wrapping' a distribution on
 the real line around circle.
 
-I am biased towards this as it presents a unique candidate for the 'Normal' disribution on the circle -
+Of the properties surveyed above, the diffusion equation gives the cleanest generalization — it requires only a Laplacian, which is intrinsic to any Riemannian manifold. The theta function is the unique candidate that emerges from this criterion, and it does not depend on any embedding of the circle in $\mathbb{R}^2$.
+
+I am biased towards this as it presents a unique candidate for the 'Normal' distribution on the circle —
 and more generally in any situation where we can define the diffusion equation
-(Riemannain manifold for instance).
+(Riemannian manifold for instance).
 
 So with this we can consider the probability distribution
 
@@ -260,18 +262,19 @@ theta functions. Most importantly if $t$ and $t'$ are commensurate or that
 & \cdot \theta\left(\frac{t+t'}{tt'}, \frac{a x + b x' + 2\pi a r}{a+b}\right)
 \end{align*}
 
-For proving this we start with the fourier representation.
+For proving this we start with the Fourier representation, which converts the product into a double sum where the two theta functions are decoupled.
 
 \begin{equation}
 \theta(t,x) \theta(t', x') = \sum_{n,m} e^{-n^2 t - m^2 t' + inx + imx'}
 \end{equation}
 
-With the benefit of hind-sight we can do a change of variables for the sum by -
-defining $q = n+m$ and $p = bn - am$. With this choice the exponent becomes
+The goal is a change of variables that separates the weighted mean $\bar{x} = (ax + bx')/(a+b)$ from the difference $d = (x-x')/(a+b)$ in the phase. With hindsight, define $q = n+m$ and $p = bn - am$. With this choice the exponent becomes
 
-\begin{equation}
--(n^2 + m^2 a/b) t + inx + imx' = - q^2 \frac{a}{a+b} - \frac{p^2}{b(a+b)} + i q\frac{a x + b x'}{a+b} + i p \frac{x - x'}{a+b}
-\end{equation}
+\begin{align}
+-(n^2 + m^2 a/b) t + inx + imx'
+  &= - q^2 \frac{a}{a+b} - \frac{p^2}{b(a+b)} \\
+  &\quad + i q\frac{a x + b x'}{a+b} + i p \frac{x - x'}{a+b}
+\end{align}
 
 We can put this all together in a suggestive form
 
@@ -300,19 +303,21 @@ but NOT surjective. We can most clearly identify this by looking at the inverse 
 so the image of a generic pair of integers $p,q$ under the inverse mapping will be rational.
 A pair $(p,q)$ is in the image of $\phi$ iff $aq+p = 0 \;\mathrm{mod} (a+b)$ and $bq-p =0 \; \mathrm{mod} (a+b)$.
 
-To get a sum over integers we can introduce delta functions that restrict us to $\phi(\mathbb{Z}^2)$
+To get a sum over all integers — rather than just the image $\phi(\mathbb{Z}^2)$ — we introduce discrete delta functions that enforce the membership condition, then expand them as Fourier series over $\mathbb{Z}/(a+b)\mathbb{Z}$
 
 \begin{equation}
 \theta(t,x) \theta(t',x') = \sum_{p,q \in \mathbb{Z}} \delta(aq+p) \delta(bq-p) e^{-p^2 s - q^2 s'} e^{i p d + i q \bar{x}}
 \end{equation}
 
-Now the sums have the right domain, but we have picked up some delta functions. We can expand those as sums of exponentials though ..
+Now the sums range over all of $\mathbb{Z}^2$, at the cost of two delta functions. Expanding each as a sum of exponentials over $\mathbb{Z}/(a+b)\mathbb{Z}$
 
-\begin{equation}
-\theta(t,x) \theta(t',x') = \sum_{p,q \in \mathbb{Z}} 1/(a+b)^2 \sum_{r,r'} e^{i 2\pi r (aq+p)/(a+b)} e^{i 2\pi r' (bq-p)/(a+b)} e^{-p^2 s - q^2 s'} e^{i p d + i q \bar{x}}
-\end{equation}
+\begin{align}
+\theta(t,x) \theta(t',x') = \frac{1}{(a+b)^2} \sum_{p,q \in \mathbb{Z}} \sum_{r,r'}
+  &\; e^{i 2\pi r (aq+p)/(a+b)}\, e^{i 2\pi r' (bq-p)/(a+b)} \\
+  &\cdot e^{-p^2 s - q^2 s'}\, e^{i p d + i q \bar{x}}
+\end{align}
 
-Using $a=-b \;\mathrm{mod} (a+b)$ and that the expression depends only on the difference $r-r'$ we can simplify this to
+The double sum over $r, r'$ depends only on the difference $r - r'$, so one sum is free and gives a factor of $(a+b)$. Using $a \equiv -b \;\mathrm{mod}\; (a+b)$ to combine the phase factors
 
 \begin{equation}
 \theta(t,x) \theta(t',x') = \sum_{p,q \in \mathbb{Z}} 1/(a+b) \sum_r e^{i 2\pi r (aq+p)/(a+b)} e^{-p^2 s - q^2 s'} e^{i p d + i q \bar{x}}
@@ -327,8 +332,10 @@ And everything conveniently reduces to a linear combination of products of theta
 Conclusion
 ==========
 
-* The definition of "normal" distribution coming from the diffusion equation generalizes well.
+The diffusion equation gives a clean, intrinsic definition of "normal" on the circle — the theta function — without requiring an embedding in $\mathbb{R}^2$.
 
-* The posterior distribution of the "normal" distribuiton on the circle is a linear combination of distributions peaked at each distinct "mean" value.
+The statistical inference problem reveals something more interesting. The posterior for $\mu$ given $N$ samples is not a single theta distribution but a linear combination of $N$ theta distributions, each peaked at a different candidate mean value. This is not a failure of the method — it is the correct answer. The circle genuinely has $N$ distinct solutions to $N\mu = \sum x_n$, and the likelihood reflects all of them. The non-uniqueness of the mean flagged in the motivation is not a nuisance to be resolved but a structural feature that the posterior faithfully represents.
 
-This is still a simple example - a natural extension is to consider the sphere.
+This also answers the moment-based approach: on the circle, the ML estimate of $\mu$ does not reduce to a simple sample mean, because no unique sample mean exists. The posterior is the honest replacement.
+
+A natural extension is to other Riemannian manifolds, where the Laplacian is still intrinsically defined and the diffusion equation still picks out a canonical family of distributions. The inference problem will generically exhibit the same multi-modal posterior structure wherever the manifold's topology obstructs a unique notion of mean.
