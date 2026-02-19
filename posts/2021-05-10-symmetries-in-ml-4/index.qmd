@@ -1,0 +1,36 @@
+---
+title: Symmetries in Machine Learning IV
+date: '2021-05-10'
+description: ''
+draft: true
+---
+
+Invariant features of idealized images.
+
+An idealized grayscale image is a map
+
+$f : \mathbb{R}^2 \rightarrow [0, 1]$
+
+* Assuming infinite resolution - no pixels.
+* Assuming no boundary.
+* Assuming continuous color levels.
+
+For these idealized images we expect invariance of classification  / object detection under arbitrary translations and rotations
+
+Linear Feature :
+
+$\int dxdy f(x,y)$
+
+Is translation and rotation invariant.
+
+Quadratic Features:
+
+$\int dx_1 dy_1 dx_2 dy_2 a(x_1, x_2, y_1, y_2) f(x_1, y_1) f(x_2, y_2)$
+
+Translation invariance implies
+
+$a(x_1, x_2, y_1, y_2) = a(x_1 + d, x_2 + d, y_1 + d', y_2 + d')$ for all $d,d'$
+
+So we can restrict to defining $a(x, 0, y, 0)$.
+
+Using rotation invariance.

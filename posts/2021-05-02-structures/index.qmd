@@ -1,0 +1,153 @@
+---
+title: Mathematical Structures
+date: '2021-05-02'
+categories:
+- Math
+description: ''
+draft: true
+---
+
+There is a family of related concepts
+
+* Algebraic Structure : [Types of Algebraic Structure](https://en.wikipedia.org/wiki/Outline_of_algebraic_structures#Types_of_algebraic_structures) / [Algebraic Structure](https://en.wikipedia.org/wiki/Algebraic_structure)
+* Mathematical Structure
+* Universal Algebra
+
+Wikipedia : [Mathematical Structure](https://en.wikipedia.org/wiki/Mathematical_structure#:~:text=In%20mathematics%2C%20a%20structure%20is,some%20additional%20meaning%20or%20significance.)
+
+In mathematics, a structure is a set endowed with some additional features on the set (e.g. an operation, relation, metric, or topology). Often, the additional features are attached or related to the set, so as to provide it with some additional meaning or significance.
+
+Wikipedia : [Equivalent Mathematical Structures](https://en.wikipedia.org/wiki/Equivalent_definitions_of_mathematical_structures
+
+  Structures according to Bourbaki
+  "Mathematics [...] cannot be explained completely by a single concept such as the mathematical structure. Nevertheless, Bourbaki's structuralist approach is the best that we have." (Pudlák 2013, page 3)
+  "Evident as the notion of mathematical structure may seem these days, it was at least not made explicit until the middle of the 20th century. Then it was the influence of the Bourbaki-project and then later the development of category theory which made the notion explicit" (nLab).
+  According to Bourbaki, the scale of sets on a given set X consists of all sets arising from X by taking Cartesian products and power sets, in any combination, a finite number of times. Examples: X; X × X; P(X); P(P(X × X) × X × P(P(X))) × X. (Here A × B is the product of A and B, and P(A) is the powerset of A.) In particular, a pair (0,S) consisting of an element 0 ∈ N and a unary function S : N → N belongs to N × P(N × N) (since a function is a subset of the Cartesian product). A triple (+, ·, ≤) consisting of two binary functions N × N → N and one binary relation on N belongs to P(N × N × N) × P(N × N × N) × P(N × N). Similarly, every algebraic structure on a set belongs to the corresponding set in the scale of sets on X.
+
+  Non-algebraic structures on a set X often involve sets of subsets of X (that is, subsets of P(X), in other words, elements of P(P(X))). For example, the structure of a topological space, called a topology on X, treated as the set of "open" sets; or the structure of a measurable space, treated as the σ-algebra of "measurable" sets; both are elements of P(P(X)). These are second-order structures.[2]
+
+  More complicated non-algebraic structures combine an algebraic component and a non-algebraic component. For example, the structure of a topological group consists of a topology and the structure of a group. Thus it belongs to the product of P(P(X)) and another ("algebraic") set in the scale; this product is again a set in the scale.
+
+[Leo Corry - Nicolas Bourbaki and the Concept of Mathematical Structure](https://www.tau.ac.il/~corry/publications/articles/pdf/bourbaki-structures-synthese.pdf)
+
+Looking for a precise definition of Mathematical Structure
+
+Similar concepts in Universal Algebra and Category Theory
+
+Bourbaki -
+Given n sets $E_i$ the operations of Cartesian Product and Power Set we consider
+S(E_i) to be the set obtained by iterative application of those operations.
+
+$x_i$ principal base sets
+$A_i$ auxilary base sets
+Echelon construction scheme S(x_1, .., x_n, A_1, .., A_m)$
+We then place restrictions on the elements of the construction
+
+Example : Binary operation
+Binary operation is a function $A\times A \to A$ which is a subset of $(A\timesA)\timesA$
+so a binary operation is contained within $P((A\timesA)\timesA)$ with the constraint
+that the subset defines a function.
+
+Finer-Coarser
+Finer : More morphisms with E as source, Fewer morphisms with E as target.
+
+Bourbaki "a general formualtion can justirfy its existence only when it can be applied
+to several special problems and when it can really be an aid in saving time and thoguht"
+
+<Bourbaki on writing - if the example is not a logical requisite for a full under
+standing of the concept itself and it appears in another place in the
+treatise, Bourbaki presents the example written between asterisks and
+gives the corresponding cross-reference. T >
+
+Bourbaki, N.: 1949, 'The Foundations of Mathematics', /. of Symbolic Logic 14, 1-8.
+Bourbaki, N.: 1950, 'The Architecture of Mathematics', Amer. Math. Monthly 51, 221
+32.
+Bourbaki, N.: 1960, ?l?ments d'Histoire des Math?matiques, Hermann, Paris.
+
+Resnik, M.: 1981, 'Mathematics as a Science of Patterns: Ontology and Reference', Nous
+15, 529-50.
+Resnik, M
+Resnik, M.: 1982, 'Mathematics as a Science of Patterns: Epistemology', Nous 16, 95
+
+[Saunder Mclane](https://www2.mat.ulaval.ca/fileadmin/Pages_personnelles_des_profs/hm/H14_Mac_Lane_Phil_Math_1996.pdf)
+
+One often uses the phrase 'the structure of ...'. Thus a mathematical
+object M is said to have the 'structure of a group' when there is given an
+operation of multiplication on the elements of M which satisfies the group
+axioms.
+
+https://ncatlab.org/nlab/show/structured+set
+
+Object of any concrete category that is
+
+- an object of any category C equipped with a faithful functor $U: C \rightarrow Set$.
+
+- Given two objects $X, Y \in C$ we say that $f: U(X) \rightarrow U(Y)$ preserves the structure if it lies in the image $U(C(X,Y))$. In that case since the Functor is faithful there is a unique $\tilde{f}: X \rightarrow Y$ with $U(\tilde{f}) = f$
+
+https://ncatlab.org/nlab/show/structure
+
+Functor p: C => D
+Is faithful (so hom set function is injective per pair of objects in C)
+
+
+https://ncatlab.org/nlab/show/stuff%2C+structure%2C+property
+
+Structure in Model theory
+https://ncatlab.org/nlab/show/structure+in+model+theory
+
+> A structure in mathematics (also “mathematical structure”) is often taken to be a set equipped with some choice of elements, with some operations and some relations. Such as for instance the “structure of a group”. In model theory this concept of mathematical structure is formalized by way of formal logic.
+
+Otherwise I am not in love with the Model theory terminology.
+It is rooted in the construction of expressions
+
+https://ncatlab.org/nlab/show/algebra+over+a+Lawvere+theory
+
+https://ncatlab.org/nlab/show/exceptional+structure
+
+
+https://abstractmath.org/MM/MMMathStructure.htm
+
+A mathematical structure is a set (or sometimes several sets) with various associated mathematical objects such as subsets, sets of subsets, operations and relations, all of which must satisfy various requirements (axioms). The collection of associated mathematical objects is called the structure and the set is called the underlying set.
+
+Examples
+
+* Pointed Set
+* Relations
+* Equivalence Relation
+* Partition
+* Binary Op
+* Monoid
+* Metric
+
+Representing subsets as boolean functions we can restrict most of the definition to revolving around
+functions.
+
+$u : X \to Bool$
+
+With that view the requirement of continuity or measurability of a function is a result of function composition.
+
+$f: X \to Y$ is continuous iff $\forall V $ open $f^{-1}(V)$ is open. Equivalently if $v: Y \to Bool$ is open set of $Y$. Then $v \cdot f$ is open set of $X$.
+
+$x \in f^{-1}(V) \implies v \cdot f(x) = True$
+
+Constrained Structures
+-----------------------
+
+Example : Group with the constraint of Associativity.
+
+$b: X \times X \to X$ with a constraint
+
+$isAssociative$ that maps $(X\times X \to X) \to Bool$
+
+Ideally looking for minimum data necessary to specify the structure and a Functor from that category (say Set) to category of constrained structures.
+
+Universal Algebra
+-----------------
+
+Set $X$ together with operations, actions on the set.
+Along with constraints.
+
+Variety : 
+Also, in universal algebra, a variety is a class of algebraic structures that share the same operations, and the same axioms, with the condition that all axioms are identities. What precedes shows that existential axioms of the above form are accepted in the definition of a variety.
+
+

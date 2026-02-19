@@ -1,0 +1,10 @@
+---
+title: "About"
+---
+
+Research and writing on Theoretical Physics, Applied Mathematics, Machine Learning, and Software Engineering.
+
+- [InspireHEP Publications](http://inspirehep.net/author/profile/A.Henderson.1)
+- [Research Gate](https://www.researchgate.net/profile/Adam_Henderson12)
+- [LinkedIn](https://www.linkedin.com/in/adam-henderson-b4887b29)
+- [GitHub](https://github.com/adamdadeh)

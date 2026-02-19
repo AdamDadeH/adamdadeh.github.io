@@ -1,0 +1,38 @@
+---
+title: 2021-07-12-coordinates-part2
+date: '2021-07-12'
+description: ''
+draft: true
+---
+
+The term **Coordinates** is closely related to the terms **parametrization**, **featurization**, to **configuration space**, **representation**, **implementation**.
+
+
+Parametrization
+-----
+
+
+* implementation
+* representation : Where we expect the imag   e $f \cdot \phi$ to be given trivially by a single structure on $C$.
+
+
+
+
+Bijection of A into B.
+B is parametrized by A
+
+For A finite - we sometimes says A indexes B
+
+[Parametrization (Wikipedia)](https://en.wikipedia.org/wiki/Parametrization_(geometry))
+
+> In mathematics, and more specifically in geometry, parametrization (or parameterization; also parameterisation, parametrisation) is the process of finding parametric equations of a curve, a surface, or, more generally, a manifold or a variety, defined by an implicit equation. The inverse process is called implicitization.[1] "To parameterize" by itself means "to express in terms of parameters".
+
+[Parametrization (Wikipedia)](https://en.wikipedia.org/wiki/Parametrization_(geometry))
+
+> Parametrization is a mathematical process consisting of expressing the state of a system, process or model as a function of some independent quantities called parameters.
+
+> The state of the system is generally determined by a finite set of coordinates, and the parametrization thus consists of one function of several real variables for each coordinate. The number of parameters is the number of degrees of freedom of the system.
+
+> Generally, the minimum number of parameters required to describe a model or geometric object is equal to its dimension, and the scope of the parameters—within their allowed ranges—is the parameter space. Though a good set of parameters permits identification of every point in the object space, it may be that, for a given parametrization, different parameter values can refer to the same point. Such mappings are surjective but not injective. An example is the pair of cylindrical polar coordinates (ρ,φ,z) and (ρ,φ + 2π,z).
+
+Random article - http://noodle.med.yale.edu/hdtag/enas913a/Topic_1_param.pdf

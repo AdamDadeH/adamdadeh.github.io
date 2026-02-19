@@ -1,0 +1,66 @@
+---
+title: "Notations - Iverson Brackets, Characteristic Functions"
+date: '2024-04-26'
+categories: [Math, Notation]
+description: ''
+draft: true
+---
+
+## Iverson Notation : 
+
+For a Boolean expression $P : X \to bool$ we denote
+
+- $[P(x)] = 1$ if $P(x) = true$
+- $[P(x)] = 0$ if $P(x) = false$
+
+So the Iverson bracket maps boolean expressions to Real valued functions $[\cdot] : (X \to bool) \to (X \to \mathbb{R})$
+
+This is essentially notation for casting **Bool** as **Int**
+
+- $[True] = 1$
+- $[False] = 0$
+
+## Properties of the Iverson Bracket
+
+The Iverson Bracket is a morphism from $(Bool, \land)$ to $(\mathbb{Z}, \times)$
+and behaves reasonably with other Boolean operations.
+
+- and : $[ P \land Q ] = [P][Q]$
+- or : $[P \lor Q] = [P] + [Q] - [P][Q]$
+- and/or : $[P \lor Q] + [P \land Q] = [P] + [Q]$
+- not : $[\lnot P] = 1 - [P]$
+
+## Related Notations
+
+Iverson notation is related to other notations:
+
+- Kronecker Delta: $\delta_{ij} = [i = j]$
+- Heaviside Step Function: $\Theta(x) = [ x \geq 0 ]$
+- Characteristic Function: $\chi_A(x) = [ x \in A ]$
+- Indicator Function: $\mathbf{1}_A(x) = [x \in A]$
+- Type conversion : `float(p) = [p]`
+
+## Why/When Valuable?
+
+There are three aspects to the value of the notation : 
+
+1. Does make frequent manipulations easier or make it more apparent manipulations are possible?
+
+2. Are expressions more compact? (less characters) 
+
+3. Are expressions unambiguous?
+
+### Exposing and Streamlining Manipulations
+
+
+
+1. Value of using any of these related notations.
+
+It can simplify manipulation of summations by being able to jointly manipulate the range and values being summed. For example in
+
+$\sum_{x, s.t. P(x)} f(x) = \sum_x [P(x)] f(x)$
+
+ we have the opportunity to manipulate the expression $[P(x)]f(x)$
+
+2. Relative value of Iverson bracket over similar notations.
+

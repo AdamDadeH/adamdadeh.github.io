@@ -1,0 +1,81 @@
+---
+title: What is Good Documentation
+date: '2019-06-01'
+description: ''
+draft: true
+---
+
+Why do we Document Code?
+========================
+
+In writing a talk on "Maintaining a happy and healthy codebase" for an
+audience of data scientists I was stuck with one incomplete slide...
+```
+* TODO: Motivate why we document.
+* TODO: Define good documentation.
+```
+Both were interesting questions that I had never delved deeply into.
+Knowing the audience I expected questions like:
+
+* "How do we understand the trade-offs of the cost of writing documentation 
+and it's potential benefits to the cost of not having documentation?"
+* "How do we know if our documentation is `good`?"
+* "Do we document everything? What about code that could have a short shelf-life?"
+
+What is the goal of documentation?
+----------------------------------
+
+If we are going to define "good" we need some sense of the
+goal(s). From my experience documentation satisfies different
+goals for different users
+
+1. Documentation for the beginning user. For a users first
+exposure to a tool, library, api we want to minimize the time to 
+their first example of the tool working as designed.
+
+- minimize the gap between what they expect the tool to do and
+what it actually does.
+
+What does it mean to document code?
+
+What is the goal of documenting code?
+
+Multiple distinct goals
+
+0. Documentation for the begging User!
+    is different from documentation from the experienced User - when 
+    you start digging into the weeds!
+
+1. Ensuring that the user knows how to use the code.
+    a. What it should do as a whole
+    b. What specific sub-components should do
+    c. Required inputs
+    d. Required arguments
+    e. Expected outputs
+
+"But the code is self-explaining!", "The code IS the documentation"
+
+But if the code is 10,000 lines long do you want the user to have
+to read and understand the code line by line to infer what the code
+should do and how it should be used?
+
+That defeats the ENTIRE time savings of engineering software if users
+have to devote time on-par with writing their own implementation in the first place
+to understand how to use the code. 
+
+So in one view this version of documenation is a Summarization of the code.
+We do NOT want an exact representation - we already have that in the code itself.
+We need a summarization that is sufficiently distinct to be adding new value.
+
+How would you measure the effectiveness of documenation
+
+A/B Test
+--------
+1. Time to complete task involving the code - measure on 2 variants - how to calibrate in case there
+are wildly different skills sets in the test group?
+2. Anyway to measuring without requiring explicit testing?
+
+2. Ensuring that a developer is able to modify the code.
+    a. How do we extend the functionality? Make a new method like blah.
+    b. 
+

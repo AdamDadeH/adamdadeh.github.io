@@ -1,0 +1,114 @@
+---
+title: Manifold Statistics
+date: '2019-12-02'
+description: ''
+draft: true
+---
+
+Prior we have written about statistics on the circle.
+Now lets extend the discussion to more general manifolds.
+The key property of the circle case was that we had a
+diffusion equation / Laplacian and its solutions have 'nice' relationships.
+
+For a Riemannian manifold $(M,g)$ we have a Laplacian $\Delta_g = g^{\mu \nu} \nabla_\mu \nabla_\nu$
+
+Suppose we have solutions to the diffusion equation
+
+$$\Delta_g f(x,t) = -\partial_t f(x,t)$$
+
+with initial data $\delta(x)$ and $\delta(x')$
+
+Matching the pattern on the circle we would expect
+
+$$f(x,t)f(x',t) \sim f(y, t/2)$$
+
+for $y$ on a geodesic between $x$ and $x'$.
+
+Sphere
+------
+
+$S^2$ is simple enough to be well studied, but complex enough to be less trivial than the circle.
+
+The spherical harmonics
+
+$$\Delta_g Y_{l,m} (\theta,\phi) = -l(l+1)Y_{l,m}(\theta, \phi)$$
+
+So a spherical gaussian centered at $$\theta_o, \phi_o$$ is
+
+$$N(\theta, \phi| \theta_o, \phi_o, t) = \sum_{l,m} Y_{l,m}(\theta_o, \phi_o)^* e^{-l(l+1)t} Y_{l,m}(\theta, \phi)
+$$
+
+The product of 2 such distributions can be simplified using the following identity
+
+$$P_l(x \cdot y) = \frac{4\pi}{2l+1} \sum_{m=-l}^l Y_{l,m}(\theta', \phi') Y_{l,m}(\theta,\phi)^*
+$$
+
+Where $$P$$ is the [legendre polynomial](https://en.wikipedia.org/wiki/Legendre_polynomials)
+
+$$
+N(\theta, \phi| \theta_o, \phi_o, t) = \sum_{l} \frac{4\pi}{2l+1} e^{-l(l+1)t} P_l (x \cdot x_o)
+$$
+
+where $$x,y$$ are unit vectors in direction $$(\theta,\phi)$$ and $$(\theta',\phi')$$ respectively.
+
+$$
+f(\theta, \phi) = g(\theta, \phi | \theta_1, \phi_1, t) g(\theta, \phi | \theta_2, \phi_2, t) = \sum_{l_1, l_2} P_{l_1}(x \cdot x_1) P_{l_2}(x \cdot x_2) e^{-t (l_1(l_1+1) + l_2(l_2+1))}
+$$
+
+with $x$ in the direction of $$(\theta, \phi)$$ and $$x_i$$ in the direction of $$(\theta_i, \phi_i)$$
+
+What is the form of these unit vectors?
+
+$$x = \sin(\theta) \cos(\phi)$$
+
+$$y = \sin(\theta) \sin(\phi)$$
+
+$$z = \cos(\theta)$$
+
+For the product of two distribtuions we can rotate one of the two points $$x_1$$ or $$x_2$$ to the
+point $$x_1 = (1,0,0)$$ without loss of generality. Given that we can also choose the second point to be $$x_2 = (\cos(\phi'), \sin(\phi'), 0)$$.
+
+Given this choice of coordinates the above product simplifies to
+
+$$
+f(\theta, \phi) = \sum_{l_1, l_2} P_{l_1}(\sin(\theta) \cos(\phi)) P_{l_2}(\sin(\theta) \cos(\phi) \cos(\phi') + \sin(\theta) \sin(\phi) \sin(\phi')) e^{-t (l_1(l_1+1) + l_2(l_2+1))}
+$$
+
+$$
+f(\theta, \phi) = \sum_{l_1, l_2} P_{l_1}(\sin(\theta) \cos(\phi)) P_{l_2}(\sin(\theta) \cos(\phi + \phi')) e^{-t (l_1(l_1+1) + l_2(l_2+1))}
+$$
+
+$$P_n(x) = \frac{1}{2^n n!} \frac{d^n}{dx^n} (x^2-1)^n$$
+
+$$P_n(x) P_m(y) = \frac{1}{2^(n+m) n! m!} \frac{d^n}{dx^n} \frac{d^n}{dy^n}(x^2-1)^n (y^2-1)^m$$
+
+
+(x^2 -1)(y^2-1) = xy^2 - x^2 - y^2 + 1
+= sin^4(a)cos^2(b) cos^2(b+b')
+
+$$\cos(a)\cos(b) = 1/2 (cos(a+b) + cos(a-b))$$
+
+so
+
+$$1/2(\cos(a) + \cos(b)) = \cos((a+b)/2) \
+
+cos(2*b + b') + cos(b')
+
+$$P_0 = 1$$
+$$P_1 = x$$
+$$P_2 = 1/2(3x^2 - 1)$$
+
+$$f(\theta, \phi) = g(\theta, \phi)  g(\theta, \phi+\phi')$$
+
+$$e^{-2t}$$ terms
+
+$$\sin(\theta)\cos(\phi) + \sin(\theta)\cos(\phi+\phi') = 2 \sin(\theta)\cos(1/2(\phi+\phi')) \cos(\phi'/2)$$
+
+$$1 + e^{-2t} 2 \sin(\theta)\cos(1/2(\phi+\phi')) \cos(\phi'/2)$$
+
+
+Can we also relate this to Clebcsh Gordon?
+
+What are the coordinates of $$(x_1 + x_2)$$ in our simplified coordinates? $$(\cos(\phi/2) \sin(\phi/2))$$
+
+Maybe easiest to expand everything in complex exponentials and compare coefficients.

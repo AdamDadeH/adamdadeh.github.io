@@ -1,0 +1,18 @@
+---
+title: Representations
+date: '2019-07-04'
+description: ''
+draft: true
+---
+
+In mathematics often restricted to representing algebras as linear transformations on vector spaces.
+
+$$\rho : A \rightarrow GL(V)$$
+
+Where $$\rho$$ is an algebra morphism and the image in $$GL(V)$$ has more structure and is easier to manipulate
+
+---
+
+Given an initial object (not in the Categorical sense) that is difficult to work with
+  - Computation is impossible because of infinite diminsionality or too hard to logic about.
+  - Calculation are too expensive (in whatever resource)

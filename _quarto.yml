@@ -1,0 +1,37 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "Adam Henderson"
+  description: "For Abstractions Sake"
+  site-url: https://adamdadeh.github.io
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: about.qmd
+        text: About
+      - href: publications.qmd
+        text: Publications
+    right:
+      - icon: github
+        href: https://github.com/adamdadeh
+      - icon: rss
+        href: index.xml
+  page-footer:
+    center: "© Adam Henderson"
+  search: true
+
+execute:
+  enabled: false
+
+format:
+  html:
+    theme: darkly
+    css: styles.css
+    toc: true
+    code-fold: true
+    code-tools: true
+    highlight-style: dracula
+    html-math-method: mathjax

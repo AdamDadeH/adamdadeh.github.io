@@ -1,0 +1,77 @@
+---
+title: Near Symmetries
+date: '2021-05-22'
+categories:
+- Math
+description: ''
+draft: true
+---
+
+Symmetries III : Near Symmetries
+
+### Near Symmetries in ML
+
+Exact symmetries are likely quite rare - we often see ``near symmetries''
+which are more difficult to characterize. For near invariance we expect that
+$$f(\phi \cdot x)$$ is close to $$f(x)$$ for some definition of close.
+
+* If the range $$Y$$ has a metric $$g$$ we can require that $$g(f(\phi \cdot x), f(x)) < \epsilon$$ for all $$\phi$$ and $$x$$
+* If the range $$Y$$ is discrete, and $$X$$ has a probability measure $$P$$ we could determine - $$\int dP(x) \delta(f(\phi \cdot x), f(x))$$. The probability that the action does not change the value of the function.
+
+Examples of such include
+
+* Addition of Gaussian noise to the input data.
+* Masking particular parts of the image
+* Random cropping
+
+Also strictly image translations, rotations, typically fall into this class
+as well (mention how translations throw away part of image without boundary conditions.)
+
+### Image Classification
+
+* **Domain** : Often maps $$[0,N] \times [0,M] \rightarrow \mathbb{R}^3$$
+* **Range**: A discrete set $$K$$ of image classes / labels.
+* **Cost Functions**: Combination of examples of images having a unique & known
+  label and some measure of the cost of returning the wrong label.
+
+**Rough Def** : Image classification involves finding an optimal
+function that will take in an image and return an output denoting what
+object are in the image - or object.
+
+Note : Images are rarely of a single thing - so without specifying a restricted
+set of targets/classes we will inevitably have multiple valid classes for
+a given image.
+
+Primarily involves an association of an image to a set of concepts.
+
+#### (Near) Symmetries of Image Classification
+
+### Properties of Image Classification
+
+* In most cases the properties of the image that we are interested in
+are translationally invariant. So we would prefer functions of the image
+that are also translationally invariant.
+
+* In many cases the properties of the image are also rotationally
+invariant. (Car, Plane, Super Hero, Person, ... all rotationally invariant)
+The description of the item may change... sleeping person, awake person, etc.
+
+* There is also invariance under rescaling.
+
+* I expect there are more deformations / transformations
+that preserve the nature of the image.
+
+### Quantitatively
+
+Need to discuss the difference between real images / signals that have finite size with
+boundary and *are not* fully invariant under the group of transformations
+Suppose we have a finite signal
+[00011110000]
+
+1. Alongside a translation operator that has a definition of how we infill
+[abcd] -> [bcd*] for a predefined * or a means to derive from the other values.
+
+2. Or translation operators that lose information
+[abcd] - left shift -> [bcd] - right shift > [bc]
+
+3. Translation with wrapping - periodic boundary conditions

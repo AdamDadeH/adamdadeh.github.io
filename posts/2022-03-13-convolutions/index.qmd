@@ -1,0 +1,205 @@
+---
+title: Convolutions
+date: '2022-03-13'
+categories:
+- Math
+- Analysis
+description: 'Convolution is just a binary operation and a measure. Tracing that observation from CNNs to Dirichlet convolution to graph neural networks, and asking when the Fourier convolution theorem survives.'
+---
+
+A convolution needs only a binary operation and a measure — the group structure of $\mathbb{R}$ or $\mathbb{Z}^m$ is sufficient but not necessary. Dropping that requirement, Dirichlet convolution (arithmetic functions) and graph convolution (GNNs) fall out of the same definition. The natural follow-up: when does $\widehat{f * g} = \hat{f}\hat{g}$ survive?
+
+[Convolution (Wikipedia)](https://en.wikipedia.org/wiki/Convolution#Convolutions_on_groups)
+
+Familiar Convolutions
+-----
+
+**Def: Discrete Convolution**
+
+For functions $f, g : \mathbb{Z^m} \to \mathbb{C}$
+
+The convolution is given by
+
+\begin{equation}(f * g)(x) = \sum_{y \in \mathbb{Z^m}} f(y)g(x-y)\end{equation}
+
+This is familiar from convolutional neural networks and discrete signals analysis.
+
+**Def : Real convolution**
+For $f, g : \mathbb{R} \rightarrow \mathbb{C}$ we can define their convolution $f * g$ by
+
+\begin{equation}
+(f * g)(x) = \int dy f(y)g(x - y)
+\end{equation}
+
+Familiar convolution appearing in real analysis, addition of random variables, ..
+
+**Def : Group Convolution**
+For a group $G$, functions $f, g : G \rightarrow \mathbb{C}$ and a measure $\mu$ on $G$.
+
+\begin{equation}(f * g)(x) = \int d\mu(y) f(y)g(y^{-1}x)\end{equation}
+
+The key components of these definitions are
+* Two functions $f,g$ with a common domain $X$.
+* A binary operation defined on $X$.
+* A measure defined on $X$ (free when X is discrete)
+
+We can then define convolution with respect to that binary operation and measure.
+
+General Convolution for Binary Operation
+-----
+
+The group convolution already hints at the general definition — replace the group operation with an arbitrary binary operation and nothing breaks.
+
+**Def : Binary Operation convolution**
+For $f, g : M \rightarrow \mathbb{C}$, a measure $\mu$ on $M$, and a binary operation $b : M \times M \rightarrow M$.
+\begin{equation}(f *_{b,\mu} g)(z) = \int d\mu(x) d\mu(y) f(x)g(y)\delta(z, b(x,y))\end{equation}
+
+with $\delta(x,y)$ the dirac delta distribution, $\int d\mu(x) f(x) \delta(x,y) = f(y)$
+
+For our real convolution this reduces to the expected:
+
+\begin{equation}(f *_{+,\mu_L} g)(z) =\int dx f(x)g(y)\delta(z-x-y) = \int dx f(x)g(z-x)\end{equation}
+
+For a group :
+
+\begin{equation}(f *_{\cdot,\mu} g)(z) =  \int d\mu(x) d\mu(y) f(x) g(y) \delta(z, xy)\end{equation}
+
+With a change of variables $y = x^{-1}y'$ (assuming the measure is invariant under group action)
+
+\begin{equation}
+\int  d\mu(x) d\mu(y') f(x) g(x^{-1}y') \delta(z, y') = \int  d\mu(x)  f(x) g(x^{-1}z)
+\end{equation}
+
+Example
+---
+
+**Dirichlet Convolution** is an example where the binary operation does not define a group.
+
+Taking domain $\mathbb{N}$ and integer multiplication
+
+\begin{equation}
+(f * g)(n) = \sum_{m \in \mathbb{Z}} \sum_{d \in \mathbb{Z}} f(d)g(m) \delta(n, md)
+\end{equation}
+
+For a fixed $d$ the delta is non-zero if $d$ divides $n$
+
+\begin{equation}
+(f * g)(n) =  \sum_{d | n} f(d)g(n/d)
+\end{equation}
+
+Multiplication on $\mathbb{N}$ has no inverse — $\mathbb{N}$ is not a group under multiplication — yet convolution is perfectly well-defined. The delta picks out divisor pairs.
+
+Properties
+---
+
+1. Linear in both $f$ and $g$
+2. Is commutative and/or associative if the binary operation is.
+
+More General Convolution
+----
+
+**Def: External Binary Operation Convolution**
+
+Given an external binary operation from $e: K \times X \to X$.
+
+Given a measure $\nu$ on $K$ and a measure $\mu$ on $X$.
+
+\begin{equation}(f *_{e,\nu,\mu} g)(y) = \int d\nu(k) d\mu(x) f(k)g(x)\delta(y, b(k,x))\end{equation}
+
+Familiar Example : Graph Convolution
+---
+
+For a graph $G = (V, E)$ with adjacency matrix $A$, graph convolution is an instance of the external binary operation convolution. The external action is the edge map:
+
+\begin{equation}e : V \times V \to V, \quad e(u, v) = v \text{ for } (u,v) \in E\end{equation}
+
+Source vertices $K = V$ act on target vertices $X = V$ via adjacency. Taking $f : K \to \mathbb{C}$ as the input signal, $g : X \to \mathbb{C}$ as the kernel, and the adjacency weights $A_{uv}$ as the measure on $K$:
+
+\begin{equation}(f *_G g)(v) = \sum_{u \in V} A_{uv}\, f(u)\, g(u)\end{equation}
+
+The delta $\delta(v, e(u, v))$ selects only edges terminating at $v$, giving the sum over neighbors. Unlike the group case there is no inverse and no notion of $v - u$ — the graph structure encodes proximity directly in $A$.
+
+For a cycle $\mathbb{Z}_N$ or grid $\mathbb{Z}^2$, $e(u, v) = v$ recovers cyclic shift or translation, and this reduces to group convolution.
+
+Fourier Transform
+-----
+
+For a transform $\hat{f}(\rho) = \int dx \rho(x) f(x)$, the convolution theorem requires:
+
+\begin{equation} \int dz \int dx dy \rho(z) f(x)g(y) \delta(z = b(x,y)) = \int dx f(x) \rho(x) \int dy \rho(y) g(y).\end{equation}
+
+Clearly this holds if $\rho(b(x,y)) = \rho(x) \rho(y)$ or if we have a one dimensional representation of the binary operation $b$.
+
+For the group convolution - $*_{\cdot, \mu}$ - the convolution theorem involves the irreducible
+representations of the group (often with dimension $\geq 2$.).
+
+$(f * g)(\rho) = f(\rho)g(\rho)$
+
+where the Fourier transform is matrix valued and on the right we have the matrix product.
+
+External Action Transform
+----
+
+For the external binary operation is something similar available?
+
+Consider a representation of the external binary operation to be a pair
+
+\begin{equation}\phi : X \rightarrow V\end{equation}
+
+\begin{equation}\rho : K \rightarrow GL(V)\end{equation}
+
+$\phi$ a mapping of each $x\in X$ to a vector and $\rho$ a mapping of $k \in K$ to a linear map (matrix) on the vector space.
+
+Such that
+
+\begin{equation}\phi(e(k, x)) = \rho(k) \phi(x)\end{equation}
+
+For this to be a faithful representation - we need to place restrictions on the external binary operation?
+
+Given a function $f : X \to \mathbb{C}$ and $g: K \to \mathbb{C}$ we have
+
+f(\phi) = \int dx f(x) \phi(x)
+g(\rho) = \int dk g(k) \rho(k)
+
+\begin{equation}(g * f)(\phi) = \int dy (g * f)(y) \phi(y)\end{equation}
+
+\begin{equation} = \int dy \int dk \int dx g(k) f(x) \delta(y = e(k,x)) \phi(y)\end{equation}
+
+\begin{equation} = \int dk \int dx g(k) f(x) \phi(e(k,x))\end{equation}
+
+\begin{equation} = \int dx \int dy g(k) f(x) \rho(k) \phi(x) \end{equation}
+
+\begin{equation} = g(\rho) f(\phi)\end{equation}
+
+How fun :D — one definition, and it reaches from CNNs to number theory to graph neural networks.
+
+Graph Convolution and the Fourier Theorem — Working Notes
+----
+
+*To be sharpened. May require proofs on paper.*
+
+**Spectral definition.** Graph Fourier transform: $\hat{f}(\ell) = \sum_v u_\ell(v) f(v)$, where $u_\ell$ are eigenvectors of the graph Laplacian $L$. Spectral convolution is defined to satisfy the theorem:
+
+$$\widehat{f *_G g}(\ell) = \hat{f}(\ell)\,\hat{g}(\ell)$$
+
+so $f *_G g = U\,\operatorname{diag}(\hat{g})\,U^T f$.
+
+**Backing out the spatial definition.** Expanding:
+
+$$(f *_G g)(v) = \sum_\ell \hat{f}(\ell)\,\hat{g}(\ell)\,u_\ell(v) = \sum_{u,w} f(u)\,g(w) \underbrace{\sum_\ell u_\ell(u)\,u_\ell(w)\,u_\ell(v)}_{\kappa(u,\,w,\,v)}$$
+
+The spatial definition paired with the spectral one is:
+
+$$(f *_G g)(v) = \sum_{u,w} \kappa(u, w, v)\,f(u)\,g(w)$$
+
+where $\kappa(u, w, v) = \sum_\ell u_\ell(u)\,u_\ell(w)\,u_\ell(v)$.
+
+**What this says about the binary operation.** The binary operation convolution earlier uses $\delta(v, b(u,w))$ as kernel — a sharp map $V \times V \to V$. Graph convolution replaces this with a soft 3-point kernel $\kappa : V \times V \times V \to \mathbb{R}$. This does not fit the binary operation framework directly.
+
+**Checking the group case ($\mathbb{Z}_N$).** Eigenvectors are $u_\ell(v) = \frac{1}{\sqrt{N}} e^{2\pi i \ell v / N}$, so:
+
+$$\kappa(u, w, v) = \frac{1}{N^{3/2}} \sum_\ell e^{2\pi i \ell(u + w - v)/N} \propto \delta_{u + w \equiv v \pmod{N}}$$
+
+The soft kernel collapses to a delta on the group operation $b(u,w) = u + w \pmod{N}$. The group case is exactly when $\kappa$ is sharp.
+
+**Open question.** Graph convolution fits the Fourier section (convolution theorem via representations) but not the binary operation section (no sharp $b$). The eigenvectors of $L$ play the role of characters — but for general graphs they are not characters of any group. What is the right abstraction for the "binary operation" when $\kappa$ is soft? Is $\kappa$ itself the primitive object, with sharp binary operations as a special case?

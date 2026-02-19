@@ -1,0 +1,144 @@
+---
+title: On Whitespace I
+date: '2019-11-09'
+description: ''
+draft: true
+---
+
+White thinking about generating `html` - not having professional experience in the
+subject decided to look up "best practices". One of the first question I hit was
+
+* "What is the best way to indent text?"
+* "What I really care about then is how I control space more generally?"
+
+As this `html` digression was purely for amusement I continued the digression.
+
+* "What does it mean to control white space?"
+* "What is white space?"
+
+Then I ended up digressing into thinking about the nature of "white space
+
+Rigid grid typing
+------------------
+
+Suppose a page is constructed as a rigid grid with each character/
+image being a fixed size. (As one would find in a pixelated display).
+In that case "white space" relies on a definition of a preferred element
+in the voculary of possible characters.
+```
+Practically the character selected should be such that it stands out
+very clearly from the other characters. 
+```
+
+```
+Practically*the*character*selected*should*be*such*that*it*stands*out
+very*clearly*from*the*other*characters.*****************************
+```
+
+```
+Practically…the…character…selected…should…be…such…that…it…stands…out
+very…clearly…from…the…other…characters.……………………………………………………………………………
+```
+
+The control of white space comes down to the addition of this preferred
+element.
+
+If the typing is done via the extension of a line - we presume
+that all characters between the end of the line and the termination
+of the visible space are made up of the neutral character. 
+
+The preferred character
+-----------------------
+
+I expect that the definition of the preferred character depends on
+what character is most common in the content. How effectively can
+someone isolate the "most common" character? How much of the wider context
+of the usage of that common neutral character elsewhere is required.
+
+For the space ` ` we are naturally benefited by a prior that across
+much written work the space is a common neutral character, so we have
+reinforcement. If that changed from document to docuent reading would
+be slower. (This is a great way to present the important of uniformity)
+```
+I*expect*that*the*definition*of*the*preferred*character*depends*on********
+what*character*is*most*common*in*the*content.*How*effectively*can*********
+someone*isolate*the*"most*common"*character?*How*much*of*the*wider*context
+of*the*usage*of*that*common*neutral*character*elsewhere*is*required.******
+
+For∑the∑space∑we∑are∑naturally∑benefited∑by∑a∑prior∑that∑across∑∑∑∑∑∑∑∑∑∑∑
+much∑written∑work∑the∑space∑is∑a∑common∑neutral∑character,∑so∑we∑have∑∑∑∑∑
+reinforcement.∑If∑that∑changed∑from∑document∑to∑docuent∑reading∑would∑∑∑∑∑
+be∑slower.∑(This∑is∑a∑great∑way∑to∑present∑the∑important∑of∑uniformity)∑∑∑
+```
+```
+I*expect*that*the*definition*of*the*preferred*character*depends*on********
+what*character*is*most*common*in*the*content.*How*effectively*can*********
+someone*isolate*the*"most*common"*character?*How*much*of*the*wider*context
+of*the*usage*of*that*common*neutral*character*elsewhere*is*required.******
+
+For*the*space*we*are*naturally*benefited*by*a*prior*that*across
+much*written*work*the*space*is*a*common*neutral*character,*so*we*have
+reinforcement.*If*that*changed*from*document*to*docuent*reading*would
+be*slower.*(This*is*a*great*way*to*present*the*important*of*uniformity)
+```
+
+Omg - also this could be helpful to SLOW DOWN READING when reviewing 
+key documents to give time to actual digest each word and not immediately
+recognize as saying what you thought it would say as you wrote it.
+
+The Typed Page (Expanding Lines)
+-------------------------
+
+A document (as it appears from typing) an expandable array of lines
+each line is itself a sequence of characters that take up some 
+amount of space on the page. White space is inserting characters that
+have the same impact as the ... wow what is white space in this case.
+White space requires the selection of a special character 
+
+The Typed Page (bounded grid with free movement)
+-------------------
+In a bounded rigid grid it is meaningful to move around the space
+along the grid. This essentially considers the space to prefilled
+with a pre-defined neutral character - or to automatically extend
+the space with pre-defined neutral characters as the cursor moves.
+
+The Typed Page (no grid)
+-------------------
+
+In the absence of a rigid horizontal grid - as commonly happens if characters
+do not have uniform horizontal size it is no longer as clear what navigating 
+the page looks like?
+
+The Draw Page
+------------------
+
+Drawn work whether physical or digital is often applied in a non-linear
+way.
+
+Physically we are given a page and a pencil and are able to easily make
+arbitrary continuous marks with a preference to those marks that do not 
+require picking and the pencil. The space is initially all blank space
+where blank becomes the 
+
+CSS
+-----
+
+Property white space
+
+```
+h1 {
+  white-space: normal;
+}
+```
+Line break `\n` mapped to single space. Repeated spaces mapped to single space.
+
+`white-space: pre;`
+Line breaks are rendered. Text is not wrapped. Extra white space preserved.
+
+`white-space: pre-wrap;`
+
+Preserve the white space, and allows text wrapping.
+
+`white-space: pre-line;`
+
+Extra white spaces are collapsed (form a single white space), line break preserved, and allows text wrapping.

@@ -1,0 +1,52 @@
+---
+title: Confidence Intervals
+date: '2016-01-01'
+categories:
+- Statistics
+description: ''
+draft: true
+---
+
+Frequentist Confidence Interval
+-------------------------------
+
+Family of probability measures $p_{\theta}$ on $X$, $\theta \in \Theta$
+
+Given $\theta$ we can construct $A_{\alpha}(\rho_\theta, \mu)$
+
+Given measurement $x$ we can construct
+
+$C(x, \alpha, \mu, \rho) = \{ \theta | x \in A_{\alpha}(\rho_\theta, \mu) \}$
+
+Under coordinate change $f : X \to Y$ this transforms as
+
+$f \star C(x, \alpha, \mu, \rho) =
+\{ \theta | f(x) \in A_{\alpha}(f^*\rho_\theta, \mu) \}
+= \{ \theta | x \in f^{-1}(A_{\alpha}(f^*\rho_\theta, \mu)) \}
+= \{ \theta | x \in A_{\alpha}(\rho_\theta, f^{-1} \mu) \}$
+
+
+Relate to minimizing loss of mis-estimation.
+
+Properties of Coverage Sets
+----------
+
+<look up proper name for>
+
+Given probability space $(X, \rho)$
+Given a coverage set $A_{\alpha}$ defined given level $\alpha$ and a measure $\mu$ on $X$.
+
+How does this transform under a function $X$ to $Y$.
+We push forward measure $\rho$ to $f^*(\rho)$ on
+
+Failure of Precise Interpretation
+-------
+
+Suppose we have samples from a normal distribution $N(0, \sigma)$ with unknown $\sigma$.
+
+$x_t$
+
+Sample is a point in $\mathbb{R}^T$ - no - is really N! points of permutations of the observations.
+With density $exp^{-\sum_t x_t^2/2 \sigma^2}$
+
+Given the flat reference measure on $\mathbb{R}^n$ we are asking for the $\sigma$ such that the measure of points within
