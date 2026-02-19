@@ -4,65 +4,43 @@ date: '2017-03-24'
 categories:
 - Statistics
 - Notation
-description: ''
+description: 'The distribution is the primary object in probability theory. Expectation values and moments are tools for summarizing it — tools that can fail. A case for thinking in measures.'
 ---
 
 *Notation is powerful*
 
 "By relieving the brain of all unnecessary work, a good notation sets it free to concentrate on
 more advanced problems, and, in effect, increases the mental power of the race." (Alfred North
-Whitehead, “An Introduction to Mathematics”)
+Whitehead, "An Introduction to Mathematics")
 
 "Good notation can make the difference between a readable paper and an unreadable one."
-Terence Tao [Use Good Notation](https://terrytao.wordpress.com/advice-on-writing-papers/use-good-notation/)
+Terence Tao — [Use Good Notation](https://terrytao.wordpress.com/advice-on-writing-papers/use-good-notation/)
 
-See also this collection of references and thoughts on notation [hypotext - notation](https://github.com/hypotext/notation)
+See also: [hypotext - notation](https://github.com/hypotext/notation)
 
-A good notation will allow one to work more efficiently, convey ideas more concisely, and
-lead to new developments. A poor notation acts as a friction to development and confines
-our thinking. At least for my personal the language of 'Random Variables' and 'Expectation Values' is overly restrictive. 
-A focus on random variables and expectation values :
-
-* Can mask that probability measures are the critical component of the probability.
-* Artificially restrict analysis to distributions on $\mathbb{R}^n$.
+The central complaint here: the language of *Random Variables* and *Expectation Values* encourages treating moments as the primary object of probability theory. They are not. The probability measure — the distribution — is the primary object. Moments are tools for summarizing or estimating properties of that distribution. This distinction matters because the tools can fail while the distribution remains perfectly well-defined. When they fail the measure-first view stays coherent; the moment-first view breaks down.
 
 Probability is about Measures
 ===============================
 
-Modern probability theory is commonly said to derive from the work of
-[Kolmogorov](https://en.wikipedia.org/wiki/Andrey_Kolmogorov) who laid a foundation using measure theory. Probability theory requires an efficient languages for discussing the measurement of probabilities of subsets of a space of possibilities, which coincides
-with the aims of measure theory. Measure theory is commonly introduced as a pre-requisite
-to integration - a theory where we similarly require an means to measure the area / volume
-of subsets of a space. Despite being entangled in how they are taught, measure theory
-is a subject with value of its own beyond the theory of integration. In particular in
-probability theory - measure theory is the star of the show and integration is a useful tool.
+Modern probability theory derives from [Kolmogorov](https://en.wikipedia.org/wiki/Andrey_Kolmogorov), who laid its foundation using measure theory. Measure theory is commonly taught as a prerequisite to integration — but in probability theory, measure theory is the star and integration is a useful tool. This ordering gets inverted in practice.
 
 Sample Spaces
 -----------------------------------
 
-In the language of measure theory a sample space is a *measurable space*
-being a set $X$ equipped with a sigma algebra $\Sigma$.
+In the language of measure theory a sample space is a *measurable space* —
+a set $X$ equipped with a sigma algebra $\Sigma$.
 
-A sigma algebra is a set of subsets of $X$ ($\Sigma$ is a subset of $\mathcal{P}X$
-the Power set of $X$) such that :
+A sigma algebra is a collection of subsets of $X$ such that:
 
-0. $\Sigma$ contains the empty set $\emptyset$
-1. $\Sigma$ is closed under complements. If $A \in \Sigma$ then $X - A \in \Sigma$.
-2. $\Sigma$ is closed under countable unions. So given $A_n \in \Sigma$ for n indexed
-by the natural numbers - then $\cup_n A_n \in \Sigma$.
+0. $\Sigma$ contains $\emptyset$
+1. $\Sigma$ is closed under complements: if $A \in \Sigma$ then $X - A \in \Sigma$.
+2. $\Sigma$ is closed under countable unions: given $A_n \in \Sigma$, then $\cup_n A_n \in \Sigma$.
 
-From these we have other derived properties, $X \in \Sigma$ and $\Sigma$ is closed under
-countable unions. This pair $(X,\Sigma)$ gives us the space of possible outcomes $X$
-and the sets for which it is possible to define probability. The simplest examples make
-this formal definition appear silly.
+This pair $(X,\Sigma)$ gives us the space of possible outcomes and the sets for which probability can be defined. Two canonical examples:
 
-* *Finite Discrete* A Finite Set $X=[1,2,3,...,n]$ with $\Sigma = P(X)$ or
-all subsets of $X$. The typical discrete sample space describing the states
-of a n-sided die,, the states of a deck of cards, etc with all sets of states
-measurable.
-* [Borel Algebra](https://en.wikipedia.org/wiki/Borel_set) : The smallest sigma
-algebra containing all open sets in a given topology. The Borel algebra for the
-the standard topology on $\mathbb{R}^n$ is the classic continuous sample space.
+* *Finite Discrete* — $X = \{1,\ldots,n\}$ with $\Sigma = \mathcal{P}(X)$. The sample space of a die, a deck of cards, etc.
+* [Borel Algebra](https://en.wikipedia.org/wiki/Borel_set) — the smallest sigma algebra containing all open sets in a topology. For $\mathbb{R}^n$ with the standard topology, this is the canonical continuous sample space.
 
 Probability Space
 ----------------------------------
@@ -70,36 +48,23 @@ Probability Space
 A [Probability Space](https://en.wikipedia.org/wiki/Probability_space) is a measurable
 space equipped with a measure $P$ satisfying
 
-1. *Positivity* $P : \Sigma \rightarrow \mathbb{R}^+ $
+1. *Positivity* $P : \Sigma \rightarrow \mathbb{R}^+$
 2. *Normalized* $P(X) = 1$
 3. $P(\emptyset) = 0$
-4. *Countable additivity* : Given a countable number of disjoint $A_n \in \Sigma$ $P(\cup_n A_n) = \sum_n P(A_n)$
+4. *Countable additivity* : for disjoint $A_n \in \Sigma$, $P(\cup_n A_n) = \sum_n P(A_n)$
 
-Given our sample space $X$ and our sigma algebra $\Sigma$ we can look at
-$\mathcal{P}(X, \Sigma)$ the space of normalized measures. These are the possible
-definitions of probability given our sample space. For the finite discrete measure
-this space of measures is quite simple - just the space of non-negative functions
-$f : X \rightarrow \mathbb{R}$ such that $\sum_i f(i) = 1$
+Given $(X, \Sigma)$ we can consider $\mathcal{P}(X, \Sigma)$ — the space of all normalized measures. These are the possible probability distributions on our sample space. For the finite discrete case this is simply the space of non-negative functions $f : X \rightarrow \mathbb{R}$ summing to 1.
 
-At this stage we have a complete language for discussing probabilities - and this
-is where integration typically creeps in.
+At this stage we have a complete language for discussing probabilities — and this is where integration typically creeps in.
 
 Random Variables
 --------------------------------------------------------------------
 
-The standard definition of a [Random Variable](https://en.wikipedia.org/wiki/Random_variable#Standard_case) is a measurable function from a probability space
-to the reals (with the Lebesgue measure). Such a measurable function can be integrated. The integral of our random variable is the standard expectation value and integrals of simple functions of our random variable lead to the various moments.
+A [Random Variable](https://en.wikipedia.org/wiki/Random_variable#Standard_case) is a measurable function from a probability space to the reals. Such a function can be integrated; its integral is the expectation value, and integrals of functions of it give moments.
 
-On their own measurable functions are natural to define given our
-measurable spaces - they play the role of measurable space morphisms.
+Measurable functions are natural morphisms between measurable spaces. For measurable spaces $X$, $Y$ a measurable function $f: X \rightarrow Y$ satisfies: $f^{-1}(B)$ is measurable for all measurable $B \in Y$.
 
-For meaurable spaces $X$,$Y$ a measurable function $f: X \rightarrow Y$ satisfies.
-
-$f^{-1}(B)$ is measurable for all measureable sets B in Y.
-
-What's with the inverse?
-
-You may be familiar with the identities for any map $f: X \rightarrow Y$.
+The preimage behaves well under all set operations:
 
 1. $f^{-1}(Y)=X$
 2. $f^{-1}(\emptyset) = \emptyset$
@@ -107,107 +72,68 @@ You may be familiar with the identities for any map $f: X \rightarrow Y$.
 4. $f^{-1}(\cup_\alpha V_\alpha) = \cup_\alpha f^{-1} (V_\alpha)$
 5. $f^{-1}(Y - V) = X - f^{-1}(V)$
 
-All together we have a morphism of the $\sigma$ algebras if f is measurable.
-$f^{-1} : \Sigma_Y \rightarrow \Sigma_X$. Additionally if we restrict to the image of $X$,
-$f^{-1}: P(Y) \rightarrow P(X)$ is one-to-one. So we have an isomorphism of $\Sigma_Y$ with
-a subset of $\Sigma_X$.
+So a measurable $f$ induces a morphism $f^{-1} : \Sigma_Y \rightarrow \Sigma_X$ of sigma algebras.
 
 We Really Care about Measures
 -----------------------------------------------------------------------
 
-Random Variables are really a means to define probability measures - and
-probability measures are our primarily object of interest.
+Random variables are a means to define probability measures — and probability measures are the primary object of interest.
 
-Given a measurable function $f : X \rightarrow Y$ and a probability
-measure $P$ on $X$ we can construct a probability measure on $Y$.
-This is called a push-forward of the measure.
+Given a measurable function $f : X \rightarrow Y$ and a probability measure $P$ on $X$, we get a probability measure on $Y$ for free — the pushforward:
 
-$f^*(p)(V) = p(f^{-1}(V))$
+$$f_*(P)(V) = P(f^{-1}(V))$$
 
-Does $f^*(p)$ satisfy the conditions of a probability measure?
+One can verify: $f_*(P)(\emptyset) = P(\emptyset) = 0$, $f_*(P)(Y) = P(X) = 1$, and countable additivity holds. This is consistent with the operational meaning: draw samples from $P$, evaluate $f$ on each, and the resulting distribution is $f_*(P)$.
 
-1. Empty set has 0 measure : $f^*(p)(\emptyset) = p(\emptyset) = 0$
-2. Normalized : $f^*(p)(Y) = p(X) = 1$
-3. Can also verify countable additivity.
+A real random variable defines a probability distribution on $\mathbb{R}$ via this pushforward — and it is the pushforward distribution that we care about. Expectation values and moments are tools for estimating properties of this distribution. The distribution is the object; the moments are summaries of it.
 
-Further this definition is consistent with how we think about probability.
-The probablity measure we get from this is equivalent to drawing samples
-from the original probability distribution and evaluating the function
-on each sample.
-
-So a real random variable is defining a probability distribution
-on $\mathbb{R}$ and it is this push forward distribution that
-we care about. Much of the machinery of expectation values and moments
-is used to estimate properties of this push-forward distribution.
-In my experience it is simpler to always think in terms of probability
-measures - viewing Random Variables as simply one means to generate a
-measure given an existing probability space.
-
-Artifically Restricted Scope
+Artificially Restricted Scope
 --------------------------------------------------------------------
 
-While measurable functions are meaningful for any measurable space as the range $Y$ -
-the definition of a random variable typically restrict to real valued measurable functions.
-(A restriction though to only real valued measurable functions - (which is common but
-[NOT universal](https://en.wikipedia.org/wiki/Random_variable#Extensions)). Given the
-emphasis on integration this restriction is reasonable - or strictly a restriction to
-$Y$ where an integral is defined (Complex vector spaces, Banach spaces, ..).
+The standard definition restricts random variables to real-valued measurable functions — a restriction motivated by integration. But we frequently care about measurable functions to other spaces:
 
-* Quite often we are interested in functions of our domain probability space that are
-not real valued. [Simple examples](https://en.wikipedia.org/wiki/Random_variable#Extensions)
-include random sentences based on a generative model for text.
+* Random sentences from a generative text model are not real-valued.
+* Categorically we want all measurable spaces and all measurable functions between them. Real random variables form a [Comma Category](https://en.wikipedia.org/wiki/Comma_category) — the category over $\mathbb{R}$ with the Borel algebra.
+* Compositions of random variables arise constantly; restricting to $\mathbb{R}$ makes this awkward.
 
-* Categorically we are interested in all measurable spaces and all measurable functions
-between them. (Although recently noticed that we can write down the category of real
-random variables as a [Comma Category](https://en.wikipedia.org/wiki/Comma_category) in
-particular as the category over $\mathbb{R}$ with the Borel Algebra.)
-
-* While the category point seems aesthetic - it does commonly occur that we are interested
-in compositions of random variables, and Category theory is designed to make it easy to talk
-about function composition.
-
-At the very least a 'Random Variable' should be (and occasionally is) any measurable map
-between a Probability space $(X, P)$ and a measurable space $Y$
-
-
+At minimum a random variable should be any measurable map between a probability space $(X, P)$ and a measurable space $Y$.
 
 Conflicting Notation
 --------------------------
 
-While working with a single sample space we have a notion of arithmetic on
-real random variables which derives from arithmetic on the reals.
+Working with a single sample space, arithmetic on real random variables is pointwise:
 
-* Addition : $(f + g)(x) = f(x) + g(x)$
-* Multiplication : $(fg)(x) = f(x)g(x)$
+* $(f + g)(x) = f(x) + g(x)$
+* $(fg)(x) = f(x)g(x)$
 
-It is common to see statements of the form : We define $h = f + g$ where $f$ and
-$g$ are independent Normal random variables. This actually introduces a second
-notion of addition. This second case is really an abuse of $+$. Abuses of notation
-are often fine as long as we are aware of them and they don't lead to abuses of mathematics.
-We are really looking at a sequence of the following operations.
+But statements like "let $h = f + g$ where $f$ and $g$ are independent Normal random variables" introduce a second, different notion of addition. What is really happening:
 
-* Given inital measure spaces $X$ and $Y$ and random variables $f$,$g$.
-* Construct the product space $X \times Y$.
-* Extend $f$ and $g$ to be defined on product space $f(x,y) = f(x)$ and
-$g(x,y) = g(y)$.
-* Add the random variables $f + g$ with the standard notion of addition.
+1. Start with measure spaces $X$, $Y$ and random variables $f$, $g$.
+2. Construct the product space $X \times Y$.
+3. Extend: $f(x,y) = f(x)$ and $g(x,y) = g(y)$.
+4. Now add: $(f + g)(x,y) = f(x) + g(y)$ — pointwise on the product.
 
-This is perhaps a silly amount of detail, but you see that the $+$ bundles
-together operations on the sample space with operations on the random variables.
-This is not quite a problem with Random Variables themselves - but a problem of
-working without reference to the underlying sample spaces.
+The $+$ bundles together an operation on the sample space (taking the product) with an operation on the random variables. This is not a problem with random variables per se, but a consequence of suppressing the underlying sample spaces from the notation.
 
 Real Random Variables are Coordinates
 -----------------------------------------------------------------------
 
-Random variables primarily act as 'Coordinates' - allowing us to map from our sample space to real valued coordinates that we can compute with - make approximations, etc, etc.
-Why dont we just call them coordinate functions then?
-Digging through the notation of other fields for a close analog we
-come across - the use of coordinates & coordinate charts in the
-discussion of manifolds.
+Random variables primarily act as coordinate functions — mapping from a sample space to real values we can compute with. This is a close analog to coordinate charts on a manifold: $f : U \rightarrow \mathbb{R}$ for $U \subset M$.
 
-$f : U \rightarrow \mathbb{R}$ for $U \subset M$.
+On a manifold, the existence of coordinate functions does not mean that integrating those coordinates is geometrically meaningful. The coordinate values depend on the chart; the geometry does not. Similarly, the fact that a random variable can be integrated does not mean the integral — the expectation — is the right object to focus on. The pushforward measure is the intrinsic object; the expectation is one chart-dependent summary of it.
 
-Much like the study of manifolds - Even though we have real valued coordinate functions
-it does not necessarily make sense to start integrating those coordinate values. It is
-tempting to automatically start integrating these measurable real valued functions - but even though it is an allowed operation, is it meaningful? In simple cases -  
+Where Moments Fail
+-----------------------------------------------------------------------
+
+Two examples where the distribution is perfectly well-defined but moment-based reasoning breaks down.
+
+**Long-tailed distributions.** The [Cauchy distribution](https://en.wikipedia.org/wiki/Cauchy_distribution) has density $\frac{1}{\pi(1 + x^2)}$ — a completely well-defined, symmetric distribution centered at 0. Its mean does not exist: the integral $\int x \cdot \frac{1}{\pi(1+x^2)} dx$ diverges. A framework that treats the mean as the primary object has nothing to say about a distribution that is otherwise completely tractable. The distribution is fine; the moment is the thing that breaks.
+
+More generally, for heavy-tailed distributions (Pareto, stable distributions with $\alpha < 2$) finite moments may not exist at any order. The distribution is still the right object.
+
+**Distributions on manifolds.** On the circle $S^1$, the distribution is well-defined — the wrapped normal / theta function gives a clean, intrinsically-defined probability measure. But the mean is not unique: for $N$ samples $x_n$, the equation $N\mu = \sum x_n$ has $N$ solutions on $S^1$. A moment-first view produces ambiguity; a measure-first view does not. The full posterior over $\mu$ is a mixture peaked at each candidate mean — the distribution contains the information, the moment does not. (See [Statistical Inference on the Circle](/posts/2017-08-10-circle/) for the full story.)
+
+Conclusion
+-----------------------------------------------------------------------
+
+Probability measures are the right primary object. Random variables are coordinate functions that induce pushforward measures; expectation values and moments are summaries of those measures. The summaries are useful but not fundamental — they can fail to exist, fail to be unique, or fail to capture the structure of the distribution. Working directly with measures avoids these failures and generalizes cleanly to any measurable space, not just $\mathbb{R}^n$.
