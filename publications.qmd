@@ -1,0 +1,72 @@
+---
+title: "Publications"
+---
+
+## Conference Papers
+
+**Debiasing Grid-based Product Search in E-commerce**
+Adam Henderson, Ruocheng Guo, Xiaoting Zhao, Liangjie Hong
+*KDD '20: The 26th ACM SIGKDD Conference on Knowledge Discovery and Data Mining*, 2020
+[ResearchGate](https://www.researchgate.net/publication/343779602_Debiasing_Grid-based_Product_Search_in_E-commerce)
+
+**Understanding the Role of Style in E-commerce Shopping**
+Hao Jiang, Aakash Sabharwal, Adam Henderson, Diane Hu, Liangjie Hong
+*The 25th ACM SIGKDD International Conference (KDD 2019)*, 2019
+[ACM](https://dl.acm.org/citation.cfm?doid=3292500.3330760) · [full-text](https://www.hongliangjie.com/publications/kdd2019_1.pdf)
+
+**A Sequential Test for Selecting the Better Variant: Online A/B testing, Adaptive Allocation, and Continuous Monitoring**
+Adam Henderson, Liangjie Hong, Diane Hu, Nianqiao Ju
+*WSDM*, 2019
+[ACM](https://dl.acm.org/citation.cfm?id=3291025) · [full-text](https://www.hongliangjie.com/publications/wsdm2019_preprint.pdf)
+
+## Journal Papers
+
+**Constraint algebra in loop quantum gravity reloaded. II. Toy model of an Abelian gauge theory: Spatial diffeomorphisms**
+Adam Henderson, Alok Laddha, Casey Tomlin
+*Physical Review D*, 2013
+[arXiv](https://arxiv.org/abs/1210.3960) · [APS](https://journals.aps.org/prd/abstract/10.1103/PhysRevD.88.044029)
+
+**Constraint algebra in loop quantum gravity reloaded. I. Toy model of a U(1)³ gauge theory**
+Adam Henderson, Alok Laddha, Casey Tomlin
+*Physical Review D*, 2013
+[arXiv](https://arxiv.org/abs/1204.0211) · [APS](https://journals.aps.org/prd/abstract/10.1103/PhysRevD.88.044028)
+
+**Hamiltonian formulation of the Belinskii-Khalatnikov-Lifshitz conjecture**
+Abhay Ashtekar, Adam Henderson, David Sloan
+*Physical Review D*, 2011
+[arXiv](http://arxiv.org/abs/arXiv:1102.3474) · [APS](https://journals.aps.org/prd/abstract/10.1103/PhysRevD.83.084024)
+
+**Path Integrals and the WKB approximation in Loop Quantum Cosmology**
+Abhay Ashtekar, Miguel Campiglia, Adam Henderson
+*Physical Review D*, 2010
+[APS](https://journals.aps.org/prd/abstract/10.1103/PhysRevD.82.124043) · [arXiv](https://arxiv.org/abs/1011.1024)
+
+**Local spinfoam expansion in loop quantum cosmology**
+Adam Henderson, Carlo Rovelli, Francesca Vidotto, Edward Wilson-Ewing
+*Classical and Quantum Gravity*, 2010
+[arXiv](https://arxiv.org/abs/1010.0502) · [IOP](https://iopscience.iop.org/article/10.1088/0264-9381/28/2/025003/pdf)
+
+**Vertex Expansion for the Bianchi I model**
+Miguel Campiglia, Adam Henderson, William Nelson
+*Physical Review D*, 2010
+[arXiv](https://arxiv.org/abs/1007.3723) · [APS](https://journals.aps.org/prd/abstract/10.1103/PhysRevD.82.064036)
+
+**Casting Loop Quantum Cosmology in the Spin Foam Paradigm**
+Abhay Ashtekar, Miguel Campiglia, Adam Henderson
+*Classical and Quantum Gravity*, 2010
+[arXiv](https://arxiv.org/abs/1001.5147) · [IOP](https://iopscience.iop.org/article/10.1088/0264-9381/27/13/135020/pdf) · [As journal highlight](http://ej.iop.org/pdf/cqg/highlights/CQG_Highlights_2009-2010_BROCHURE.pdf)
+
+**Loop Quantum Cosmology and Spin Foams**
+Abhay Ashtekar, Miguel Campiglia, Adam Henderson
+*Physics Letters B*, 2009
+[arXiv](https://arxiv.org/abs/0909.4221)
+
+**Hamiltonian general relativity and the Belinskii Khalatnikov Lifshitz conjecture**
+Abhay Ashtekar, Adam Henderson, David Sloan
+*Classical and Quantum Gravity*, 2009
+[arXiv](https://arxiv.org/abs/0811.4160) · [IOP](https://iopscience.iop.org/article/10.1088/0264-9381/26/5/052001/pdf) · [As journal highlight](https://cms.iopscience.org/738b0d20-03db-11e2-8540-4d5160a0f0b4/CQG_Highlights_2008-2009_BROCHURE.pdf)
+
+## Thesis
+
+**Loop quantum cosmology: A window into the path integral representation of quantum gravity**
+Adam Henderson

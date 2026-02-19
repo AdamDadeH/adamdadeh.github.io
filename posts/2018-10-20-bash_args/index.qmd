@@ -1,0 +1,198 @@
+---
+title: Bash Arg Parsing
+date: '2018-10-20'
+categories:
+- Software
+- Eng
+description: ''
+---
+
+As much as I prefer nearly any other language to Bash (or other Shell scripting)
+time and again I find myself scripting in Bash.
+
+* Working with existing Bash scripts in a code-base.
+* 'Quick' command line utilities.
+
+A recent challenge I ran into was how to handle Bash arg parsing well.
+
+Resources
+==============
+
+* [Shelldorado - Arg parsing](http://www.shelldorado.com/goodcoding/cmdargs.html)
+* [Drew Stokes - Bash Argument Parsing](https://medium.com/@Drew_Stokes/bash-argument-parsing-54f3b81a6a8f)
+* [Stackoverflow - How to parse command line arguments](https://stackoverflow.com/questions/192249/how-do-i-parse-command-line-arguments-in-bash)
+
+Qualities of Interest
+======================
+
+1. *Brittleness* : Likelihood of errors during development / usage.
+2. *User Readability* : Ability for user to infer meaning of arguments.
+3. *Ease of Development* : Ease of adding arg parsing to script.
+4. *Maintainability* : Ability of the modify/extend arguments easily and correctly.
+5. *Optionality* : Ability to handle optional arguments.
+
+Variants
+==============
+
+Positional
+--------------
+
+```bash
+#!/bin/bash
+
+echo "arg1 : $1"
+echo "arg2 : $2"
+```
+
+Scores
+-----
+
+* **Brittleness** : **1 - HIGH**
+  * if we have a sequence of 6 arguments ```my_script 1 2 5 3 4 6``` not obvious when arguments are not placed correctly.
+* **User Readability** : **1 - NONE**
+  * ```my_script file1 file2``` doesn't give any hints as to what is happening. Even if we know there is a source and target file - which is which?
+* **Ease of Development** : **5 - EASY**
+  * Very easy for simple use cases with 1-3 required arguments.
+* **Maintainability** : **1 - HARD**
+  * Modifying existing script involves tracking down opaque `$2` and perhaps shifting all arguments forward `$2 -> $3`.
+* **Optional Arguments** : **1 - Difficult**
+  * Can allow trailing arguments to be optional, but requires a strict ordering of which arguments
+  you expect the user to use.
+
+When to use : One off you will throw away quickly.
+
+getopts
+---------------
+
+* [wikipedia - getopts](https://en.wikipedia.org/wiki/Getopts)
+* [bash hackers](http://wiki.bash-hackers.org/howto/getopts_tutorial)
+* [gnu - getopts](https://www.gnu.org/software/bash/manual/html_node/Bourne-Shell-Builtins.html)
+* [manpage](https://ss64.com/bash/getopts.html)
+* [Examples - Kevin Sookocheff](https://sookocheff.com/post/bash/parsing-bash-script-arguments-with-shopts/)
+* [Examples - atomic object](https://spin.atomicobject.com/2011/03/30/parsing-arguments-in-bash-with-getopts/)
+
+Getopts was first introduced in 1986 in the Bourne shell [Bourne Shell Family](http://www.in-ulm.de/~mascheck/bourne/)
+
+Basic example
+
+```
+optarg_example.sh
+```
+
+```bash
+vflag=off
+while getopts f:v opt
+do
+    case "$opt" in
+      v)  vflag=on;;
+      f)  filename="$OPTARG";;
+      \?)       # unknown flag
+          echo >&2 \
+      "usage: $0 [-v] [-f filename] [file ...]"
+      exit 1;;
+    esac
+done
+shift 'expr $OPTIND - 1'
+```
+
+The syntax ```getopts a:bc opt``` indicates that getopts can expect
+
+* Options ```-a``` followed by arguments that will get stored in ```OPTARG```
+* Options ```-b, -c``` without arguments
+* None of the options are required.
+* Getopt will throw an error if ```-a``` not followed by an argument : ```option requires an argument```
+* When an option ```-a```, etc is found the character ```a``` is stored in ```opt```.
+
+What is happening? Getopts steps through the command line values looking for the flags definedsets and manipulates the following variables.
+
+* OPTIND - current index initialized to 1 and needs to be reset to 1 if you want to re-use getopts.
+* OPTARG - stores the argument corresponding to current option.
+
+* It will stop parsing on the first non-option / non-argument value (a string that doesn't begin with a hyphen that isn't the argument for any option in front of it).
+* It will also stop parsing when it sees ```--``` (double-hyphen)
+
+Scores
+---
+
+* **Brittleness** : **3 - Medium**
+  * Not dependent on order of parameters.
+  * Serious issue for me. In the prior example ```bash optarg_example.sh -f -v``` **does not throw an error**. Instead ```-v``` is treated as the argument for ```-f```. This behavior is well known, but is still worisome.
+* **User Readability** : **2 - Low**
+  * ```md_convert -i file.md -o bears```. We have more hints - in this case maybe
+an input and an output?
+  * Doesn't support more readable options ```--input```.
+* **Ease of Development** : **2 - Low**
+  * Requires knowing special syntax.
+* **Maintainability** : **3 - Ok**
+  * A little easier to maintain than write from scratch.
+* **Optional Arguments** : **3 - Ok**
+  * All arguments are optional.
+
+* *Bonus* : Option stacking familiar from ```tar -xvf, ls -lm```.
+
+getopt
+---------------
+
+A descendent of ```getopts```
+
+[Bahnanm - getopt](http://www.bahmanm.com/blogs/command-line-options-how-to-parse-in-bash-using-getopt)
+[man page](http://man7.org/linux/man-pages/man3/getopt.3.html)
+
+
+Why didn't we use getopt in the first place? There is one drawback with the use of getopt: it removes whitespace within arguments. The command line
+
+    one "two three" four
+(three command line arguments) is rewritten as
+    one two three four
+(four arguments). Don't use the getopt command if the arguments may contain whitespace characters.
+
+
+Named - Manual
+--------------------------
+
+Shelldorado
+```bash
+vflag=off
+while [ $# -gt 0 ]
+do
+    case "$1" in
+        -v)  vflag=on;;
+        -*)
+            echo >&2 "usage: $0 [-v] [file ...]"
+            exit 1;;
+        *)  break;; # terminate while loop
+    esac
+    shift
+done
+```
+
+```
+vflag=off
+filename=
+while [ $# -gt 0 ]
+do
+    case "$1" in
+        -v)  vflag=on;;
+    -f)  filename="$2"; shift;;
+    --) shift; break;;
+    -*)
+        echo >&2 \
+        "usage: $0 [-v] [-f file] [file ...]"
+        exit 1;;
+    *)  break;; # terminate while loop
+    esac
+    shift
+done
+# all command line switches are processed,
+# "$@" contains all file names
+```
+
+others
+--------------
+
+[argbash](https://argbash.readthedocs.io/en/stable/)
+
+[Fedora Magazine - argbash](https://fedoramagazine.org/improve-bash-scripts-argbash/)
+[argcomplete](https://argcomplete.readthedocs.io/en/latest/)
+
+[docopt](http://docopt.org)

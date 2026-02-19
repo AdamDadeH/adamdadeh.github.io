@@ -1,0 +1,148 @@
+---
+title: "Category Theory & Programming - Part 1"
+date: '2024-05-02'
+categories: [Math, Category]
+description: ''
+draft: true
+---
+
+I have invested significant time in studying Category Theory and Computer Science & Software
+Engineering, but rarely together. For me Category Theory is pure mathematics and fun while Computer Science is practical and technical expertise.  
+Knowledge of Category theory didn't hurt when seeing `Covariance`, `Monad`, in `Scala` for example, but was not
+a sufficient value add to invest in bridging these independent pockets of knowledge.
+
+```mermaid
+vennDiagram
+	A[Category Theory : Curiosity. Pure Math]
+	B[Software : Expertise. Practical]
+	AB[Have some words in common.]
+```
+
+The desire to bridge this gap has finally been triggered! From the mathematics side the interest
+in better intuition for critical abstractions like *natural transformations*, *universal arrows* pushes me to see more concrete examples. From the software side being sufficiently annoyed at definitions of Functors that restrict to *Endofunctors* and *Containers* like *List*/*Option*.
+
+# Categories in Mathematics
+
+Category Theory is the study of things that are "function-ish".
+
+To capture the structure of functions between sets we note that
+
+ 1. a *function* $f$ has a *domain* of input values $X$ and a *range* of output
+values $Y$. This is commonly denoted as $f: X \to Y$.
+ 2. *functions* can be composed, for $f: X \to Y$ and $g: Y \to Z$ we can apply g to the output of f. Denoted as $g(f(x))$ or $(g \circ f)(x)$.
+ 3. there is always the identity function : $i_X: X \to X$ giving $i_X(x) = x$
+
+The key abstractions for such systems are
+
+A Category $C$ has
+
+* A set of *Objects* : $Ob(C)$
+* A set of *Morphisms* (*Arrows*): $Mor(C)$
+* Each *morphism* has an associated *domain* and *range* *objects*
+  * Can be expressed as having two functions
+    * $dom : Mor(C) \to Ob(C)$
+    * $ran: Mor(C) \to Ob(C)$
+  * Or specifying $hom(a,b)$ to be all *morphisms* with *domain* a and *range* b. So $Mor(C) = \cup_{(a,b) \in Ob(C)} hom(a,b)$ 
+* A composition operation : $\circ : hom(b,c) \times hom(a,b) \to hom(a,c)$ written as $g \circ f$ for $g: b \to c$ and $f: a \to b$
+
+With the following constraints
+
+* Composition is associative : If $f: a \to b$, $g: b \to c$, $h: c \to d$ then $h \circ (g \circ f) = (h \circ g) \circ f$
+* Composition has left/right identities.
+
+# Categories in Programming Languages
+
+Objects : All types in the language.
+Arrows : All functions from one type to another.
+For this we strictly need the types to includes tuples, etc
+
+
+
+# Functors
+
+Type Constructors
+`List[T]`, `Option[T]`
+
+Functors in Haskell for Example are $F : Hask \to Hask$
+
+```scala
+trait Functor[A] {
+	def map[B] (f: A => B): Functor[B]
+}
+```
+
+A little silly example
+```scala
+case class Pair[A](first: A, second: A) {
+	def map[B] (f: A => B): Pair[B] = {
+		Pair(f(first), f(second))
+	}
+}
+```
+
+```scala
+def f(x: Int): Double = x/2.0
+
+Pair(3,5).map(f)
+
+val res6: Pair[Double] = Pair(1.5,2.5)
+
+Pair(3,5).map(f).map("x : " + _.toString())
+val res10: Pair[String] = Pair(x : 1.5,x : 2.5)
+
+```
+
+```scala
+class List[A] extends Functor[A] {
+    // ... 
+    def map[B] (f: A => B): List[B] = {
+        this match {
+            case List() => this
+            case h::t => f(h)::(t.map(f))
+        }
+    }
+    // ... 
+}
+```
+
+```scala
+class Option[A] extends Functor[A] {
+
+
+    // ... 
+    def map[B] (f: A => B): Option[B] = {
+        this match {
+            case None => None
+            case Some(x) => Some(f(x))
+        }
+    }
+    // ... 
+}
+```
+If we take a sequence of functors - map only apply outermost functor to the function.
+
+
+# Currying vs.
+
+Currying enables us to avoid extending our type system with Cartesian Products / Tupling using the fact that a function
+
+$f: X \times Y \to Z$ is equivalent to a function $f: X \to (Y \to Z)$
+
+
+# Applicative Functor 
+
+The pure function is also known as point in some languages and libraries. Essentially, it is a constructor which can convert a value of any type A to a value of F[A]. We often say that pure “lifts” its arguement to the corresponding type defined by the type constructor (e.g. from Int to List[Int]). Here is a sample implementation for Option.
+
+Like for Option : Pure(a) = Some(a)
+For List : Pure(a) = List(a)
+
+The apply function takes a function, which is embedded into the context defined by the type constructor (e.g. Option[A → B]), and lifts/converts it to a function in the realm of the type constructor (e.g. Option[A] → Option[B]). Here is a sample implementation for Option:
+
+# Implementation as Functor
+
+There is a way that we can view implementations of a given interface as a functor.
+If I can express the abstraction / interface as an element of a category - then 
+there is a family of functors that are preserving that interface. This would give
+a Functor Category - at least when looking at implementations within a specific
+implementation category.
+

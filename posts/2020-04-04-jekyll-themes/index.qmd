@@ -1,0 +1,85 @@
+---
+title: Exploring Jekyll Themes
+date: '2020-04-04'
+description: ''
+draft: true
+---
+
+Jekyll Themes & Github Pages
+============
+
+https://help.github.com/en/github/working-with-github-pages/adding-a-theme-to-your-github-pages-site-using-jekyll
+
+Jekyll Themes
+============
+
+Beautiful Jekyll 
+https://jamstackthemes.dev/theme/jekyll-beautiful-theme/
+https://github.com/daattali/beautiful-jekyll
+
+Lanyon
+https://lanyon.getpoole.com
+
+Poole
+https://getpoole.com
+https://github.com/poole/poole
+
+Jekyll Now
+http://www.jekyllnow.com
+
+Hyde
+https://jamstackthemes.dev/theme/jekyll-hyde/
+
+MkDocs
+https://squidfunk.github.io/mkdocs-material/
+
+HTML Syntax
+====
+
+<head> Header
+
+<title>
+
+* defines a title in the browser tab
+* provides a title for the page when it is added to favorites
+* displays a title for the page in search engine results
+
+<style>
+
+<style>
+  body {background-color: powderblue;}
+  h1 {color: red;}
+  p {color: blue;}
+</style>
+
+The <link> element is used to link to external style sheets:
+<link rel="stylesheet" href="mystyle.css">
+
+The <meta> element is used to specify which character set is used, page description, keywords, author, and other metadata.
+<meta name="description" content="Free Web tutorials">
+<meta name="keywords" content="HTML, CSS, XML, JavaScript">
+<meta name="author" content="John Doe">
+<meta http-equiv="refresh" content="30">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+function myFunction() {
+  document.getElementById("demo").innerHTML = "Hello JavaScript!";
+}
+</script>
+
+
+
+Hugo
+====
+
+A different tool?
+
+https://gohugo.io
+
+Academic
+---------
+
+https://academic-demo.netlify.com
+
+https://github.com/gcushen/hugo-academic

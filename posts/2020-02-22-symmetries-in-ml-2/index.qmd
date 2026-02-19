@@ -1,0 +1,216 @@
+---
+title: Symmetries in Machine Learning II
+date: '2020-02-22'
+description: ''
+draft: true
+---
+
+In a prior [post](/posts/2020-02-22-symmetries-in-ml-1/) I investigated the topic of symmetries in machine learning. With a simple example of
+learning a function that takes input $(\mathbb{Z}_N \rightarrow \mathbb{Z}_2)$ that is invariant under translations.
+We explored what the quotient space looks like and found
+it to difficult to work with.
+
+A follow up question is - what are good coordinates / features
+
+## Equivalent Ways of Thinking
+
+Prior we considered learning functions
+
+$\Phi : (\mathbb{Z}_N \rightarrow \mathbb{Z}_2) \rightarrow Y$
+
+That are invariant under the group action.
+One way to think about this is directly thinking about functions on the quotient.
+
+Another way is to choose features that are invariant under
+the transformation. (Or similarly choose a family of function that
+  are invarianet under the transformation.)
+
+
+#### Featurizing $(\mathbb{Z}_N \rightarrow \mathbb{Z}_2) / \mathbb{Z}_N $
+
+Any function of $f$ that is invariant under group action are suitable as coordinates / features.
+
+* $\sum_i f(i)$
+* $\sum_i f(i)f(i+k)$ for any $k$
+
+More generally what are other simple invariant functions?
+
+$$
+\begin{equation}
+\sum_i f(i)*f(i+k) = \sum_i \sum_p \sum_q e^{ip/N} \tilde{f}(p) e^{(i+k)q/N} \tilde{f}(q)
+\end{equation}
+$$
+
+$$
+\begin{equation}
+\sum_i f(i)*f(i+k) = \sum_p \tilde{f}(p) \tilde{f}(-p) e^{-kp/N}
+\end{equation}
+$$  
+  $$\tilde{f}(p)\tilde{f}(-p)$$ is itself translation invariant
+  $$\tilde{g*f}(p)\tilde{g*f}(-p) = \tilde{f}(p)\tilde{f}(-p)$$
+
+ So even just throwing away the phase information from the fourier coefficients
+ should give us all the info we need?
+
+### Invariant Functions / Features of ($$\mathbb{Z}_N \rightarrow \mathbb{R}$$)
+
+Even though they may not make a "complete" coordinate system for the quotient we can look for simple invariant functions from ($$\mathbb{Z}_N \rightarrow \mathbb{R}$$) to $$\mathbb{R}$$ to act as features.
+
+#### Linear
+
+What linear functions are invariant :
+
+$$
+\begin{equation}
+F(f) = \sum_n a(n)f(n)
+\tag{1}
+\end{equation}
+$$
+
+Translation invariance requires that
+
+$$
+\begin{equation}
+F(\phi_1 \cdot f) = F(f)
+\end{equation}
+$$
+
+Which implies that for any $f$ we have,
+
+$$
+\begin{equation}
+\sum_n a(n)f(n-1) = \sum_n a(n)f(n)
+\end{equation}
+$$
+
+Evaluating with $f = \delta_m$ (1 if $n=m$ else 0)
+we find that $a(m) = a(m+1)$. This holds for all $m$, so $a$ is constant.
+So the unique invariant linear function (up to multiplication by constant) is.
+
+$$
+\begin{equation}
+F(f) = \sum_n f(n)
+\end{equation}
+$$
+
+#### Quadratic
+
+For quadratic functions we can assume without loss of generality that $a(n,m)$ is symmetric.
+
+$$
+\begin{equation}
+F_a(f) = \sum_n a(n,m)f(n)f(m)
+\end{equation}
+$$
+
+Translation invariance requires that:
+
+$$
+\begin{equation}
+\sum_{n,m} a(n,m) f(n)f(m)
+= \sum_{n,m} a(n,m) f(n-1)f(m-1)
+\end{equation}
+$$
+
+Similar to the linear case we can evaluate this condition with specific
+inputs. Evaluating with $f = \delta_m$ then we find that $a(m,m) = a(m-1,m-1)$, so the diagonal $a(n,n)$ is constant
+
+Evaluating on the next non-trivial case, $f = \delta_{p} + \delta_{q}$
+
+$$
+\begin{equation}
+2a(p, q) + a(p, p) + a(q, q) =
+2a(p-1, q-1) + a(p-1,p-1) + a(q-1, q-1)
+\end{equation}
+$$
+
+Since the diagonal is constant this reduces to the condition $a(p,q) = a(p-1, q-1)$ for all $p,q$ or that $a(p,q)=a(p-q,0)$. So then $F$ is entirely determined by $a(n,0)$ only.
+
+Denoting $a(n, 0)$ simply by $a(n)$
+
+We have
+
+$$
+\begin{equation}
+F_a(f) = \sum_{n,m} a(m-n)f(n)f(m)
+\end{equation}
+$$
+
+We can change variables to $$n$$ and $$p = n-m$$
+
+$$
+\begin{equation}
+F_a(f) = \sum_{n,p} a(p) f(n)f(n+p)
+\end{equation}
+$$
+
+One can quickly verify that this expression is invariant under translations
+and is a linear combination of elementary features
+
+$$
+F_k(f) = \sum_n f(n)f(n+k)
+$$
+
+#### Cubic and Higher
+
+We can again restrict to $a(m,n,p)$ is symmetric.
+
+We use the same trick of starting with the requirement of being invariant
+under unit translations and evaluating that with simple functions $f$ that
+are non-zero at 1,2, or 3 points. With that approach we find the general
+invariant cubic function is :
+
+$$
+\begin{equation}
+F_a(f) = \sum_{r,s,p} a(r,s) f(p+r)f(p+s)f(p)
+\end{equation}
+$$
+
+With the clear order N being
+
+\begin{equation}
+F_a(f) = \sum_{n,p_1, p_2, .. p_{N-1}} a(p_1,..,p_{N-1})f(n+p_1)..f(n+p_{N-1})f(n)
+\end{equation}
+
+### A space of invariant functions
+
+Given these invariant features any function of them will be invariant.
+For example given the linear feature $F(f)$ and the quadratic for all $k$
+we have a large family of invariant functions given by
+
+$\phi : \mathbb{R}^{N+1} \rightarrow Y$
+
+$\Phi(f) = \phi(F(f), F_1(f), .. F_N(f))$
+
+### Other Strategies
+
+Above we have the strategy of using invariant input features enabling
+training using an arbitrary architecture / parametrized family of fns.
+
+Option 2 : Work within a space of non-invariant functions using raw inputs
+and extending the training data by applying the transformation to existing labelled data.
+  - This has a risk that the function space has small intersection with the space of symmetric functions - making the optimization task quite difficult.
+
+Option 3 : Being able to "gauge fix" and reduce any input to a canonical representative of the equivalence class.
+
+Scratch Space
+=============
+
+- (raises another question - when to directly restrict to functions that are
+invariant vs. penalizing functions that are not invariant.e
+
+Scratch
+----
+
+One interesting property I would prefer $$F$$ to have would be that it takes in arbitrary sized input
+ - so the domain of $$F$$ is the direct sum over $$\mathbb{R}^(NxM)$$ over all $$N$$ and $$M$$ (or at least over
+ some reasonably large range of NxM).
+
+ Totally academic aside :  - I expect that space has a nice topology being
+ a limit of nice spaces. What is the limit of a family of topologies? When does it make sense
+ to consider such a limit? Given a sequence of topologies and a sequence of continuous morphisms $$\phi_{n, n+1}$$
+ (or homomorphisms?)
+ mapping between them I expect we can construct
+
+ - [notes on geometric trans of images](http://alumni.media.mit.edu/~maov/classes/comp_photo_vision08f/lect/08_image_warps.pdf)
+- [open cv transformations](https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_imgproc/py_geometric_transformations/py_geometric_transformations.html)

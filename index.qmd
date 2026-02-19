@@ -1,0 +1,20 @@
+---
+title: "Adam Henderson"
+listing:
+  contents: posts
+  sort: "date desc"
+  type: default
+  categories: true
+  feed: true
+  fields: [title, description, date, categories, reading-time]
+page-layout: full
+---
+
+"One of the principle objects of theoretical research in any department of knowledge is to find the point of view from which the subject appears in its greatest simplicity." - Josiah Willard Gibbs
+
+This is the core thread of my research / professional career across Theoretical Physics (Quantum Gravity & General Relativity), applied math, machine learning, and software engineering.
+
+[List of Publications](http://inspirehep.net/author/profile/A.Henderson.1) from my quantum gravity era. Without the academic pressure to write papers I am less and less inclined to share research.
+
+- [Research Gate](https://www.researchgate.net/profile/Adam_Henderson12)
+- [LinkedIn](https://www.linkedin.com/in/adam-henderson-b4887b29)
