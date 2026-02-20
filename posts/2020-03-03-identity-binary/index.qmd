@@ -4,7 +4,7 @@ date: '2020-03-03'
 categories:
 - Math
 - Algebra
-description: ''
+description: 'The uniqueness proof for identity elements is clean — but left and right identities can be non-unique, and software occasionally produces near-identities that break the axioms. The right fix is to quotient them away.'
 ---
 
 One of my first exposures to the art of proof was

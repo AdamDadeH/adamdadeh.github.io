@@ -1,7 +1,7 @@
 ---
 title: Symmetries in Machine Learning I
 date: '2020-02-22'
-description: ''
+description: 'Invariance and covariance under a group of transformations, made precise. The idealized example — translation-invariant functions on cyclic bit strings — reduces to counting necklaces, and the quotient space lacks obvious coordinates.'
 ---
 
 In this digression into the topic of symmetries in Machine Learning we
@@ -65,7 +65,7 @@ Suppose we have domain expert knowledge that the task is exactly invariant with 
 functions $f: (\mathbb{Z}_N \rightarrow \mathbb{Z}_2) \rightarrow \mathbb{R}$ that were invariant under the group of transformations?
 
 $$
-f(\phi_n \cdot x) = f(x) \;\rm{for}\;\rm{all}\; n \in \mathbb{Z}_N
+f(\phi_n \cdot x) = f(x) \text{ for all } n \in \mathbb{Z}_N
 $$
 
 What do these invariant functions look like?
@@ -117,9 +117,9 @@ what do the quotients look like?
 
 The 'largest' part of the quotient can be obtained for all functions having unique maximum. We can qauntify largest using the standard
 measure on $\mathbb{R}^N$. Denoting the function with unique maximum
-as $A_{unique}$ - we note that the complement $\mathbb{R}^{N} - A_{unique}$ is contained in $\\\{x \vert \exists n,m \;\rm{st}\; x(n)=x(m)\\\}$.
+as $A_{unique}$ - we note that the complement $\mathbb{R}^{N} - A_{unique}$ is contained in $\\\{x \vert \exists n,m  \text{ s.t. } x(n)=x(m)\\\}$.
 
-So $\mu(\mathbb{R}^{N} - A_{unique}) \leq \mu(\\\{x \vert \exists n,m \;\rm{st}\; x(n)=x(m)\\\}) = 0$
+So $\mu(\mathbb{R}^{N} - A_{unique}) \leq \mu(\\\{x \vert \exists n,m  \text{ s.t. } x(n)=x(m)\\\}) = 0$
 
 The complement of our set of functions with unique maximum is measure 0.
 

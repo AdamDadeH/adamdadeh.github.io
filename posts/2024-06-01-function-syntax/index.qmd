@@ -4,12 +4,12 @@ date: '2024-06-01'
 categories:
 - Math
 - Notation
-description: ''
+description: 'A survey of notations for function evaluation — $f(x)$, subscripts, juxtaposition, Lisp-style — and the argument that the variety is valuable, not a flaw. Each notation emphasizes a different isomorphic representation of the same function space.'
 ---
 
 "What is the most efficient notation?" is a recurring question when I read math, machine learning, or other technical publications. Which is followed by the debate of working with the default syntax of the text - or mapping to my own preferred syntax.
 
-For example : Do we convert expressions in "convential matrix notation" $A^TBv$ into abstract index notation $A_{ba} B_{bc} v_c$?
+For example : Do we convert expressions in "conventional matrix notation" $A^TBv$ into abstract index notation $A_{ba} B_{bc} v_c$?
 
 Given the repetition of the question and redundant efforts I want to collect observations on syntax to streamline this debate. I'm also inspired by deeper investigations into syntax from likes of Djikstra ([On Notation](https://www.cs.utexas.edu/users/EWD/ewd09xx/EWD950a.PDF) and [Adopted Notation](https://www.cs.utexas.edu/users/EWD/ewd13xx/EWD1300.PDF)), Knuth, and Iverson.
 
