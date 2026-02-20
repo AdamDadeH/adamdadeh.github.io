@@ -29,23 +29,37 @@ Function evaluation, or applying a function to an input, can be expressed in var
 
 ## Univariate
 
-- **Bracketed** : 
+- **Bracketed** :
     - $f(x)$ : Common notation for math & most programming languages.
-    - $f[x]$ : Array access in programming languages, some use for functions whose domains are spaces of functions.
+        - *Reading time*: Unambiguous, universally familiar. Nesting reads inside-out: $h(g(f(x)))$.
+        - *Ease of manipulation*: Composition is well-supported by convention but reads right-to-left — evaluation order runs against writing order.
+    - $f[x]$ : Some use for functions whose domains are spaces of functions.
+        - *Reading time*: Requires domain knowledge to disambiguate from array/sequence indexing. High ambiguity cost outside functional analysis.
+        - *Ease of manipulation*: Same as $f(x)$ once interpretation is settled, but the ambiguity tax rarely makes it worth it.
 
 - **Subscript/Superscript** : $f_x$/$f^{x}$
-    - Coordinates of a vector -  $v_i$
-    - Element of a sequence - $x_n$
+    - Coordinates of a vector $v_i$; element of a sequence $x_n$ — these are subscript function evaluation, not conflicts with it.
+    - *Reading time*: Subscript carries a strong convention of discrete indexing — generalizing to arbitrary domains feels like fighting the notation. Superscript is genuinely ambiguous with exponentiation: $f^x$ reads as a power before it reads as evaluation.
+    - *Ease of manipulation*: Natural and compact within its intended domain (sequences, coordinates, tensors). Chains poorly outside it.
 
 - **Dijkstra period**: $f.x$
+    - *Reading time*: Compact and left-to-right, but conflicts with decimal notation and has near-zero adoption outside Dijkstra's own writing.
+    - *Ease of manipulation*: Composes naturally left-to-right — $f.g.x = f(g(x))$. The adoption cost makes it impractical regardless of its merits.
 
 - **Juxtaposition** : $fx$
-    - Category theory as application of Functor - $Sf$
-    - Linear Algebra : $Ax$ for matrix $A$, vector $x$.
+    - Category theory: application of functor $Sf$; linear algebra: $Ax$ for matrix $A$, vector $x$.
+    - *Reading time*: Minimal character count, maximum ambiguity — is $fx$ one symbol or two? Only works where strong domain conventions are established.
+    - *Ease of manipulation*: Composition is just $gfx$ — extremely compact in purely functional or linear settings. Clean at the cost of parseability.
 
-- **Function Application** : 
+- **Function Application** :
     - `apply(f, x)`
     - **Lisp Style :** `(f x)`
+        - *Reading time*: Unambiguous, handles nesting uniformly `(f (g x))`. Character overhead grows with depth. Unfamiliar outside Lisp/ML-family languages.
+        - *Ease of manipulation*: Nesting is structurally explicit. Composition is regular with no special cases.
+
+- **Pipe / Reverse Application** : `x |> f`
+    - *Reading time*: Unambiguous, left-to-right data flow — matches the order of application. Low parsing overhead for chains.
+    - *Ease of manipulation*: Excellent for linear pipelines `x |> f |> g |> h`; breaks down when the argument is not the last parameter or when nesting is required.
 
 ## Why So Many?
 
@@ -57,12 +71,6 @@ with character count being *dangerous* to directly optimize for and unambiguous 
 
 *Ease of Manipulation* : Does the syntax make it easier to perform common
 transformations / calculations?
-
-## My current viewpoint 
-
-Adopted : A mixed use of parentheses $f(x)$ and subscript/superscript.
-
-Avoiding : Juxtaposition, Mixing $f(x)$ and $g[x]$.
 
 ## Multivariate
 
@@ -79,6 +87,13 @@ Avoiding : Juxtaposition, Mixing $f(x)$ and $g[x]$.
 - **Mixed Syntax :**
 	- $f_i(x)$
 	- $\rho_{\theta}(x \vert \mu)$
+
+- **Einstein / Index Notation** : $A_i^{\;j} u^i$, $T_{ijk} u^i v^j w^k$
+    - Applies to multilinear maps — tensor contraction generalizes matrix-vector products to arbitrary rank.
+    - *Index position encodes the type of binding*: up vs down distinguishes the map from its dual. $A_i^{\;j}v^i$ applies $A$; $A_i^{\;j}u_j$ applies $A^T$. The covariant/contravariant distinction that $f(x,y)$ drops entirely is carried explicitly in the notation.
+    - *Binding is by name, not position*: $A_i^{\;j}u^i$ and $u^i A_i^{\;j}$ are the same expression — index labels are named arguments, so reordering is free.
+    - Does not extend beyond multilinear maps — nonlinear functions of tensors fall outside the summation convention.
+    - *Natural generalization*: the binding-by-name, typed-wire semantics of Einstein notation are exactly those of string diagrams in symmetric monoidal categories. String diagrams are the right generalization — but diagrammatic representations resist automatic parsing. The open question is the right *textual* syntax for the same semantics beyond the linear case. Existing moves: `einsum`-style notation, Catlab.jl (programmatic wiring diagrams in Julia), and the formal term syntax of free symmetric monoidal categories. A full treatment deserves its own post.
 
 ## Equivalent Spaces of Functions but Different Emphasis
 
@@ -100,19 +115,13 @@ practically different representations.
 
 ## Positional vs Named Inputs
 
-In function notation, distinguishing between positional and named inputs can significantly affect readability and clarity. The distinction of named and positional inputs is more common in programming where nearly everyone gets burned by positional arguments.
+This distinction cuts across all the notation families above — it is a property of how arguments are bound, independent of the evaluation syntax chosen.
 
-Positional Inputs:
+**Positional**: $f(2, 3, \text{"Fred"})$ — inputs provided in the order the function expects. Concise, but the meaning of each position must be remembered or recovered from context.
 
- - Example: $f(2, 3, "Fred")$ - Inputs are provided directly in the order the function expects them.
- - Advantage: Conciseness and ease of writing.
- - Disadvantage: Can lead to confusion without clear documentation, as the meaning of each position must be remembered or looked up.
+**Named**: $f(x=2, y=3, \text{cat}=\text{"fred"})$ — each argument explicitly labeled. Self-documenting, at the cost of verbosity.
 
-Named Inputs:
-
- - Syntax: $f(x=2, y=3, cat="fred")$ - Each argument is explicitly named.
- - Advantage: Enhances readability and self-documentation, especially in functions with many parameters or optional parameters.
- - Disadvantage: More verbose, can lead to cluttered expressions in complex formulas.
+Einstein notation is the clearest example of named binding in mathematical notation — index labels are argument names, and reordering is free because the contraction is determined by label matching, not position. Index height additionally encodes which slot of the dual pairing is being filled, a distinction positional notation drops entirely.
 
 ## Special Cases
 
@@ -125,11 +134,14 @@ special compact syntax. For example there is a wide variety of two arguments fun
 Infix notation ($x+y$, $f \circ g$) is especially valuable for associative binary operations where $+(x, +(y, +(z, w))))$ is awful, but $x + y + z + w$ 
 is easy to read.
 
-There is similarly a large family of unary functions that occur commly enough to show up as little "decorations" on the arguments ($\bar{x}$, $x^*$, $x^{\dagger}$). These are most common in "involutions" where are their own inverse, so that painful expression like $x^{\dagger \dagger \dagger}$ don't occur.
+There is similarly a large family of unary functions that occur commonly enough to show up as little "decorations" on the arguments ($\bar{x}$, $x^*$, $x^{\dagger}$). These are most common in "involutions" where are their own inverse, so that painful expression like $x^{\dagger \dagger \dagger}$ don't occur.
 
-## Conclusion
+## My Current Preference
 
-The choice of function notation depends on several factors including readability, ease of manipulation, and the specific mathematical or programming context. I am comfortable with the wide variety of syntax in this case as each emphasizes different ways to represent functions
-or is valuable in different contexts.
+Adopted: a mixed use of parentheses $f(x)$ and subscript/superscript.
+
+Avoiding: juxtaposition, and mixing $f(x)$ with $g[x]$ in the same context.
+
+The variety of notation is a feature — each choice encodes a different emphasis on the underlying function space, and the right choice depends on what structure you are trying to make visible.
 
 

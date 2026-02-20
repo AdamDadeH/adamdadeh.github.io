@@ -1,0 +1,52 @@
+---
+title: Algebraic Syntax for String Diagrams
+date: '2026-02-20'
+categories:
+- Math
+- Category Theory
+- Notation
+description: 'String diagrams are the right generalization of Einstein notation beyond linear maps — typed wires, named binding, arbitrary morphisms. The open question: what is the textual syntax?'
+draft: true
+---
+
+String diagrams in symmetric monoidal categories are the natural generalization of Einstein index notation beyond linear maps. A box is a morphism, a wire is a typed channel, and composition is connection. The semantics are exactly those of Einstein notation: binding is by name, reordering is free, and the type of each wire is explicit.
+
+The problem: string diagrams are diagrammatic. Spatial layout is not parseable, not typecheckable, and not composable by a program.
+
+The question: **what is the textual / algebraic syntax that captures the same semantics?**
+
+## What We Want
+
+A notation with:
+
+- **Named binding** — wires identified by label, not position. $A_i^{\;j} u^i$ and $u^i A_i^{\;j}$ are the same expression.
+- **Typed wires** — each wire carries a type; connection requires type agreement.
+- **Arbitrary morphisms** — not restricted to linear maps.
+- **Compositional** — terms compose the way diagrams compose: sequentially ($\circ$) and in parallel ($\otimes$).
+- **Machine parseable** — a program can typecheck and evaluate a term.
+
+## What Exists
+
+**Einstein / index notation** — the linear case. Summation convention handles contraction; index height handles covariant/contravariant distinction. Textual, parseable, and powerful within its domain. Does not extend to nonlinear morphisms.
+
+**`einsum` / `einops`** — textual notation for tensor contraction in array programming. `"ij,jk->ik"` for matrix multiplication. Extends Einstein notation with explicit output specification. Still restricted to multilinear operations.
+
+**Free symmetric monoidal category term syntax** — formally, string diagrams correspond to terms in an algebraic language with generators, $\otimes$, $\circ$, symmetry maps, and named wire variables. Joyal and Street's correspondence makes this precise. Not yet a practical notation.
+
+**Catlab.jl** — Julia library for applied category theory. Wiring diagrams as first-class data structures: programmatically composable, visualizable, and executable. The closest existing tool to what we want. [Catlab.jl](https://algebraicjulia.github.io/Catlab.jl/)
+
+**The $\pi$-calculus** — process calculus with named, typed channels and explicit binding. Textual, compositional, machine parseable. The semantics of channel communication are those of wire connection in a string diagram. Typed variants ($\pi$-types, session types) bring this closer to the categorical setting.
+
+## Key Questions
+
+- Is there a canonical textual syntax for free SMCs that is both human-readable and machine-parseable?
+- How does index height (covariant/contravariant) generalize beyond the linear case — is there an analog for general morphisms?
+- Can `einsum`-style notation be extended to nonlinear operations? What breaks?
+- What is the relationship between session types and typed string diagram wires?
+- Catlab as a practical tool: how far does it get toward this as a working notation?
+
+## Connections
+
+- [Function Notation : Evaluation](/posts/2024-06-01-function-syntax/) — this post is the motivation
+- [Convolutions](/posts/2022-03-13-convolutions/) — the external binary operation framework and graph convolution are instances of string diagram composition
+- [Representations](/posts/2019-07-04-representations/) — group representations as coordinates, connected to the typed-wire picture
