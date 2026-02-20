@@ -4,14 +4,16 @@ date: '2019-02-04'
 categories:
 - Math
 - Algebra
-description: ''
+description: 'Quotient constructions across algebra — groups, rings, modules — all require an equivalence relation compatible with the algebraic operations. The key condition is invariance under diagonal action, which unifies normal subgroups, ideals, and their generalizations.'
 ---
 
-I recently started a review of [Abstract Algebra](https://www.springer.com/us/book/9780387905181) with primary focus on Groups. This resulted in a deeper dive into the  properties of quotients and Normal subgroups. A common theme across mathematics is the need to construct new instances of particular structures from existing. [In this context I am restricting the term structure to refer to [Algebraic Structures](https://en.wikipedia.org/wiki/Algebraic_structure).] A common construction is the [Quotient](https://en.wikipedia.org/wiki/Quotient) : Quotient Groups, Quotient Rings, Quotient Modules, etc.
+The standard presentation of quotient groups goes: state the axioms of an equivalence relation, introduce Normal Subgroups, verify the quotient inherits the group structure. The step that gets skipped is *why* — what condition on an equivalence relation actually allows the group structure to descend to the quotient?
 
-(Aside : A search for 'algebraic structures' returned an extremely thorough taxonomy of such structures [math.chapman.edu/~jipsen/structures](http://math.chapman.edu/~jipsen/structures/doku.php))
+The answer is diagonal invariance. The equivalence relation must be preserved under the left and right action of the structure on itself. This condition generalizes cleanly to any algebraic structure; Normal Subgroups, Ideals, and their relatives are all instances of it.
 
-Many constructions derive from an [equivalence class](https://en.wikipedia.org/wiki/Equivalence_class) defined on the base set $X$ of the structure. An equivalence relation on $X$ is a binary relation (subset of $X \times X$) $~$ on $X$. We commonly use notation $a \sim b$ to say that $(a,b) \in\,\sim$.
+Reviewing [Abstract Algebra](https://www.springer.com/us/book/9780387905181) with focus on Groups prompted a deeper look at this. A common construction across algebra is the [Quotient](https://en.wikipedia.org/wiki/Quotient) — Quotient Groups, Quotient Rings, Quotient Modules — and the unifying thread is always the same compatibility condition.
+
+Many constructions derive from an [equivalence class](https://en.wikipedia.org/wiki/Equivalence_class) defined on the base set $X$ of the structure. An equivalence relation on $X$ is a binary relation (subset of $X \times X$) $\sim$ on $X$. We commonly use notation $a \sim b$ to say that $(a,b) \in\,\sim$.
 
 * $x \sim x, \forall x \in X$
 * $x \sim y \implies y \sim x, \forall x,y \in X$
@@ -98,7 +100,7 @@ that is also an equivalence relation.
 For a group we have two n-ary operations to worry about :
 
 * Associative binary operation : $\cdot : G \times G \rightarrow G$
-* Inverse : ${-1} : G \rightarrow G$
+* Inverse : $(\cdot)^{-1} : G \rightarrow G$
 
 We saw that consistency with any binary operation is equivalent to invariance
 of $\sim$ under diagonal action of the group. Conveniently this diagonal action
@@ -106,9 +108,9 @@ is also sufficient for compatibility with the inverse operation.
 
 
 \begin{align}
- g &\sim h  \newline
- g \cdot g^{-1} &\sim h \cdot g^{-1} \newline
- h^{-1} \cdot e &\sim h^{-1} \cdot h \cdot g^{-1} \newline
+ g &\sim h \\
+ g \cdot g^{-1} &\sim h \cdot g^{-1} \\
+ h^{-1} \cdot e &\sim h^{-1} \cdot h \cdot g^{-1} \\
  h^{-1} &\sim g^{-1}
 \end{align}
 
@@ -124,22 +126,17 @@ invariant under left and right diagonal actions.
 For a generic subgroup $H$ of $G \times G$ - how much does the left and right
 diagonal action gain us. Suppose $(g,h) \in H$ and $(h,k) \in H$.
 Then $(g h^{-1}, e)$ is in H from right action and $(g h^{-1} h, e k) = (g,k)$
-so $(g, k)$. So $A$ is transitive. We also have that $g ~ h$ => $h^{-1} g ~ e$ =>
-$h^{-1} ~ g^{-1}$ => $h ~ g$.
+so $(g, k)$. So $A$ is transitive. We also have that $g \sim h$ implies $h^{-1} g \sim e$, implies
+$h^{-1} \sim g^{-1}$, implies $h \sim g$.
 
 So we also have any subgroup of $G \times G$ that is invariant on left and right
 diagonal group action is also an equivalence class. Or any subgroup of $G \times G$
 that contains the diagonal image of $G$ in $G \times G$.
 
-This gives three different paths to a group-compatible equivalence relation - equivalence
-relation that is closed under the diagonal action of the group, a subgroup of $G \times G$
-that contains the diagonal image of $G$ - and the familiar...
+Three equivalent paths to a group-compatible equivalence relation emerge:
 
-Looking at the elements that are equivalent to the identity.
+1. An equivalence relation on $G$ closed under left and right diagonal action of $G$
+2. A subgroup of $G \times G$ that contains the diagonal $\{(g,g) \mid g \in G\}$
+3. A normal subgroup $N = \{n \mid n \sim e\}$, the elements equivalent to the identity
 
-
-\begin{equation}
-N = \{ n \vert n \sim e \}
-\end{equation}
-
-We can quickly identify that $N$ is a normal subgroup of $G$ - $g \cdot h \cdot g^{-1} \sim g \cdot g^{-1} = e$.
+These are equivalent — any one implies the other two. The normal subgroup is the most familiar and compact; the diagonal action condition is the most general and the most explanatory. The normal subgroup works *because* it enforces diagonal invariance — that is the content of the condition, not just a property it happens to have.

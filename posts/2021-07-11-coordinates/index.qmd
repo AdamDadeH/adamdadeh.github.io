@@ -3,7 +3,7 @@ title: Coordinates
 date: '2021-07-11'
 categories:
 - Math
-description: ''
+description: '"Coordinates" is underspecified in every standard definition. A better formulation: coordinates are a bijection that makes the relevant structures on a space efficiently computable. This reformulation connects directly to algorithmic complexity.'
 ---
 
 **Coordinates**. A word so common that I rarely (perhaps never) consider how it is defined. In the following I browse common definitions & their ambiguity, propose definitions that capture standard types of coordinates.
@@ -25,7 +25,7 @@ First, browsing definitions from standard sources:
 
 > A system for specifying points using coordinates measured in some specified way.
 
-Perhaps unsurprisingly the definitions are ambiguous. It is likely with more digging I'll find the right definition. In the meantime it is amusing to construct my own.
+Perhaps unsurprisingly the definitions are ambiguous — they describe coordinates for geometry without capturing what makes a coordinate system *good*. The missing ingredient is structure.
 
 First Definition
 ----------------
@@ -71,7 +71,7 @@ With this representation there is the simple and familiar expression for additio
 
 #### Integer Arithmetic and Prime Factors
 
-A distinct choice of coordinates for $\mathbb{N}$ comes from prime factorization, $n = 2^{m_2} 3^{m_3} 5^{m_5}\dots = \prod_{p \,\rm{prime}} p^{m_p}$. This gives a unique bijection between the natural numbers $\mathbb{N}$ and the prime powers, $\prod_p \mathbb{N}$.
+A distinct choice of coordinates for $\mathbb{N}$ comes from prime factorization, $n = 2^{m_2} 3^{m_3} 5^{m_5}\dots = \prod_{p \,\text{prime}} p^{m_p}$. This gives a unique bijection between the natural numbers $\mathbb{N}$ and the prime powers, $\prod_p \mathbb{N}$.
 
 This set of coordinates has it's own simple operations.
 
@@ -85,11 +85,9 @@ For a faithful group representation we have coordinates given by the bijection $
 
 Given $g$ & $h$ in $G$,
 
-\[
 \begin{equation}
 \rho(gh)_{ij} = \sum_k \rho(g)_{ik} \rho(h)_{kj}
 \end{equation}
-\]
 
 Or more simply stated : That the image of the groups binary operation is the matrix product.
 
@@ -147,14 +145,8 @@ With this we have collided with the problem of evaluating algorithmic complexity
 Conclusion
 ---------
 
-We conclude for now having made some progress.
+The broadest definition of coordinates — any bijection $f : X \rightarrow C$ — is correct but useless. What makes coordinates good is that they make the relevant structures on $X$ cheap to compute with in $C$.
 
-* There exists an obvious definition that is too broad to be of value.
-* Recognizing that what are good coordinates depend on the common operations/structures you are using.
-* Having a (still rough) formulation the problem of coordinates in terms of representation of structures.
-* Realizing the connection between the concepts "coordinates" and "implementation" of an algorithm in a particular language.
+This reframes the question: choosing coordinates for a mathematical structure and choosing a data representation for an algorithm are the same problem. The cost of evaluating a structure $\phi$ in coordinates $(f, C, \psi)$ is exactly the algorithmic complexity of computing $\phi$ using the primitives $\psi$. The eigenvalue decomposition, positional notation, and prime factorization are all answers to this question for different structures and different notions of cost.
 
-I expect to return to this topic to further investigate
-
-* The question of efficiency of representation.
-* The relationship of nice coordinates to machine learning - which intuitively relates to what structures are natural to work with in the choice of coordinates and do they allow for optimization over the space of possible composition of structures.
+The connection to machine learning runs the same way — learned representations are coordinate systems, and what gets optimized is precisely the cost of computing the task-relevant structure in those coordinates.

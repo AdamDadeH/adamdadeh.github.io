@@ -1,7 +1,7 @@
 ---
 title: Asymptotic Notation as Equivalence Relation
 date: '2018-07-28'
-description: ''
+description: '$O$, $\Omega$, and $\Theta$ as binary relations — a pre-order and an equivalence relation on functions. The quotient $\mathbb{R}^{\mathbb{N}}/\Theta$ carries a Max-Times algebra, and the sub-exponential functions of L-notation fill the gaps between familiar complexity classes.'
 ---
 
 In lazily paging through [Cormen et al](https://mitpress.mit.edu/books/introduction-algorithms)
@@ -16,18 +16,18 @@ Big-$O$ notations defines relationships between functions - in particular compar
 Definition : $f \in O(g)$
 
 \begin{equation}
-\exists k>0 \; \rm{and} \; \exists n_{0} \; \rm{such} \; \rm{that} \; \forall n>n_{0}, \; f(n)\leq k\cdot g(n)
+\exists k>0 \text{ and } \exists n_{0} \text{ such that } \forall n>n_{0}, \; f(n)\leq k\cdot g(n)
 \end{equation}
 
 Definition $f \in \Omega(g)$
 
 \begin{equation}
-\exists k>0 \; \rm{and} \;\exists n_{0} \; \rm{such} \; \rm{that} \; \forall n>n_{0}, \; f(n)\geq k\cdot g(n)
+\exists k>0 \text{ and } \exists n_{0} \text{ such that } \forall n>n_{0}, \; f(n)\geq k\cdot g(n)
 \end{equation}
 
 Definition : $f \in \Theta(g)$
 \begin{equation}
-\exists k_1,k_2>0 \; \rm{and} \; \exists n_{0} \; \rm{such} \; \rm{that} \; \forall n>n_{0}, \; k_1\cdot g(n) \geq f(n)\geq k_2\cdot g(n)
+\exists k_1,k_2>0 \text{ and } \exists n_{0} \text{ such that } \forall n>n_{0}, \; k_1\cdot g(n) \geq f(n)\geq k_2\cdot g(n)
 \end{equation}
 
 These 3 satisfy the conditions of an [equivalence relation](https://en.wikipedia.org/wiki/Equivalence_relation), $\Theta$, and a [pre-order](https://en.wikipedia.org/wiki/Preorder) $O$ or $\Omega$ (or a [partial
@@ -63,9 +63,7 @@ $f \; O \; g$ nor $g \; O \; f$. These two functions are incomparable.
 While we can construct $f,g$ that cannot be compared we can define $h(n) = \max(f(n),g(n))$. Then $f \; O \; h$ and $g \; O \; h$ making $O$
 a [directed pre-order](https://en.wikipedia.org/wiki/Directed_set). 
 
-<I am curious restriction we can make on the space of functions to remove the
-non-comparable pairs. Clearly restriction to monotonic functions removes the
-non-comparable pair introduced above.>
+*Open: What restrictions on the space of functions remove all non-comparable pairs? Restricting to monotonic functions removes the example above — are there cleaner characterizations?*
 
 ### Equivalence Classes of $\Theta$
 
@@ -83,7 +81,7 @@ With just these elements and their products we already have fairly large quotien
 
 How do the operations of the original function space descend to the quotient?
 
-For addition there are 2 cases, $f\;O\;g$, $f\;Theta\;g$ that we can handle easily.
+For addition there are 2 cases, $f\;O\;g$, $f\;\Theta\;g$ that we can handle easily.
 
 1. For $f\;O\;g$, $\Theta(f) + \Theta(g) = \Theta(g)$
 2. For $f\;\Theta\;g$, $\Theta(f) + \Theta(g) = \Theta(f)$ (or g).
@@ -113,10 +111,10 @@ $f \;\Theta\; g$ implies that for some $N$, $\beta g(n) < f(n) < \alpha g(n)$ fo
 
 This implies that
 
-$\rm{limsup} \;g/f$ and $\rm{liminf} \;g/f$ are finite. ([liminf/limsup](https://en.wikipedia.org/wiki/Limit_superior_and_limit_inferior))
+$\operatorname{limsup} \;g/f$ and $\operatorname{liminf} \;g/f$ are finite. ([liminf/limsup](https://en.wikipedia.org/wiki/Limit_superior_and_limit_inferior))
 
-Conversely if $\rm{limsup} \;g/f$ and $\rm{liminf} \;g/f$ are each finite then for $\epsilon > 0$, $\exists N$ such
-that $M > N$ implies that $sup_{n > M} (g(n)/f(n)) < \beta + \epsilon$ and $inf_{n<>M} g(n)/f(n) > \alpha - \epsilon$.
+Conversely if $\operatorname{limsup} \;g/f$ and $\operatorname{liminf} \;g/f$ are each finite then for $\epsilon > 0$, $\exists N$ such
+that $M > N$ implies that $\sup_{n > M} (g(n)/f(n)) < \beta + \epsilon$ and $\inf_{n > M} g(n)/f(n) > \alpha - \epsilon$.
 
 So $g(n) / f(n) < \beta + \epsilon$ for all $n > N$
 
@@ -128,7 +126,7 @@ More general asymptotics
 Thinking about asymptotic behavior as $N \rightarrow \infty$ makes me curious about more
 general definitions.
 
-1. To say $f(x) = O(g(x))$ as $x \rightarrow a$ if $limsup_{x \rightarrow a} f/g$ is finite.
+1. To say $f(x) = O(g(x))$ as $x \rightarrow a$ if $\operatorname{limsup}_{x \rightarrow a} f/g$ is finite.
 
     $\exists M > 0, \delta$ such that
     $|f(x)| \leq M|g(x)|$
@@ -138,6 +136,6 @@ general definitions.
 2. For a more general topology $X$ looking at the asymptotic behavior near
     $a \in X$ we take open neighborhoods of $U$ of $a$.
 
-    $limsup_{x \rightarrow a} f = inf_{ U \ni a} \left[sup_{x \in U - \{a\}} f(x) \right]$
+    $\operatorname{limsup}_{x \rightarrow a} f = \inf_{ U \ni a} \left[\sup_{x \in U - \{a\}} f(x) \right]$
 
-    Allowing us to again say $f(x) = O(g(x))$ as $x \rightarrow a$ if $limsup_{x \rightarrow a} f/g$ is finite.
+    Allowing us to again say $f(x) = O(g(x))$ as $x \rightarrow a$ if $\operatorname{limsup}_{x \rightarrow a} f/g$ is finite.
