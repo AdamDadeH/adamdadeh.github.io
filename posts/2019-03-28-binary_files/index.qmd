@@ -3,15 +3,10 @@ title: 'Editing Binary Data : Gran Turismo 2'
 date: '2019-03-28'
 categories:
 - Fun
-description: ''
+description: 'Reverse-engineering Gran Turismo 2 save files: binary diffing with `cmp`, locating the CRC32, and patching bytes with `dd` and `xxd`.'
 ---
 
-Topics:
------ 
-* Tools for analyzing and modifying binary files. (`cmp`, `dd`, `xxd`)
-* Inferring the format of binary files.
-
-When sitting down to play through Gran Turismo 2 with a young child I faced a conflict. I wanted to field frequent requests to purchase and race new cars while not dedicating play time to grind for credits (together or on my own). Despite owning the physical game and console(s) capable of playing it - I prefer emulating to use of the ability to save anywhere and fast forward. Playing on a emulator also raised the possibility of accessing and modifying save states. Thus began a detour into the feasibility of editing the GT2 save files.
+Playing Gran Turismo 2 with a young child created a conflict: frequent requests to buy and race new cars, zero interest in grinding for credits. Running on an emulator (OpenEmu + Mednafen on macOS) raised the possibility of editing save files directly. Thus began a detour into binary file forensics.
 
 Challenge 1 : Where are save files? 
 -----
@@ -147,10 +142,10 @@ Lets try!
 890a3d26
 ```
 
-Hm that has nothing to in common with the bytes. It is curious though how much of the save file is empty - leading to realization that this save represents an entire playstation memory card and it is possible that not all the first 40604 bytes are for GT2. A memory card had 1Mb or 128 kilobyte of storage  ([[Sony Playstation Memory Card - HwB](http://www.hardwarebook.info/Sony_Playstation_Memory_Card)]) with 15 `blocks`  and a GT2 took up 4 blocks. Each block then was likely 8 kilobytes or 8092 bytes. We have a total of 40604 bytes an extra 8092 over the expected 4*8092. So perhaps the memory card has an extra file
+Hm that has nothing to in common with the bytes. It is curious though how much of the save file is empty - leading to realization that this save represents an entire playstation memory card and it is possible that not all the first 40604 bytes are for GT2. A memory card had 1Mb or 128 kilobyte of storage  ([[Sony Playstation Memory Card - HwB](http://www.hardwarebook.info/Sony_Playstation_Memory_Card)]) with 15 `blocks`  and a GT2 took up 4 blocks. Each block then was likely 8 kilobytes or 8192 bytes. We have a total of 40604 bytes an extra 8192 over the expected 4*8192. So perhaps the memory card has an extra file
 
 ```
-> dd skip=8092 count=32412 if=gt2_base.mcr of=gt2_data bs=1
+> dd skip=8192 count=32412 if=gt2_base.mcr of=gt2_data bs=1
 > crc32 gt2_data 
 
 32412+0 records in
