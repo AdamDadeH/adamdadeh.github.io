@@ -1,0 +1,196 @@
+---
+title: Symmetries in Machine Learning II
+date: '2020-02-22'
+categories:
+- Math
+- Machine Learning
+description: 'The quotient space is the right object but has no obvious coordinates. Fourier modes on the cyclic group give the answer — and a concrete learning problem shows the sample complexity cost of ignoring symmetry.'
+draft: true
+---
+
+*Continuation of [Symmetries in Machine Learning I](/posts/2020-02-22-symmetries-in-ml-1/). Part I established that invariant functions factor through the quotient $X/\sim_\phi$ — but the quotient lacks obvious coordinates. This part asks: what coordinates exist, and what is the cost of not using them?*
+
+---
+
+## The Coordinate Problem Revisited
+
+From Part I: the quotient $X/\sim_\phi$ for $X = (\mathbb{Z}_N \to \mathbb{Z}_2)$ under cyclic translation reduces to counting necklaces — a hard combinatorics problem with no natural coordinate system.
+
+Before reaching for representation theory, it is worth asking what the quotient looks like for the slightly simpler case $X = (\mathbb{Z}_N \to \mathbb{R})$.
+
+*[Move real-valued quotient analysis from Part I here]*
+
+The quotient has structure for "generic" functions — the complement of functions with a unique maximum has measure zero, so almost every equivalence class has a canonical representative (rotate to put the maximum at 0). But "canonical representative" is not the same as "useful coordinate system for learning."
+
+---
+
+## The Cost of Ignoring Symmetry
+
+Two concrete learning problems, both with rotation-invariant labels.
+
+### Experiment 1: Predict Max Run Length
+
+- **Input**: binary string $x \in \mathbb{Z}_2^N$, generated uniformly at random
+- **Target**: max run length — longest run of consecutive 1s in the circular string
+- **Label is rotation-invariant**: rotating $x$ doesn't change its run structure
+
+```python
+import numpy as np
+
+def max_run_length(x):
+    """Max run of 1s in circular binary string."""
+    x2 = np.concatenate([x, x])  # circular via doubling
+    max_run, run = 0, 0
+    for b in x2[:len(x) + max_run]:
+        run = run + 1 if b == 1 else 0
+        max_run = max(max_run, run)
+    return max_run
+
+def generate_data(N, n_samples):
+    X = np.random.randint(0, 2, (n_samples, N))
+    y = np.array([max_run_length(x) for x in X])
+    return X, y
+```
+
+- **Features A**: raw bits — not rotation-invariant. Model trained on `11000` hasn't seen `01100`.
+- **Features B**: autocorrelation $R_x(\tau) = \sum_n x(n)x(n-\tau)$ — rotation-invariant, degree-2, no canonical form.
+
+```python
+def autocorrelation_features(X):
+    N = X.shape[1]
+    return np.array([
+        [np.sum(x * np.roll(x, tau)) for tau in range(N)]
+        for x in X
+    ])
+```
+
+*[Sweep sample size, compare prediction error for same model on Features A vs B. The gap is the cost of ignoring symmetry.]*
+
+---
+
+### Experiment 2: English vs Gibberish
+
+- **Input**: random cyclic rotation of a fixed-length character string
+- **Label**: is any rotation of this string a valid English word?
+
+```python
+def is_english_orbit(s, dictionary):
+    """Rotation-invariant English check — no canonical form."""
+    return any(s[i:] + s[:i] in dictionary for i in range(len(s)))
+```
+
+- **Positive**: randomly pick an English word, apply a random character rotation
+- **Negative**: random character strings where no rotation is in the dictionary
+- **Features A**: raw character one-hot encoding — not rotation-invariant
+- **Features B**: circular character bigram counts — degree-2, rotation-invariant
+
+```python
+def bigram_features(s, vocab_size=128):
+    """Circular bigram counts — same for all rotations."""
+    n = len(s)
+    counts = np.zeros((vocab_size, vocab_size))
+    for i in range(n):
+        counts[ord(s[i]), ord(s[(i+1) % n])] += 1
+    return counts.flatten()
+```
+
+No canonical form anywhere. The label is defined by orbit intersection with the dictionary, checked by iterating rotations directly.
+
+---
+
+## Fourier Coordinates on the Quotient
+
+The cyclic group $\mathbb{Z}_N$ has a natural set of coordinates from its irreducible representations — the characters:
+
+$$\chi_k(n) = e^{2\pi i k n / N}, \quad k = 0, 1, \ldots, N-1$$
+
+The Discrete Fourier Transform decomposes any function $x : \mathbb{Z}_N \to \mathbb{C}$ into frequency components:
+
+$$\hat{x}(k) = \sum_{n=0}^{N-1} x(n) e^{-2\pi i k n / N}$$
+
+Under translation by $m$, the DFT transforms as:
+
+$$\widehat{\phi_m \cdot x}(k) = e^{-2\pi i k m / N} \hat{x}(k)$$
+
+Translation acts by phase rotation on each frequency component. The **magnitude** $|\hat{x}(k)|$ is translation-invariant — the power spectrum is the natural invariant coordinate on the quotient.
+
+A natural hierarchy of invariant featurizations is ordered by the degree of the polynomial in $x$:
+
+**Degree 1 — linear invariants.** The only translation-invariant linear functional of $x : \mathbb{Z}_N \to \mathbb{R}$ is the mean $\sum_n x(n)$ — the DC component $\hat{x}(0)$. Very few invariants at this level.
+
+The Fourier modes $\chi_k(n) = e^{2\pi i k n/N}$ are eigenstates of translation:
+
+$$\phi_m \cdot \hat{x}(k) = e^{-2\pi i k m/N}\,\hat{x}(k)$$
+
+Translation acts on each mode by a phase rotation — each frequency is a pure eigenstate. Taking the absolute value $|\hat{x}(k)|$ projects out the phase, collapsing the entire orbit under translation to a single invariant value. The power spectrum is: **diagonalize translation, then kill the phase**.
+
+This is distinct from orbit averaging. Orbit averaging a linear functional $L(x) = \sum_n a_n x(n)$ gives:
+
+$$\bar{L}(x) = \frac{1}{N}\sum_{m=0}^{N-1} L(\phi_m \cdot x) = \left(\frac{1}{N}\sum_m a_{n+m}\right) \sum_n x(n)$$
+
+The coefficient of each $x(n)$ becomes the same constant — orbit averaging any linear functional collapses to a constant times the mean. One number. Beyond the mean, orbit averaging of linear maps gives nothing.
+
+The absolute value trick works because translation acts by phase on Fourier eigenstates — a nonlinear operation ($|z|^2 = z\bar{z}$, degree 2) that is phase-invariant by construction, without averaging. For a general group or a non-diagonalizable action this shortcut may not exist, and orbit averaging is all you have — which is why it produces so little.
+
+**Degree 2 — quadratic invariants.** The autocorrelation
+
+$$R_x(\tau) = \sum_n x(n)\, x(n - \tau)$$
+
+is quadratic in $x$ and translation-invariant. The power spectrum $|\hat{x}(k)|^2$ is its Fourier transform (Wiener-Khinchin theorem) — so the power spectrum is a degree-2 invariant, not a special choice but the natural one at this level. Incomplete in general: two inequivalent functions can share the same autocorrelation.
+
+**Degree 3 — cubic invariants.** The bispectrum
+
+$$B(k_1, k_2) = \hat{x}(k_1)\,\hat{x}(k_2)\,\overline{\hat{x}(k_1 + k_2)}$$
+
+is cubic in $x$ and translation-invariant. A complete invariant for generic signals on $\mathbb{Z}_N$ — it recovers the equivalence class up to a set of measure zero.
+
+**Degree $k$ — $k$-th order polyspectra.** Completeness increases with degree at higher computational cost. The choice of degree is a design decision: which equivalence classes the task requires separating, and at what cost.
+
+*[Develop: what degree is sufficient for the $\mathbb{Z}_N \to \mathbb{Z}_2$ classification problem? Is degree 2 ever sufficient?]*
+
+---
+
+## Three Approaches to Symmetry
+
+Given a task with known symmetry, three approaches to encoding it:
+
+**1. Data augmentation** — apply the group to each training sample, enlarging the dataset. For $\mathbb{Z}_N$ this means adding all $N$ rotations of each example. Sample complexity scales as $N \times |\text{equivalence classes}|$. The model learns the symmetry from data rather than encoding it — no architectural constraint, but expensive in samples.
+
+**2. Invariant featurization** — preprocess inputs into invariant features (power spectrum, canonical representative) before the model. Sample complexity scales with $|\text{equivalence classes}|$. The symmetry is handled entirely upstream; the model is unconstrained.
+
+**3. Equivariant model components** — build the symmetry into the architecture (group-equivariant convolutions, Cohen & Welling). The model sees the full input but is constrained by construction to produce equivariant outputs. Equivariance is maintained through the computation graph, collapsed to invariance at the output layer.
+
+### When Are Approaches 2 and 3 Equivalent?
+
+If the task output is truly invariant — classification, where the label doesn't change under transformation — then approaches 2 and 3 are equivalent **under two conditions**:
+
+This is the universal property of quotients. An invariant function $f : X \to Y$ factors as $f = g \circ \pi$ where $\pi : X \to X/\sim$ is the quotient map. Invariant featurization IS $\pi$; the model is $g$. An equivariant architecture with an invariant output layer implements the same factorization differently.
+
+The equivalence breaks when either condition fails:
+
+1. **Equivariant output tasks** — bounding box detection, pose estimation — the output must transform *with* the input. Invariant featurization discards exactly the information needed. Equivariant architectures are strictly necessary.
+
+2. **Incomplete featurization** — invariant featurization is only equivalent if the chosen $\pi$ separates all equivalence classes (a complete invariant). Many invariant featurizations are incomplete — they collapse some distinct equivalence classes together, losing information that an equivariant architecture retains. Whether completeness matters depends on the task; an incomplete invariant may still be sufficient if the collapsed classes are irrelevant to the output.
+
+**Precise statement**: strictly invariant featurization with a *complete* invariant is equivalent to an equivariant architecture with an invariant output layer. Weaken either condition and the equivalence breaks.
+
+## Connection to Existing Work
+
+This framing — invariant functions factor through quotients, and representation theory provides coordinates on those quotients — is the core of several lines of work in geometric and categorical machine learning.
+
+**Cohen & Welling (2016)** — [Group Equivariant Convolutional Networks](https://arxiv.org/abs/1602.07576). The foundational paper on equivariant networks. Convolution over groups as the natural equivariant operation; feature maps that transform predictably under group action.
+
+**Bronstein et al. (2021)** — [Geometric Deep Learning: Grids, Groups, Graphs, Geodesics, and Gauges](https://arxiv.org/abs/2104.13478). The full blueprint: CNNs, GNNs, Transformers, and beyond unified under the principle of equivariance to symmetry groups. The quotient / invariant feature perspective is Section 3.
+
+**Gavranović et al. (2024)** — [Categorical Deep Learning: An Algebraic Theory of Architectures](https://arxiv.org/abs/2402.15332). The categorical formulation — architectures as functors, equivariance as naturality. Closest in spirit to the quotient + representation theory framing here.
+
+**Note**: this investigation was developed independently and in parallel — the framing via quotient spaces and representation-theoretic coordinates reaches the same conclusions from a different starting point. The purpose here is understanding, not novelty.
+
+---
+
+## Open Questions
+
+- When is the power spectrum a complete invariant for $\mathbb{Z}_N$? For general groups?
+- The Fourier approach works cleanly for abelian groups ($\mathbb{Z}_N$). For non-abelian groups the irreducible representations have dimension $> 1$ — how does the coordinate picture change?
+- How does the sample complexity argument generalize beyond $\mathbb{Z}_N \to \mathbb{Z}_2$?
+- Connection to the convolutions post: the convolution theorem says $\widehat{f * g} = \hat{f}\hat{g}$ — convolution in the original domain is pointwise multiplication in Fourier coordinates. Is convolution the natural operation on invariant features?
