@@ -7,18 +7,12 @@ categories:
 description: 'The uniqueness proof for identity elements is clean — but left and right identities can be non-unique, and software occasionally produces near-identities that break the axioms. The right fix is to quotient them away.'
 ---
 
-One of my first exposures to the art of proof was
-proving the uniqueness of the additive identity.
-At the convergence of thoughts about algebraic structures
-in the context of category theory and exposure to curious
-binary operations from digging through legacy code -
-I found myself brought full circle recently with a
-re-investigation identity elements.
+One of my first exposures to the art of proof was proving the uniqueness of the additive identity. Digging through legacy code recently — and encountering binary operations that almost had identity elements but not quite — brought me back to it.
 
-This investigation covers
+Two questions worth pinning down:
 
 1. What are the minimal conditions for uniqueness of an identity?
-2. Understanding when uniqueness fails.
+2. Understanding when uniqueness fails — and what to do about it.
 
 Definitions
 -----------
@@ -94,7 +88,7 @@ concat([3, 2, 4] , [7, 8, 9, 1]) = [3, 2, 4, 7, 8, 9, 1]
 
 Given a set $X$ we can define the set $Option[X] = \{None\} \cup \{Some(x) \vert x \in X\}$. These are particularly helpful for any case where data may be missing.
 
-Suppose we want to extend the definition of $$concat$$ to ```Option[List[Int]]```
+Suppose we want to extend the definition of `concat` to `Option[List[Int]]`
 
 ```scala
 concatenate : (Option[List[Int]], Option[List[Int]]) => Option[List[Int]]
@@ -148,7 +142,7 @@ If $X$ decomposes into a set $I$ of $X - I$ near identity
 elements for binary operation $b$. We can then quotient $(X, b)$
 by an equivalence relation equating all elements in $I$.
 
-$Y = X/\tilde{} = X-I \cup \{I\}$
+$Y = X/{\sim} = (X - I) \cup \{I\}$
 
 $b' : Y \times Y \rightarrow Y$ :
 
@@ -177,4 +171,4 @@ are near identities for $Option[List[Int]] - \{None, Some([])\}$.
 We can quotient this with equivalence relation $Some([]) \sim None$
 The quotient gets us back to `(List[Int], concatenate)` - so entirely avoiding the `Option`.
 
-This is as far as I will follow this rabbit hole.
+The quotient collapses the near-identities into a single true identity, recovering a cleaner algebraic structure from a messy one — which is the whole point of the construction.

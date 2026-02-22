@@ -5,6 +5,7 @@ categories:
 - Software
 - Eng
 description: ''
+draft: true
 ---
 
 As much as I prefer nearly any other language to Bash (or other Shell scripting)

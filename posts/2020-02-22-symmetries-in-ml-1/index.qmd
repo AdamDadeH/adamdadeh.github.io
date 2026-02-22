@@ -4,12 +4,11 @@ date: '2020-02-22'
 description: 'Invariance and covariance under a group of transformations, made precise. The idealized example — translation-invariant functions on cyclic bit strings — reduces to counting necklaces, and the quotient space lacks obvious coordinates.'
 ---
 
-In this digression into the topic of symmetries in Machine Learning we
+Exact symmetries in machine learning problems are rare — but when they exist, ignoring them is costly. A model that doesn't know translation is a symmetry has to learn each translated version of a pattern separately. One that does can work directly on the quotient space of equivalence classes.
 
-* Define invariance and covariance of supervised ML under a family of transformations.
-* Present a simple idealized supervised learning problem with symmetries to explore the concept.
+The quotient is the right mathematical object. The problem is that it often has no obvious coordinates. This post defines invariance and covariance precisely, works through an idealized example that makes the coordinate problem concrete, and sets up the question that Part II answers via representation theory.
 
-This investigation is inspired by [Invariant Information Clustering](https://arxiv.org/abs/1807.06653) in which the concept that a model should be invariant under certain transformations is leveraged for unsupervised learning.
+*Inspired by [Invariant Information Clustering](https://arxiv.org/abs/1807.06653), which leverages transformation invariance for unsupervised learning.*
 
 ### Exact Symmetries in ML
 
@@ -29,7 +28,7 @@ Symmetries are typically observed for tasks where the domain $X$ has **transform
 
 a. The outputs are **invariant** under transformation of the inputs by $\phi_{\alpha}$, so the outputs $y$ associated to $x$ and $\phi_{\alpha}(x)$ would be the same for all $\alpha$.
 
-b. The outputs are **covariant** under under $\phi_{\alpha}$ - which qualitatively means that the outputs associated to $x$ and $\phi_{\alpha}(x)$ are related in a known way.
+b. The outputs are **covariant** under $\phi_{\alpha}$ - which qualitatively means that the outputs associated to $x$ and $\phi_{\alpha}(x)$ are related in a known way.
 
 Denoting our symmetry actions $\phi_{\alpha} : X \rightarrow X$ by $\phi_{\alpha} \cdot x$ we have the requirements that the optimal $f$ given the cost
 function should satisfy.
@@ -108,21 +107,26 @@ and mapping to $([x], y)$, so using $\mathcal{D}' = \\\{ ([x], y) \vert (x,y) \i
 1. Efficiently determining which equivalence class the input $x$ belongs to may be burdensome.
 2. Where elements of $X$ could be simply expressed as elements of $\mathbb{Z}^N_2$ providing simple coordinates (features) and so a means to define a parametrized family of functions $f_{\theta}$ to optimize over - the quotient $X / \sim_{\phi}$ does not have such obvious coordinates.
 
-#### Equivalence classes of $\mathbb{Z}_N \rightarrow \mathbb{R}$
+The quotient $X/\sim_\phi$ is the right object to work with — but it has no obvious coordinates. Elements of $\mathbb{Z}_2^N$ have simple coordinates (bits); the necklace classes do not. Determining which equivalence class an input belongs to is itself non-trivial, and defining a parametrized family of functions to optimize over requires coordinates.
 
-Given that the boolean case reduces to a complex combinatorics
-problem - we can look at a slightly simpler case.
-For functions $\mathbb{Z}_N \rightarrow \mathbb{R}$
-what do the quotients look like?
+This is the central problem: **the quotient is mathematically clean but practically intractable without a coordinate system**.
 
-The 'largest' part of the quotient can be obtained for all functions having unique maximum. We can qauntify largest using the standard
-measure on $\mathbb{R}^N$. Denoting the function with unique maximum
-as $A_{unique}$ - we note that the complement $\mathbb{R}^{N} - A_{unique}$ is contained in $\\\{x \vert \exists n,m  \text{ s.t. } x(n)=x(m)\\\}$.
+### Responses to the Coordinate Problem
 
-So $\mu(\mathbb{R}^{N} - A_{unique}) \leq \mu(\\\{x \vert \exists n,m  \text{ s.t. } x(n)=x(m)\\\}) = 0$
+Five strategies, each exploiting the symmetry differently:
 
-The complement of our set of functions with unique maximum is measure 0.
+**1. Work directly with the quotient.** Map each input to its equivalence class and train on $X/{\sim_\phi}$ directly. Mathematically clean — an invariant function on $X$ is exactly a function on $X/{\sim_\phi}$. In practice this requires (a) efficiently determining which class a given input belongs to, and (b) coordinates on the quotient to parametrize a family of functions. For necklaces, neither is obvious.
 
-For any element $x$ with unique maximum we can rotate until the maximum is at 0. Any such $x$ is equivalent to an element of the set of functions with unique maximum at 0, $\\\{x  \vert x(0) > x(n) \forall n \neq 0\\\}$.
+**2. Data augmentation.** Keep raw inputs; use knowledge of the group to expand the training set. For each example $(x, y)$, add all transformed copies $(\phi_\alpha \cdot x, y)$ for every $\alpha \in G$. The model works in the original coordinates but sees enough rotations of each pattern to learn the invariance from data. The cost: sample complexity scales with $|G|$ — for $\mathbb{Z}_N$, a factor of $N$ more examples to match what invariant coordinates give for free.
 
-We can rather compactly describe the quotient as,  $\cup_y \\\{y\\\} \times [-\infty, y)^{n-1}$.
+**3. Invariant featurization.** Preprocess inputs into features that are constant across equivalence classes before the model sees them. The model implicitly operates on $X/{\sim_\phi}$ — two inputs in the same class are identical in feature space. Symmetry is handled entirely upstream; the downstream model is unconstrained.
+
+**4. Equivariant model components.** Build the symmetry into the architecture. Equivariant layers transform predictably under the group action; an invariant output layer (e.g. global pooling) collapses to a value constant across each orbit. The model operates on raw inputs but is constrained by construction to respect the symmetry.
+
+Strategies 3 and 4 are closely related. An invariant function $f : X \to Y$ factors as $f = g \circ \pi$ where $\pi : X \to X/{\sim}$ is the quotient map. Invariant featurization *is* $\pi$; the downstream model is $g$. An equivariant architecture with an invariant output implements the same factorization differently. The precise conditions under which they are equivalent is the subject of Part II.
+
+**5. Gauge fixing.** Choose a canonical representative from each equivalence class — a gauge slice that intersects each orbit exactly once. In physics, a gauge condition is an algebraic constraint on the field that selects this representative globally. The ML analogue faces a difficulty: the data arrives spread across orbits, so alignment must happen per sample. Algorithmically this means defining a deterministic canonical form (e.g. lexicographic minimum rotation) — fast, but prone to discontinuities and Gribov ambiguities where multiple rotations tie. The learned variant, [Spatial Transformer Networks](https://arxiv.org/abs/1506.02025), trains an alignment network to predict the rotation per sample; the main model then sees the aligned input. Unlike strategies 3 and 4, gauge fixing keeps raw signals and an unconstrained model, but introduces a learned normalization stage whose correctness is hard to verify.
+
+---
+
+[Part II](/drafts/2020-02-22-symmetries-in-ml-2/) takes strategies 2–4 up concretely — quantifying the sample complexity cost of ignoring symmetry and showing that the representation theory of $\mathbb{Z}_N$ (Fourier modes) provides the natural coordinates on the quotient that make strategy 3 tractable.

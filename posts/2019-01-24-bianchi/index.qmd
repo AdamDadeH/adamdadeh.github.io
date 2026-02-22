@@ -5,7 +5,7 @@ categories:
 - Physics
 - Quantum-Gravity
 - Quantum-Cosmology
-description: ''
+description: 'A fragment of unpublished research on Loop Quantum Cosmology: a simplification of the Bianchi I Hamiltonian constraint operator that reduces anisotropic dynamics to a tractable difference equation in volume.'
 ---
 
 A nearly complete fragment of a paper on Loop Quantum Cosmology identifying a simple form of
@@ -65,9 +65,9 @@ The relation of $c,p$ to the scale factor is given by
 
 
 \begin{align}
-p_1 &= sgn(a_1) |a_2 a_3| L_2 L_3 \newline\nonumber
-p_2 &= sgn(a_2) |a_1 a_3| L_1 L_3 \newline\nonumber
-p_3 &= sgn(a_3) |a_1 a_2| L_1 L_2
+p_1 &= \operatorname{sgn}(a_1) |a_2 a_3| L_2 L_3 \\
+p_2 &= \operatorname{sgn}(a_2) |a_1 a_3| L_1 L_3 \\
+p_3 &= \operatorname{sgn}(a_3) |a_1 a_2| L_1 L_2
 \end{align}
 
 
@@ -114,7 +114,7 @@ In the holonomy representation the Hilbert space consists of wave functions $\Ps
 
 
 \begin{equation}
-|| \Psi ||^2 = \underset{\alpha \rightarrow \infty}{lim} \frac{1}{2\alpha} \int_{-\alpha}^{\alpha} \textrm{d} c |\Psi(c)|^2
+|| \Psi ||^2 = \underset{\alpha \rightarrow \infty}{\lim} \frac{1}{2\alpha} \int_{-\alpha}^{\alpha} \textrm{d} c |\Psi(c)|^2
 \end{equation}
 
 
@@ -148,7 +148,7 @@ The 'fourier transform' between these two representations is given by
 
 
 \begin{equation}
-\tilde{\Psi}(p) =  \underset{\alpha \rightarrow \infty}{lim} \frac{1}{2\alpha} \int_{-\alpha}^{\alpha} \textrm{d} c \,e^{i c p} \Psi(c)
+\tilde{\Psi}(p) =  \underset{\alpha \rightarrow \infty}{\lim} \frac{1}{2\alpha} \int_{-\alpha}^{\alpha} \textrm{d} c \,e^{i c p} \Psi(c)
 \end{equation}
 
 
@@ -181,15 +181,11 @@ in terms of the basic variables, which requires writing the curvature in terms o
 
 From the non-existence of an operator corresponding to the connection the limit $Ar_\Box\rightarrow 0$ does not exist.  If we chose the physical area of the loop to be the smallest area eigenvalue of loop quantum gravity, the lengths of the holonomies are fixed to be
 
-$$
-\begin{align} \label{ mubar}
-\bar\mu_1 = \sqrt\frac{|p_1|\Delta{\ell}_{\rm Pl}^2}{|p_2p_3|} \newline\nonumber
-\bar\mu_2 = \sqrt\frac{|p_2|\Delta{\ell}_{\rm Pl}^2}{|p_1p_3|}
-\newline \nonumber
-\bar\mu_3 = \sqrt\frac{|p_3|\Delta\,{\ell}_{\rm Pl}^2}{|p_1p_2|}
-\newline
+\begin{align}
+\bar\mu_1 &= \sqrt\frac{|p_1|\Delta{\ell}_{\rm Pl}^2}{|p_2p_3|} \\
+\bar\mu_2 &= \sqrt\frac{|p_2|\Delta{\ell}_{\rm Pl}^2}{|p_1p_3|} \\
+\bar\mu_3 &= \sqrt\frac{|p_3|\Delta\,{\ell}_{\rm Pl}^2}{|p_1p_2|}
 \end{align}
-$$
 
 and the constraint is written in terms of operators
 
@@ -228,9 +224,9 @@ The action of the constraint on wave functions of $\lambda_1,\lambda_2$, and $v$
 
 
 \begin{align}
-\Theta \Psi(\lambda_1,\lambda_2,v) = \frac{\pi G}{2} \sqrt{v} &\left[-(v+2) \sqrt{v+4} \Psi_4^+(\lambda_1,\lambda_2,v) \right. \newline\nonumber
-& +(v+2) \sqrt{v} \Psi_0^+ (\lambda_1,\lambda_2,v) \newline\nonumber
-& +(v-2) \sqrt{v} \Psi_0^- (\lambda_1,\lambda_2,v) \newline \nonumber
+\Theta \Psi(\lambda_1,\lambda_2,v) = \frac{\pi G}{2} \sqrt{v} &\left[-(v+2) \sqrt{v+4} \Psi_4^+(\lambda_1,\lambda_2,v) \right. \\
+& +(v+2) \sqrt{v} \Psi_0^+ (\lambda_1,\lambda_2,v) \\
+& +(v-2) \sqrt{v} \Psi_0^- (\lambda_1,\lambda_2,v) \\
 & \left.- (v-2) \sqrt{v-4} \Psi_4^-(\lambda_1,\lambda_2,v) \right]
 \end{align}
 
@@ -241,11 +237,10 @@ Which surprisingly acts as a difference operator in the volume v much like the F
 \begin{align}
 \Psi^\pm_4(\lambda_1,\lambda_2,v)=\,& \Psi\left(\frac{v\pm4}{v\pm2}\lambda_1,\frac{v\pm2}{v}\lambda_2,
 v\pm4\right)+\Psi\left(\frac{v\pm4}{v\pm2}\lambda_1,\lambda_2,
-v\pm4\right)\nonumber\newline
+v\pm4\right) \\
 & +\Psi\left(\frac{v\pm2}{v}\lambda_1,
 \frac{v\pm4}{v\pm2}\lambda_2,v\pm4\right)+\Psi
-\left(\frac{v\pm2}{v}\lambda_1, \lambda_2,v\pm4\right)\nonumber
-\newline
+\left(\frac{v\pm2}{v}\lambda_1, \lambda_2,v\pm4\right) \\
 &+\Psi\left(\lambda_1,\frac{v\pm2}{v}\lambda_2,
 v\pm4\right)+\Psi\left(\lambda_1,\frac{v\pm4}{v\pm2}\lambda_2,v\pm4\right)
 \end{align}
@@ -253,13 +248,11 @@ v\pm4\right)+\Psi\left(\lambda_1,\frac{v\pm4}{v\pm2}\lambda_2,v\pm4\right)
 
 
 \begin{align}
-\label{qham8}
 \Psi^\pm_0(\lambda_1,\lambda_2,v)=\,
 & \Psi\left(\frac{v\pm2}{v}\lambda_1, \frac{v}{v\pm2}\lambda_2,v\right)
-+\Psi\left(\frac{v\pm2}{v}\lambda_1,\lambda_2,v \right)\nonumber \newline
++\Psi\left(\frac{v\pm2}{v}\lambda_1,\lambda_2,v \right) \\
 &+\Psi\left(\frac{v}{v\pm2}\lambda_1,\frac{v\pm2}{v}\lambda_2,v
-\right)+\Psi\left(\frac{v}{v\pm2}\lambda_1,\lambda_2,v\right)\nonumber
-\newline
+\right)+\Psi\left(\frac{v}{v\pm2}\lambda_1,\lambda_2,v\right) \\
 & +\Psi\left(\lambda_1,\frac{v}{v\pm2}\lambda_2,v\right)+\Psi\left(\lambda_1,\frac{v\pm2}{v}
 \lambda_2,v\right)
 \end{align}
@@ -270,13 +263,13 @@ Where the action on the volume picks out nice invariant lattices.  It can be see
 Simplification of Constraint
 ----------------
 
-Now we introduce a further simplification of the constraint.  The first step is to introduce the simple change of variables $x_i = \ln(\lambda_i$.  Under this change multiplicative shifts in $\lambda_i$ become translations in $x_i$.  The range of variables goes from $\lambda$ ranging from $(0,\infty)$ to $x$ ranging from $(-\infty,\infty)$.  And the measure changes simply since the change of variables in one to one $\sum_\lambda = \sum_x$.  Further it is simple to see that the constraint commutes with all translations in $x$.  We can then simultaneously diagonalize the constraint operator and the operators'
+Now we introduce a further simplification of the constraint.  The first step is to introduce the simple change of variables $x_i = \ln(\lambda_i)$.  Under this change multiplicative shifts in $\lambda_i$ become translations in $x_i$.  The range of variables goes from $\lambda$ ranging from $(0,\infty)$ to $x$ ranging from $(-\infty,\infty)$.  And the measure changes simply since the change of variables in one to one $\sum_\lambda = \sum_x$.  Further it is simple to see that the constraint commutes with all translations in $x$.  We can then simultaneously diagonalize the constraint operator and the operators'
 generating translations.
 
 
 \begin{align}
-U_1(a) \Psi(\lambda_1,\lambda_2,v) = \Psi(\lambda_1+a,\lambda_2,v) \newline
-\left[ \Theta, U_i(a) \right] = 0
+U_1(a) \Psi(\lambda_1,\lambda_2,v) &= \Psi(\lambda_1+a,\lambda_2,v) \\
+\left[ \Theta, U_i(a) \right] &= 0
 \end{align}
 
 
@@ -292,8 +285,8 @@ Surprisingly in this representation the constraint takes a very simple form, nam
 
 
 \begin{align}
-\Theta \Psi(m_1,m_2, v) = &-f_+^4(m_1,m_2,v) \Psi(m_1,m_2,v+4) \newline\nonumber
-&+ (f_+^0+f_-^0) \Psi(m_1,m_2,v)\newline\nonumber
+\Theta \Psi(m_1,m_2, v) = &-f_+^4(m_1,m_2,v) \Psi(m_1,m_2,v+4) \\
+&+ (f_+^0+f_-^0) \Psi(m_1,m_2,v) \\
 & - f_-^4(m_1,m_2,v) \Psi(m_1,m_2,v-4)
 \end{align}
 
@@ -325,9 +318,9 @@ We have seen that by carrying out a fourier transform to the variables conjugate
 
 
 \begin{align}
-x_i = \ln \left( \frac{\sqrt{|p_i|}}{(4\pi |\gamma|\,
-\sqrt\Delta\, {\ell}_{\rm Pl}^3)^{1/3}} \right) \newline
-m_1 = 2(p_1 c_1 - p_3 c_3) \quad m_2 = 2(p_2 c_2 - p_3 c_3)
+x_i &= \ln \left( \frac{\sqrt{|p_i|}}{(4\pi |\gamma|\,
+\sqrt\Delta\, {\ell}_{\rm Pl}^3)^{1/3}} \right) \\
+m_1 &= 2(p_1 c_1 - p_3 c_3) \quad m_2 = 2(p_2 c_2 - p_3 c_3)
 \end{align}
 
 
@@ -349,7 +342,7 @@ b = \frac{2}{3 v} (p_1 c_1 + p_2 c_2 + p_3 c_3)
 
 So we can similarly that the $m_i$ commute with the conjugate to the volume.  We then have a canonical transformation from $(c_i,p_i)$ to $(x_i,m_i,v,b)$.  Recall that classically $p_i c_i$ was related to the hubble rate in the i-th direction.  The $m_i$ then define the difference in the Hubble rates between the 3 direction - or describe the anisotropy of the system.
 
-We then see that taking $m_i=0$ is equivalent to enforcing isotropy, and indeed if $m_i=0$ the constraint reduces to that of the $k=0$ FRLW model.  How does this projection compare with that done in \cite{aew}.  The original projection introduced was,
+We then see that taking $m_i=0$ is equivalent to enforcing isotropy, and indeed if $m_i=0$ the constraint reduces to that of the $k=0$ FLRW model.  How does this projection compare with the original?  The original projection introduced was,
 
 
 \begin{equation}
@@ -361,17 +354,15 @@ Translating this to the variables $x_i$ and then taking the fourier transform we
 
 
 \begin{equation}
-\Psi_{FRW} = \sum_{x_1,x_2}  \underset{\alpha \rightarrow \infty}{lim} \frac{1}{2\alpha_1} \int_{-\alpha_1}^{\alpha_1} \textrm{d} m_1  \underset{\alpha \rightarrow \infty}{lim} \frac{1}{2\alpha_2} \int_{-\alpha_2}^{\alpha_2} \textrm{d} m_2 e^{i m_1 x_1} e^{i m_2 x_2} \Psi(m_1,m_2,v)
+\Psi_{FRW} = \sum_{x_1,x_2}  \underset{\alpha \rightarrow \infty}{\lim} \frac{1}{2\alpha_1} \int_{-\alpha_1}^{\alpha_1} \textrm{d} m_1  \underset{\alpha \rightarrow \infty}{\lim} \frac{1}{2\alpha_2} \int_{-\alpha_2}^{\alpha_2} \textrm{d} m_2 e^{i m_1 x_1} e^{i m_2 x_2} \Psi(m_1,m_2,v)
 \end{equation}
 
 
 which reduces to
 
-$$
 \begin{equation}
-\Psi(v)_{FRW} =  \underset{\alpha \rightarrow \infty}{lim} \frac{1}{2\alpha_1} \int_{-\alpha_1}^{\alpha_1} \textrm{d} m_1  \underset{\alpha \rightarrow \infty}{lim} \frac{1}{2\alpha_2} \int_{-\alpha_2}^{\alpha_2} \textrm{d} m_2 \bar\delta(m_1) \bar\delta(m_2) \Psi(m_1,m_2,v) = \Psi(0,0,v)
+\Psi(v)_{FRW} =  \underset{\alpha \rightarrow \infty}{\lim} \frac{1}{2\alpha_1} \int_{-\alpha_1}^{\alpha_1} \textrm{d} m_1  \underset{\alpha \rightarrow \infty}{\lim} \frac{1}{2\alpha_2} \int_{-\alpha_2}^{\alpha_2} \textrm{d} m_2 \bar\delta(m_1) \bar\delta(m_2) \Psi(m_1,m_2,v) = \Psi(0,0,v)
 \end{equation}
-$$
 
 Where $\bar\delta(m)$ is the generalization of the Dirac delta distribution for the Bohr compactification, defined here in terms of its Fourier transform.
 
@@ -390,13 +381,11 @@ We can carry out an asymptotic expansion of the difference equation for large v,
 
 For large v the eigenvalue equation can be expanded as,
 
-$$
 \begin{align}
--f_+^4(m_1,m_2,v) \Psi(m_1,m_2,v+4)
-+ (f_+^0+f_-^0) \Psi(m_1,m_2,v)\newline\nonumber
- - f_-^4(m_1,m_2,v) \Psi(m_1,m_2,v-4) = \omega \Psi(m_1,m_2,v)
+&-f_+^4(m_1,m_2,v) \Psi(m_1,m_2,v+4) \\
+&+ (f_+^0+f_-^0) \Psi(m_1,m_2,v) \\
+&- f_-^4(m_1,m_2,v) \Psi(m_1,m_2,v-4) = \omega \Psi(m_1,m_2,v)
 \end{align}
-$$
 
 where now the functions have simplified to
 
@@ -414,17 +403,14 @@ f_{\pm}^4 \rightarrow = 6v^2 \pm 8v \left(3+i(m_1+m_2) \right)+4\left(3+4i(m_1+m
 
 We can rearrange this equation by writing
 
-$$
-\begin{eqnarray}
--f_+^4(m_1,m_2,v) \Psi(m_1,m_2,v+4)
-+ 12 v^2 \Psi(m_1,m_2,v)\\
- - f_-^4(m_1,m_2,v) \Psi(m_1,m_2,v-4) = (\omega + 8 (m_1^2 + m_2^2 + (m_1-m_2)^2)) \Psi(m_1,m_2,v)= \omega' \Psi(m_1,m_2,v)
-\end{eqnarray}
-$$
+\begin{align}
+&-f_+^4(m_1,m_2,v) \Psi(m_1,m_2,v+4) + 12 v^2 \Psi(m_1,m_2,v) \\
+&- f_-^4(m_1,m_2,v) \Psi(m_1,m_2,v-4) = (\omega + 8 (m_1^2 + m_2^2 + (m_1-m_2)^2)) \Psi(m_1,m_2,v) = \omega' \Psi(m_1,m_2,v)
+\end{align}
 
 If I can prove that the resulting left side is positive definite then we're done, but I don't think that it true.
 
-Now we have an operator whose diagonal term is postiive, so it is more natural to assume that the constraint is positive definite.  If it were we should see that the spectrum is continuous and runs from $(-m_1^2+m_2^2+(m_1-m_2)^2)$ to $\infty$.
+Now we have an operator whose diagonal term is positive, so it is more natural to assume that the constraint is positive definite.  If it were we should see that the spectrum is continuous and runs from $(-m_1^2+m_2^2+(m_1-m_2)^2)$ to $\infty$.
 
 In this case if we insert
 
