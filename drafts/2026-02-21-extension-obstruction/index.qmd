@@ -1,0 +1,105 @@
+---
+title: "Extension Obstructions: From Groups to Gödel"
+date: '2026-02-21'
+categories:
+- Math
+- Logic
+description: 'A consistent partial assignment that cannot be extended to the whole domain — the same obstruction appears in group theory, measure theory, and logic, at every level of the valuation spectrum.'
+draft: true
+---
+
+*Fragment — ideas in order, prose not yet polished.*
+
+---
+
+## The Basic Pattern
+
+A recurring structure across mathematics:
+
+1. A domain of objects.
+2. A consistent partial assignment — a function defined on a "nice" subset of the domain.
+3. An attempt to extend it to the whole domain while preserving consistency.
+4. An obstruction: no consistent extension exists.
+
+The simplest instance: take $[0,1]^3$ with constraints $x_1 = 0$, $x_2 = 0$. These say nothing about $x_3$ — any value is consistent with the constraints. The constraint system defines a *family* of solutions parameterized by the free dimension. "$x_3 = c$" is independent for any $c$: you can add it or its negation without contradiction.
+
+This is not a pathology. It is the generic situation whenever the axioms do not uniquely determine the object.
+
+---
+
+## The Model-Theoretic Picture
+
+A mathematical theory $T$ is a set of axioms. A **model** of $T$ is any structure satisfying all the axioms. When $T$ has multiple non-isomorphic models, there will be sentences $\varphi$ true in some models and false in others — sentences that are **independent** of $T$.
+
+By Gödel's completeness theorem, a sentence is provable from $T$ iff it is true in *all* models of $T$. Independence = the models disagree.
+
+**Group theory** is the clean example. The axioms describe a family of objects — $\mathbb{Z}$, $S_3$, $GL_n(\mathbb{R})$, ... — not a single one. "For all $x, y: xy = yx$" is true in $\mathbb{Z}$, false in $S_3$. The group axioms are consistent with either extension:
+
+$$T_{\text{grp}} + \text{abelian} \quad \text{and} \quad T_{\text{grp}} + \neg\text{abelian}$$
+
+are both consistent. Abelianness is a free dimension of the theory.
+
+---
+
+## The Valuation Spectrum
+
+The extension obstruction appears at multiple levels depending on what values the assignment takes:
+
+$$\{0,1\} \longrightarrow \text{Boolean algebra} \longrightarrow [0,1] \longrightarrow [0,\infty]$$
+
+### Boolean valuation: Gödel / Tarski
+
+The proof predicate $\text{Prov}(\ulcorner\varphi\urcorner)$ is a well-defined $\{0,1\}$-valued function on sentences of arithmetic — it correctly identifies provable statements. Tarski's undefinability theorem says there is no formula $\text{True}(x)$ in the language of arithmetic that extends this to *all* sentences consistently.
+
+The Gödel sentence $G \leftrightarrow \neg\text{Prov}(\ulcorner G\urcorner)$ is the explicit obstruction: any consistent $\{0,1\}$ assignment to $G$ that agrees with provability on everything else leads to contradiction. The partial truth function cannot be extended.
+
+### Real valuation: Measure / Vitali
+
+Lebesgue measure $\mu$ is a $[0,\infty]$-valued function defined consistently on the measurable sets (a $\sigma$-algebra). The Vitali construction uses the Axiom of Choice to pick one representative from each coset of $\mathbb{R}/\mathbb{Q}$, producing a set $V$ for which no consistent extension of $\mu$ exists: any value assigned to $V$ contradicts translation invariance and countable additivity.
+
+The partial real-valued function cannot be extended.
+
+### The connection: both are diagonal arguments
+
+Both obstructions are constructed by the same move — exploiting the structure of the domain to produce an element that the partial assignment cannot consistently include:
+
+- **Vitali**: coset structure of $\mathbb{R}/\mathbb{Q}$ + AC → a set that breaks translation invariance
+- **Gödel**: fixed-point lemma + self-reference → a sentence that breaks provability = truth
+
+---
+
+## Forcing: the Boolean-Valued Bridge
+
+Cohen's forcing sits between the two cases. Rather than collapsing truth values to $\{0,1\}$ immediately, sentences are assigned values in a complete Boolean algebra $B$ (the forcing conditions). A generic ultrafilter $G \subset B$ then collapses to $\{0,1\}$, yielding an extension model $M[G]$.
+
+Different choices of $G$ give different $\{0,1\}$-valued extensions — different truths. The Continuum Hypothesis is independent of ZFC because:
+
+- Some choices of $G$ yield $M[G] \models \text{CH}$
+- Other choices yield $M[G] \models \neg\text{CH}$
+
+CH is a free dimension of ZFC, exactly like $x_3$ is a free dimension of $\{x_1=0, x_2=0\}$.
+
+**Random forcing** closes the loop to measure theory directly. The forcing conditions are measurable sets of positive measure, ordered by inclusion modulo null sets. The generic object added is a random real. Non-measurable sets and Gödel independence are not merely analogous — they are connected through the same construction at adjacent points in the valuation spectrum.
+
+---
+
+## Probability: Coherent Extension of Boolean Logic
+
+From the other direction: **Cox's theorem** says that any consistent extension of Boolean $\{0,1\}$ logic to a $[0,1]$-valued uncertainty measure must satisfy the Kolmogorov axioms. Probability is the *unique* coherent real-valued extension of classical truth.
+
+And then Vitali says: even this more flexible $[0,1]$-valued extension cannot cover all sets consistently. The obstruction persists regardless of how rich the value space is.
+
+---
+
+## The Sheaf Picture
+
+*[Develop: the general framework is sheaves and cohomology. A sheaf assigns consistent local data to open sets. The obstruction to gluing local sections into a global section is measured by $H^1$ — the first cohomology group. Non-trivial $H^1$ = the extension doesn't exist. Both Gödel and Vitali are instances of non-trivial $H^1$ in appropriate sheaf-theoretic settings. Forcing = constructing a new sheaf/site where the obstruction vanishes.]*
+
+---
+
+## Open Questions
+
+- Is there a unified cohomological statement that subsumes Gödel, Vitali, and forcing?
+- The valuation spectrum $\{0,1\} \to B \to [0,1] \to [0,\infty]$ — is there a natural category here, with the obstruction being functorial?
+- Connection to the [quotient / coordinates post](/posts/2019-02-04-quotient/): the quotient space is the "right" object but lacks coordinates. The extension obstruction is the reason coordinates may not exist globally — local coordinates (chart by chart) can't always be glued.
+- Connection to [symmetries in ML](/posts/2020-02-22-symmetries-in-ml-1/): gauge fixing is exactly the problem of extending a local canonical form to a global one. Gribov copies = the extension is not unique. Non-measurable sets = the extension doesn't exist at all.

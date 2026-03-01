@@ -1,0 +1,112 @@
+---
+title: "Constrained Dynamics and Exact Sequences"
+date: '2026-02-21'
+categories:
+- Math
+- Physics
+description: 'The relationship between generalized coordinates, constraint surfaces, and exact sequences — constraints as kernels, generalized coordinates as the parametrization of the kernel.'
+draft: true
+---
+
+*Fragment — ideas in order, prose not yet polished.*
+
+---
+
+## Constraints
+
+Three levels of constraint on a configuration space $A$:
+
+**Holonomic**: $f(x, t) = 0$
+
+Depends only on configuration and possibly time — not on velocities or the path. Defines a submanifold (the constraint surface) in $A$.
+
+**Non-holonomic**: $f(x, \dot{x}, t) = 0$
+
+Depends on velocities, and is not integrable to a position constraint. The rolling-without-slipping condition is the canonical example. *[Note: this is distinct from inequality constraints $f(x) \geq 0$, which arise in contact mechanics and optimization — worth separating.]*
+
+**Arbitrary**: $g(x, t) \in \{T, F\},\quad g(x,t) = T$
+
+A boolean-valued constraint — the feasible set is $g^{-1}(T) \subset A$. The most general case; no smoothness assumed.
+
+---
+
+## Generalized Coordinates of the Constraint Surface
+
+A standard strategy in constrained dynamics: instead of working in $A$ subject to constraints, find a **parametrization** of the constraint surface and work there directly.
+
+Given equality constraints $c_\alpha : A \to \mathbb{R}$ (for $\alpha = 1, \ldots, k$), the **constraint surface** is
+
+$$\Sigma = \{x \in A \mid c_\alpha(x) = 0 \text{ for all } \alpha\}$$
+
+**Generalized coordinates** are a map $\phi : \mathcal{Q} \to A$ such that
+
+$$c_\alpha(\phi(q)) = 0 \quad \text{for all } \alpha, q$$
+
+i.e., $\phi$ has image exactly $\Sigma$. The dynamics on $A$ restricted to $\Sigma$ can then be pulled back to unconstrained dynamics on $\mathcal{Q}$.
+
+This is the core of Lagrangian mechanics with constraints: the constraint surface is the "right" configuration space, and generalized coordinates are its chart.
+
+---
+
+## Relationship to Exact Sequences
+
+This looks exactly like an exact sequence.
+
+Write $c : A \to Z$ for the combined constraint map (where $Z = \mathbb{R}^k$ for holonomic constraints, $Z = \{T, F\}$ for boolean constraints, etc.) with a distinguished "satisfied" element $0 \in Z$. The constraint surface is $\text{Ker}(c) = c^{-1}(0)$.
+
+The generalized coordinate map gives a sequence:
+
+$$\mathcal{Q} \xrightarrow{\phi} A \xrightarrow{c} Z$$
+
+The requirement that $\phi$ parametrizes exactly the constraint surface is:
+
+$$\text{Im}(\phi) = \text{Ker}(c)$$
+
+This is **exactness at $A$**. The sequence says: $\phi$ maps into $A$, and the image of $\phi$ is precisely the kernel of $c$.
+
+To assert that $\phi$ is injective (no two distinct generalized coordinates map to the same configuration — a good parametrization):
+
+$$\emptyset \to \mathcal{Q} \xrightarrow{\phi} A \xrightarrow{c} Z$$
+
+*[Note: in the group-theoretic setting, injectivity is captured by $0 \to \mathcal{Q} \xrightarrow{\phi} A$ exact, where $0$ is the trivial group. In the set/manifold setting the left term needs care — the categorical kernel of $\phi$ being trivial is what's meant.]*
+
+The full short exact sequence, if $c$ is surjective and $\phi$ is injective:
+
+$$\emptyset \to \mathcal{Q} \xrightarrow{\phi} A \xrightarrow{c} Z \to \emptyset$$
+
+---
+
+## The Kernel Pair
+
+For a map $f : X \to Y$ between sets (without group structure), the standard notion of "kernel" is the **kernel pair**:
+
+$$\text{Ker}(f) = \{(x, x') \in X \times X \mid f(x) = f(x')\}$$
+
+This captures when $f$ fails to be injective. $f$ is injective iff $\text{Ker}(f)$ is the diagonal $\Delta_X = \{(x,x)\}$.
+
+The projection $\Pi_1(\text{Ker}(f) \setminus \Delta_X)$ gives the set of points in $X$ that have a distinct collision under $f$ — the "non-injective locus." This is empty iff $f$ is injective.
+
+In the constraint setting:
+
+- $\text{Ker}(c) \setminus \Delta_A$ non-empty means the constraint map fails to separate points — two configurations satisfy the same constraint values despite being distinct. Relevant for detecting redundant constraints.
+- $\text{Ker}(\phi) \setminus \Delta_\mathcal{Q}$ non-empty means the parametrization is not faithful — two generalized coordinates map to the same physical configuration.
+
+---
+
+## Extensions and Open Questions
+
+**Non-holonomic constraints** live on the tangent bundle $TA$ rather than on $A$. The exact sequence picture extends:
+
+$$T\mathcal{Q} \xrightarrow{d\phi} TA \xrightarrow{c_v} TZ$$
+
+where $c_v$ is the velocity-level constraint. Exactness here captures which velocity fields are compatible with the constraint — a distribution on $TA$.
+
+**Boolean constraints** ($Z = \{T, F\}$) still fit the picture: $\text{Ker}(c) = c^{-1}(T) \subset A$ is the feasible set. No smoothness assumed; the sequence is set-theoretic. Connects to the [extension obstruction post](/drafts/2026-02-21-extension-obstruction/) — the constraint map as a boolean-valued function whose kernel is the feasible region.
+
+**DAG generalization**: the user notes that exact sequences generalize naturally to directed acyclic graphs of maps, where exactness is imposed at each internal node. Constraint systems with dependencies (constraint $c_2$ only applies if $c_1$ is satisfied) fit this picture.
+
+**Connection to quotients**: the constraint surface $\Sigma = \text{Ker}(c) \subset A$ is the "right" configuration space, but may lack obvious coordinates — exactly the coordinate problem from the [quotient post](/posts/2019-02-04-quotient/). Generalized coordinates $\phi : \mathcal{Q} \to \Sigma$ are a solution when they exist. The exact sequence formalizes when they exist and are faithful.
+
+*[Develop: Lagrange multipliers as the dual picture — instead of restricting to $\text{Ker}(c)$, work on all of $A$ with an extra term in the action enforcing $c = 0$. What is the exact sequence picture for the dual?]*
+
+*[Develop: connection to the Dirac constraint formalism in classical mechanics — first-class and second-class constraints, Dirac brackets. The exact sequence picture may organize the constraint hierarchy cleanly.]*
