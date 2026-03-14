@@ -1,3 +1,30 @@
+/*-- scss:defaults --*/
+
+// Typography
+$font-display:    'Bebas Neue', sans-serif;
+$font-body:       'IBM Plex Serif', Georgia, serif;
+$font-mono:       'IBM Plex Mono', monospace;
+
+// Ground & ink
+$paper:           #F2EDE4;
+$ink:             #1A1108;
+$sidebar-bg:      #2C2A26;
+$accent-red:      #8B1A0A;
+$muted:           #4a3c2e;
+$rule-light:      #c8bfb0;
+$label:           rgba(26, 17, 8, 0.35);
+$cat-bg:          #e8e1d6;
+
+// Type scale
+$size-display:    80px;
+$size-body:       15px;
+$size-micro:      8px;
+
+// Spacing
+$sidebar-width:   160px;
+
+/*-- scss:rules --*/
+
 /* ── Reset & Base ─────────────────────────────────────────────── */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -6,28 +33,28 @@
 html, body {
   margin: 0 !important;
   padding: 0 !important;
-  background-color: #F2EDE4 !important;
-  color: #1A1108 !important;
-  font-family: 'IBM Plex Serif', Georgia, serif !important;
+  background-color: $paper !important;
+  color: $ink !important;
+  font-family: $font-body !important;
   font-weight: 400;
-  font-size: 15px;
+  font-size: $size-body;
   line-height: 1.75;
   -webkit-font-smoothing: antialiased;
 }
 
 a, a:link, a:visited {
-  color: #1A1108 !important;
+  color: $ink !important;
   text-decoration: none !important;
 }
 
 a:hover {
   opacity: 0.65;
-  color: #1A1108 !important;
+  color: $ink !important;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'IBM Plex Serif', Georgia, serif !important;
-  color: #1A1108 !important;
+  font-family: $font-body !important;
+  color: $ink !important;
 }
 
 /* ── Hide Quarto chrome ───────────────────────────────────────── */
@@ -59,14 +86,14 @@ main#quarto-document-content,
 .df-header {
   display: flex !important;
   min-height: 420px;
-  border-bottom: 3px solid #1A1108;
+  border-bottom: 3px solid $ink;
 }
 
 .df-sidebar {
-  width: 160px !important;
-  min-width: 160px !important;
-  background-color: #2C2A26 !important;
-  color: #F2EDE4 !important;
+  width: $sidebar-width !important;
+  min-width: $sidebar-width !important;
+  background-color: $sidebar-bg !important;
+  color: $paper !important;
   display: flex !important;
   flex-direction: column;
   align-items: center;
@@ -78,29 +105,28 @@ main#quarto-document-content,
 .df-sidebar:link,
 .df-sidebar:visited,
 .df-sidebar:hover {
-  color: #F2EDE4 !important;
+  color: $paper !important;
   text-decoration: none !important;
   opacity: 1 !important;
 }
 
 .df-vol-label {
-  font-family: 'IBM Plex Mono', monospace !important;
-  font-size: 8px;
+  font-family: $font-mono !important;
+  font-size: 7px;
   text-transform: uppercase;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.14em;
   opacity: 0.5;
-  writing-mode: vertical-lr;
-  color: #F2EDE4 !important;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  color: $paper !important;
 }
 
 .df-wordmark {
-  font-family: 'Bebas Neue', sans-serif !important;
-  font-size: 44px;
-  letter-spacing: 0.05em;
-  line-height: 0.92;
-  writing-mode: vertical-rl;
-  transform: rotate(180deg);
-  color: #F2EDE4 !important;
+  font-family: $font-display !important;
+  font-size: 52px;
+  line-height: 0.85;
+  color: $paper !important;
+  text-align: center;
 }
 
 .df-hero {
@@ -119,20 +145,20 @@ main#quarto-document-content,
 }
 
 .df-hero-label {
-  font-family: 'IBM Plex Mono', monospace !important;
-  font-size: 10px !important;
+  font-family: $font-mono !important;
+  font-size: $size-micro !important;
   text-transform: uppercase;
-  letter-spacing: 0.22em;
-  color: rgba(26, 17, 8, 0.45) !important;
+  letter-spacing: 0.2em;
+  color: $label !important;
   margin-bottom: 16px;
 }
 
 .df-hero-title {
-  font-family: 'Bebas Neue', sans-serif !important;
-  font-size: 96px !important;
+  font-family: $font-display !important;
+  font-size: $size-display !important;
   line-height: 0.92 !important;
   letter-spacing: 0.01em;
-  color: #1A1108 !important;
+  color: $ink !important;
   margin: 0 !important;
   padding: 0 !important;
   border: none !important;
@@ -143,51 +169,23 @@ main#quarto-document-content,
 }
 
 .df-hero-desc {
-  font-family: 'IBM Plex Serif', Georgia, serif !important;
+  font-family: $font-body !important;
   font-weight: 300;
   font-style: italic;
-  font-size: 19px;
-  color: #1A1108 !important;
-  margin-top: 28px;
+  font-size: 17px;
+  color: $ink !important;
+  margin-top: 24px;
   max-width: 480px;
-  line-height: 1.5;
-}
-
-.df-hero-bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin-top: 20px;
+  line-height: 1.55;
 }
 
 .df-hero-author {
-  font-family: 'IBM Plex Mono', monospace !important;
-  font-size: 10px !important;
+  font-family: $font-mono !important;
+  font-size: $size-micro !important;
   text-transform: uppercase;
   letter-spacing: 0.18em;
-  color: rgba(26, 17, 8, 0.40) !important;
-}
-
-.df-hero-nav {
-  display: flex;
-  gap: 16px;
-}
-
-.df-hero-nav a,
-.df-hero-nav a:link,
-.df-hero-nav a:visited {
-  font-family: 'IBM Plex Mono', monospace !important;
-  font-size: 13px !important;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: rgba(26, 17, 8, 0.40) !important;
-  text-decoration: none !important;
-  transition: color 0.15s ease;
-}
-
-.df-hero-nav a:hover {
-  color: #1A1108 !important;
-  opacity: 1 !important;
+  color: $label !important;
+  margin-top: 20px;
 }
 
 /* ── Post Index ───────────────────────────────────────────────── */
@@ -207,69 +205,69 @@ a.df-post-row,
 a.df-post-row:link,
 a.df-post-row:visited {
   display: grid !important;
-  grid-template-columns: 90px 1fr 72px;
+  grid-template-columns: 80px 1fr 72px;
   align-items: start;
-  padding: 22px 0 !important;
-  border-bottom: 1px solid #c8bfb0 !important;
+  padding: 20px 0 !important;
+  border-bottom: 1px solid $rule-light !important;
   text-decoration: none !important;
-  color: #1A1108 !important;
+  color: $ink !important;
   transition: opacity 0.15s ease;
 }
 
 a.df-post-row:hover {
   opacity: 0.65;
-  color: #1A1108 !important;
+  color: $ink !important;
   text-decoration: none !important;
 }
 
 .df-post-num {
-  font-family: 'IBM Plex Mono', monospace !important;
+  font-family: $font-mono !important;
   font-weight: 500;
   font-style: italic;
-  font-size: 16px;
-  color: #8B1A0A !important;
-  padding-top: 3px;
+  font-size: 14px;
+  color: $accent-red !important;
+  padding-top: 2px;
 }
 
 .df-post-title {
-  font-family: 'IBM Plex Serif', Georgia, serif !important;
+  font-family: $font-body !important;
   font-weight: 400;
-  font-size: 21px;
-  line-height: 1.4;
-  color: #1A1108 !important;
+  font-size: 18px;
+  line-height: 1.45;
+  color: $ink !important;
 }
 
 .df-post-meta {
-  font-family: 'IBM Plex Mono', monospace !important;
-  font-size: 11px !important;
+  font-family: $font-mono !important;
+  font-size: 10px !important;
   text-transform: capitalize;
   letter-spacing: 0.04em;
   opacity: 0.45;
   text-align: right;
   line-height: 1.7;
-  color: #1A1108 !important;
-  padding-top: 5px;
+  color: $ink !important;
+  padding-top: 4px;
 }
 
 /* ── Category Bar ─────────────────────────────────────────────── */
 .df-cat-bar {
   display: grid !important;
-  grid-template-columns: repeat(3, 1fr);
-  border-top: 3px solid #1A1108;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 3px solid $ink;
   margin-top: 0;
-  background-color: #e8e1d6;
+  background-color: $cat-bg;
 }
 
 .df-cat-cell {
-  padding: 16px 20px;
-  font-family: 'IBM Plex Mono', monospace !important;
-  font-size: 11px !important;
+  padding: 14px 18px;
+  font-family: $font-mono !important;
+  font-size: 9px !important;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  border-right: 1px solid #c8bfb0;
+  border-right: 1px solid $rule-light;
   transition: background-color 0.15s ease, color 0.15s ease;
-  color: #1A1108 !important;
+  color: $ink !important;
   line-height: 1.3;
 }
 
@@ -278,19 +276,19 @@ a.df-post-row:hover {
 }
 
 .df-cat-cell:hover {
-  background-color: #2C2A26;
-  color: #F2EDE4 !important;
+  background-color: $sidebar-bg;
+  color: $paper !important;
 }
 
 .df-cat-sub {
   display: block;
-  font-size: 10px !important;
+  font-size: 8px !important;
   font-weight: 400;
   font-style: italic;
   text-transform: none;
   letter-spacing: 0;
   opacity: 0.55;
-  margin-top: 6px;
+  margin-top: 5px;
   line-height: 1.5;
 }
 
@@ -298,11 +296,11 @@ a.df-post-row:hover {
 .df-footnote {
   display: flex !important;
   justify-content: space-between;
-  font-family: 'IBM Plex Mono', monospace !important;
-  font-size: 10px !important;
-  color: rgba(26, 17, 8, 0.40) !important;
-  padding: 12px 32px;
-  border-top: 1px solid #c8bfb0;
+  font-family: $font-mono !important;
+  font-size: 8px !important;
+  color: $label !important;
+  padding: 10px 32px;
+  border-top: 1px solid $rule-light;
   letter-spacing: 0.04em;
 }
 
@@ -310,7 +308,7 @@ a.df-post-row:hover {
 .df-post-header {
   display: flex !important;
   min-height: 140px;
-  border-bottom: 3px solid #1A1108;
+  border-bottom: 3px solid $ink;
 }
 
 .df-post-hero {
@@ -330,10 +328,10 @@ body.df-post-body #title-block-header {
 }
 
 body.df-post-body #title-block-header .title {
-  font-family: 'IBM Plex Serif', Georgia, serif !important;
+  font-family: $font-body !important;
   font-weight: 400 !important;
   font-size: 32px !important;
-  color: #1A1108 !important;
+  color: $ink !important;
   line-height: 1.2 !important;
   margin: 0 !important;
   border: none !important;
@@ -341,19 +339,19 @@ body.df-post-body #title-block-header .title {
 
 body.df-post-body #title-block-header .date,
 body.df-post-body #title-block-header .author {
-  font-family: 'IBM Plex Mono', monospace !important;
-  font-size: 8px !important;
+  font-family: $font-mono !important;
+  font-size: $size-micro !important;
   text-transform: uppercase;
   letter-spacing: 0.14em;
-  color: rgba(26, 17, 8, 0.35) !important;
+  color: $label !important;
 }
 
 body.df-post-body #title-block-header .quarto-categories .quarto-category {
   background: none !important;
   border: none !important;
   padding: 0 !important;
-  font-size: 8px !important;
-  color: rgba(26, 17, 8, 0.35) !important;
+  font-size: $size-micro !important;
+  color: $label !important;
   text-transform: uppercase;
 }
 
@@ -378,22 +376,22 @@ body.df-post-body > section {
   margin-right: auto !important;
   padding-left: 24px;
   padding-right: 24px;
-  font-family: 'IBM Plex Serif', Georgia, serif;
+  font-family: $font-body;
   font-size: 16px;
   line-height: 1.75;
-  color: #1A1108;
+  color: $ink;
 }
 
 body.df-post-body h1,
 body.df-post-body h2,
 body.df-post-body h3 {
-  font-family: 'IBM Plex Serif', Georgia, serif !important;
+  font-family: $font-body !important;
   font-weight: 400 !important;
 }
 
 body.df-post-body h2 {
   font-size: 24px !important;
-  border-bottom: 1px solid #c8bfb0;
+  border-bottom: 1px solid $rule-light;
   padding-bottom: 0.3em;
   margin-top: 2em;
 }
@@ -404,42 +402,42 @@ body.df-post-body h3 {
 }
 
 body.df-post-body blockquote {
-  border-left: 2px solid #c8bfb0 !important;
+  border-left: 2px solid $rule-light !important;
   padding-left: 1em;
-  color: #4a3c2e !important;
+  color: $muted !important;
   font-style: italic;
 }
 
 body.df-post-body a,
 body.df-post-body a:link,
 body.df-post-body a:visited {
-  color: #1A1108 !important;
+  color: $ink !important;
   text-decoration: underline !important;
   text-underline-offset: 3px;
-  text-decoration-color: #c8bfb0 !important;
+  text-decoration-color: $rule-light !important;
 }
 
 body.df-post-body a:hover {
-  text-decoration-color: #1A1108 !important;
+  text-decoration-color: $ink !important;
   opacity: 1;
 }
 
 /* Inline code in posts */
 body.df-post-body code:not(pre code) {
-  font-family: 'IBM Plex Mono', monospace !important;
+  font-family: $font-mono !important;
   font-size: 0.875em;
   background-color: rgba(0,0,0,0.04) !important;
-  color: #1A1108 !important;
+  color: $ink !important;
   padding: 0.15em 0.35em;
   border-radius: 3px;
 }
 
 /* Code blocks in posts */
 body.df-post-body pre {
-  font-family: 'IBM Plex Mono', monospace !important;
+  font-family: $font-mono !important;
   font-size: 13px;
-  background-color: #F2EDE4 !important;
-  border: 1px solid #c8bfb0 !important;
+  background-color: $paper !important;
+  border: 1px solid $rule-light !important;
   border-radius: 4px;
   padding: 16px;
   overflow-x: auto;
@@ -463,34 +461,16 @@ body.df-post-body table {
 body.df-post-body th,
 body.df-post-body td {
   padding: 8px 12px;
-  border-bottom: 0.5px solid #c8bfb0;
+  border-bottom: 0.5px solid $rule-light;
   text-align: left;
 }
 
 body.df-post-body th {
-  font-family: 'IBM Plex Mono', monospace !important;
-  font-size: 8px;
+  font-family: $font-mono !important;
+  font-size: $size-micro;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   font-weight: 500;
-}
-
-/* ── Content page links (about, publications) ─────────────────── */
-#title-block-header ~ * a:not(.df-post-row):not(.df-sidebar):not(.df-hero-nav a),
-main a:not(.df-post-row):not(.df-sidebar) {
-  text-decoration: underline !important;
-  text-underline-offset: 3px;
-  text-decoration-color: #c8bfb0 !important;
-}
-
-main a:not(.df-post-row):not(.df-sidebar):hover {
-  text-decoration-color: #1A1108 !important;
-  opacity: 1 !important;
-}
-
-/* Hide pagination */
-.listing-pagination {
-  display: none !important;
 }
 
 /* ── Responsive ───────────────────────────────────────────────── */
@@ -511,9 +491,7 @@ main a:not(.df-post-row):not(.df-sidebar):hover {
   }
 
   .df-wordmark {
-    writing-mode: horizontal-tb;
-    transform: none;
-    font-size: 24px;
+    font-size: 32px;
   }
 
   .df-vol-label {
