@@ -3,35 +3,25 @@ project:
   output-dir: _site
 
 website:
-  title: "Adam Henderson"
-  description: "For Abstractions Sake"
+  title: "Depth First"
+  description: "A record of going extremely deep on many unrelated things"
   site-url: https://adamdadeh.github.io
-  navbar:
-    left:
-      - href: index.qmd
-        text: Home
-      - href: about.qmd
-        text: About
-      - href: publications.qmd
-        text: Publications
-    right:
-      - icon: github
-        href: https://github.com/adamdadeh
-      - icon: rss
-        href: index.xml
+  navbar: false
   page-footer:
-    center: "© Adam Henderson"
-  search: true
+    center: ""
+  search: false
 
 execute:
   enabled: false
 
 format:
   html:
-    theme: darkly
+    theme: none
     css: styles.css
-    toc: true
+    page-layout: full
+    toc: false
+    number-sections: false
+    include-in-header: _quarto-head.html
+    html-math-method: mathjax
     code-fold: true
     code-tools: true
-    highlight-style: dracula
-    html-math-method: mathjax

@@ -1,20 +1,62 @@
 ---
-title: "Adam Henderson"
+pagetitle: "Depth First"
 listing:
+  id: post-index
   contents: posts
   sort: "date desc"
-  type: default
-  categories: true
-  feed: true
-  fields: [title, description, date, categories, reading-time]
+  type: custom
+  template: _post-row.ejs
 page-layout: full
+title-block: none
 ---
 
-"One of the principle objects of theoretical research in any department of knowledge is to find the point of view from which the subject appears in its greatest simplicity." - Josiah Willard Gibbs
+```{=html}
+<div class="df-header">
+  <a href="/" class="df-sidebar">
+    <span class="df-vol-label">Est. 2026 &middot; Ongoing</span>
+    <span class="df-wordmark">DEPTH FIRST</span>
+  </a>
+  <div class="df-hero">
+    <div class="df-hero-top">
+      <div class="df-hero-label">Currently exploring</div>
+      <h1 class="df-hero-title">
+        <span>Comics.</span>
+        <span>Math.</span>
+        <span>Agency.</span>
+      </h1>
+      <p class="df-hero-desc">A record of going extremely deep on many unrelated things.</p>
+    </div>
+    <div class="df-hero-bottom">
+      <span class="df-hero-author">Adam Henderson &middot; 2026</span>
+      <nav class="df-hero-nav">
+        <a href="about.html">About</a>
+        <a href="publications.html">Publications</a>
+      </nav>
+    </div>
+  </div>
+</div>
+```
 
-This is the core thread of my research / professional career across Theoretical Physics (Quantum Gravity & General Relativity), applied math, machine learning, and software engineering.
+::: {#post-index}
+:::
 
-[List of Publications](http://inspirehep.net/author/profile/A.Henderson.1) from my quantum gravity era. Without the academic pressure to write papers I am less and less inclined to share research.
-
-- [Research Gate](https://www.researchgate.net/profile/Adam_Henderson12)
-- [LinkedIn](https://www.linkedin.com/in/adam-henderson-b4887b29)
+```{=html}
+<div class="df-cat-bar">
+  <div class="df-cat-cell">
+    Culture
+    <span class="df-cat-sub">Comics, Music, TV, Games, MTG</span>
+  </div>
+  <div class="df-cat-cell">
+    Ideas
+    <span class="df-cat-sub">Math, Physics, Philosophy, Consciousness</span>
+  </div>
+  <div class="df-cat-cell">
+    Tech
+    <span class="df-cat-sub">Software, ML, Agentic Dev</span>
+  </div>
+</div>
+<div class="df-footnote">
+  <span>12 entries &middot; depth first</span>
+  <span>new entries when something earns one</span>
+</div>
+```

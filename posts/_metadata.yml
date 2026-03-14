@@ -1,3 +1,5 @@
 author: "Adam Henderson"
 date-format: "MMMM D, YYYY"
 draft: false
+include-before-body: ../_post-header.html
+body-classes: df-post-body

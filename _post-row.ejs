@@ -1,0 +1,24 @@
+```{=html}
+<div class="df-post-index">
+<% for (let i = 0; i < items.length; i++) {
+     const item = items[i];
+     const num = String(i + 1).padStart(3, '0');
+     const title = item.title || 'Untitled';
+     const cats = item.categories || [];
+     const cat = cats.length > 0 ? cats[0] : '';
+     const rawDate = item.date;
+     let dateStr = '';
+     if (rawDate) {
+       const d = new Date(rawDate);
+       const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+       dateStr = months[d.getMonth()] + ' ' + String(d.getDate()).padStart(2, '0');
+     }
+%>
+<a href="<%- item.path %>" class="df-post-row" <%= metadataAttrs(item) %>>
+  <span class="df-post-num"><%= num %></span>
+  <span class="df-post-title"><%= title %></span>
+  <span class="df-post-meta"><%= cat %><br><%= dateStr %></span>
+</a>
+<% } %>
+</div>
+```
