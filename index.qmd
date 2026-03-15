@@ -22,7 +22,7 @@ title-block: none
       <h1 class="df-hero-title">
         <span>Comics.</span>
         <span>Math.</span>
-        <span>Agency.</span>
+        <span>Engineering.</span>
       </h1>
       <p class="df-hero-desc">A record of going extremely deep on many unrelated things.</p>
     </div>

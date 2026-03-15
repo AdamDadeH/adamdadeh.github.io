@@ -4,6 +4,7 @@
      const item = items[i];
      const num = String(i + 1).padStart(3, '0');
      const title = item.title || 'Untitled';
+     const isDraft = item.draft === true || item.draft === 'true';
      const cats = item.categories || [];
      const cat = cats.length > 0 ? cats[0] : '';
      const rawDate = item.date;
@@ -13,10 +14,11 @@
        const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
        dateStr = months[d.getMonth()] + ' ' + String(d.getDate()).padStart(2, '0');
      }
+     const rowClass = isDraft ? 'df-post-row df-post-draft' : 'df-post-row';
 %>
-<a href="<%- item.path %>" class="df-post-row" <%= metadataAttrs(item) %>>
+<a href="<%- item.path %>" class="<%= rowClass %>" <%= metadataAttrs(item) %>>
   <span class="df-post-num"><%= num %></span>
-  <span class="df-post-title"><%= title %></span>
+  <span class="df-post-title"><%= title %><% if (isDraft) { %> <span class="df-draft-badge">DRAFT</span><% } %></span>
   <span class="df-post-meta"><%= cat %><br><%= dateStr %></span>
 </a>
 <% } %>
